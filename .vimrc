@@ -1,7 +1,7 @@
 set nocompatible
-filetype off
 
 "{{{ Plugins
+filetype off
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries', 'for': 'go' }
 Plug 'tpope/vim-fugitive'
@@ -16,22 +16,20 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-obsession'
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'zchee/deoplete-go'
 else
     Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
+Plug 'zchee/deoplete-go'
 Plug 'nsf/gocode', {'rtp': 'vim/'}
 Plug 'shime/vim-livedown'
 Plug 'cespare/vim-toml'
-Plug 'edkolev/tmuxline.vim'
+Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 
 filetype indent plugin on
 "}}}
-
-let g:tmuxline_powerline_separators = 0
 
 "{{{ Visual
 " Turn on syntax highlight
@@ -50,7 +48,7 @@ set laststatus=2
 set showtabline=0
 
 " Show numbers
-set number
+set number relativenumber
 
 " Draw line cursor
 set cursorline
@@ -135,9 +133,20 @@ map <down> <nop>
 map <up> <nop>
 imap <bs> <nop>
 
-nnoremap <leader>a :cclose<CR>
-noremap <Up> gk
-noremap <Down> gj
+" Make numbers a little bit closer on mac
+if has('mac')
+    map å 1
+    map ß 2
+    map ∂ 3
+    map ƒ 4
+    map © 5
+    map ˙ 6
+    map ∆ 7
+    map ˚ 8
+    map ¬ 9
+    map … 0
+endif
+
 noremap j gj
 noremap k gk
 
@@ -164,11 +173,11 @@ map <C-f> :NERDTreeFind<CR>
 
 map <C-p> :FZF<CR>
 map ; :Buffers<cr>
+
+" Zooming into specific split.
 map zi :tabedit +<C-r>=line(".")<cr> %<cr>zz
 map Zi :only<cr>
 map zo :tabclose<cr>
-
-map "p vi"p
 "}}}
 
 "{{{ [C] configuration
@@ -207,9 +216,10 @@ endfunction
 let g:go_list_type = "quickfix"
 let g:go_fmt_command = "goimports"
 let g:go_highlight_build_constraints = 1
-let g:go_auto_type_info = 1
+let g:go_auto_type_info = 0
 let g:go_highlight_extra_types = 1
 let g:go_highlight_types = 1
+let g:go_echo_go_info = 0
 "}}}
 
 "{{{ [Vim] configuration
