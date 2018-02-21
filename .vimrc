@@ -26,94 +26,63 @@ Plug 'nsf/gocode', {'rtp': 'vim/'}
 Plug 'shime/vim-livedown'
 Plug 'cespare/vim-toml'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'davidhalter/jedi'
+Plug 'zchee/deoplete-jedi'
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
+Plug 'w0rp/ale'
 call plug#end()
 
 filetype indent plugin on
 "}}}
 
 "{{{ Visual
-" Turn on syntax highlight
-syntax on
-
-" Setting background to dark
-set background=dark
-
-" Sweet theme
-colorscheme onedark
-
-" Always show status line
-set laststatus=2
-
-" Show tab line
-set showtabline=0
-
-" Show numbers
-set number relativenumber
-
-" Draw line cursor
-set cursorline
-
-" Want to see right margin
-set colorcolumn=120
-
-" Don't need mode to be shown
-set noshowmode
-
-" Don't break in the middle of word
-set linebreak
-
-" Good break marker
-let &showbreak='> '
-
-" Hide '1 match' and other related messages
-set shortmess+=c
-
-set splitbelow
-set splitright
+syntax on           " Turn on syntax highlight
+set background=dark " Setting background to dark
+colorscheme onedark " Sweet theme
+set laststatus=2    " Always show status line
+set showtabline=0   " Show tab line
+set number          " Show numbers...
+set relativenumber  " relatively
+set cursorline      " Draw line cursor
+set colorcolumn=120 " Want to see right margin
+set noshowmode      " Don't need mode to be shown
+set linebreak       " Don't break in the middle of word
+let &showbreak='> ' " Good break marker
+set shortmess+=c    " Hide '1 match' and other related messages
+set splitbelow      " Horizontal split should appear below
+set splitright      " Vertical split should appear on right
 "}}}
 
 "{{{ Search
-" Highlight search matches
-set hlsearch
+set hlsearch    " Highlight search matches
+set incsearch   " Incremental search
 
-" Incremental search
-set incsearch
-
-" Let's be smart on search
-set ignorecase
-set smartcase
+set ignorecase  " Ignore case...
+set smartcase   " unless I start search keyword with capital letter
 "}}}
 
 "{{{ Editor
-" Treat tab as 4 spaces during editing
-set softtabstop=4
-
-" Spaces for shifting/indenting
-set shiftwidth=4
-
-" We need spaces, not tabs
-set expandtab
-
-" Backspace behavior I used to
-set backspace=2
-
-" Wrapping behavior
-set whichwrap+=<,>,h,l,[,]
+set softtabstop=4   " Treat tab as 4 spaces during editing
+set shiftwidth=4    " Spaces for shifting/indenting
+set expandtab       " We need spaces, not tabs
+set backspace=2     " Backspace behavior I used to
+set whichwrap+=<,>,h,l,[,] " Wrapping behavior
 set showmatch
-
-" I don't like swapfiles
-set noswapfile
+set noswapfile " I don't like swapfiles
 "}}}
 
 "{{{ UNGROUPED
-set hidden
-set autowrite
+set hidden " Allow me to switch to another buffers without saving
+set autowrite " Write file if jump goes out of this file
 set completeopt-=preview
 set completeopt+=noselect
-set clipboard=unnamed
+" set clipboard=unnamed
 let loaded_matchparen=1
 set lazyredraw          " Wait to redraw
-set ttyfast
+if !has('nvim')
+    set ttyfast
+endif
 set scrolljump=8        " Scroll 8 lines at a time at bottom/top
 set mouse=a
 let html_no_rendering=1 " Don't render italic, bold, links in HTML
@@ -132,6 +101,9 @@ map <right> <nop>
 map <down> <nop>
 map <up> <nop>
 imap <bs> <nop>
+
+" I want each newline to create undo point
+inoremap <return> <C-g>u<cr>
 
 " Make numbers a little bit closer on mac
 if has('mac')
@@ -334,4 +306,13 @@ let g:lightline = {
     \   'tagbar': '%{tagbar#currenttag("[%s]", "", "f")}',
     \ },
     \ }
+"}}}
+
+"{{{ [Rust] configuration
+augroup filetype_rust
+    autocmd!
+    autocmd FileType rust nmap <leader>r :Cargo run<cr>
+    autocmd FileType rust nmap <leader>t :Cargo test<cr>
+    autocmd FileType rust nmap <leader>b :Cargo build<cr>
+augroup END
 "}}}
