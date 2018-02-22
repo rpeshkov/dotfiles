@@ -31,6 +31,7 @@ Plug 'zchee/deoplete-jedi'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
 Plug 'w0rp/ale'
+Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 filetype indent plugin on
@@ -70,6 +71,8 @@ set backspace=2     " Backspace behavior I used to
 set whichwrap+=<,>,h,l,[,] " Wrapping behavior
 set showmatch
 set noswapfile " I don't like swapfiles
+set timeoutlen=500
+set ttimeoutlen=0
 "}}}
 
 "{{{ UNGROUPED
@@ -101,6 +104,9 @@ map <right> <nop>
 map <down> <nop>
 map <up> <nop>
 imap <bs> <nop>
+
+nnoremap hh ^
+nnoremap ll $
 
 " I want each newline to create undo point
 inoremap <return> <C-g>u<cr>
@@ -315,4 +321,8 @@ augroup filetype_rust
     autocmd FileType rust nmap <leader>t :Cargo test<cr>
     autocmd FileType rust nmap <leader>b :Cargo build<cr>
 augroup END
+"}}}
+
+"{{{ FZF configuration
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 "}}}
