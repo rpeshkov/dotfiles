@@ -105,8 +105,8 @@ map <down> <nop>
 map <up> <nop>
 imap <bs> <nop>
 
-nnoremap hh ^
-nnoremap ll $
+nnoremap Hh ^
+nnoremap Ll $
 
 " I want each newline to create undo point
 inoremap <return> <C-g>u<cr>
@@ -155,7 +155,12 @@ map ; :Buffers<cr>
 " Zooming into specific split.
 map zi :tabedit +<C-r>=line(".")<cr> %<cr>zz
 map Zi :only<cr>
-map zo :tabclose<cr>
+map zo :call ZoomOut()<cr>
+function! ZoomOut()
+    let linenr = line(".")
+    exec 'tabclose'
+    exec 'normal ' . linenr . 'G'
+endfunction
 "}}}
 
 "{{{ [C] configuration
