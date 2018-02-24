@@ -52,13 +52,15 @@ set number          " Show numbers...
 set relativenumber  " relatively
 set numberwidth=6   " Make line numbers space wider
 set cursorline      " Draw line cursor
-set colorcolumn=120 " Want to see right margin
+set colorcolumn=+1  " Want to see right margin
 set noshowmode      " Don't need mode to be shown
 set linebreak       " Don't break in the middle of word
-let &showbreak='> ' " Good break marker
+let &showbreak='↪ ' " Good break marker
 set shortmess+=c    " Hide '1 match' and other related messages
 set splitbelow      " Horizontal split should appear below
 set splitright      " Vertical split should appear on right
+set synmaxcol=300   " Don't highlight lines longer than 300 characters
+set list            " Show additional characters
 "}}}
 
 "{{{ Search
@@ -79,6 +81,13 @@ set noswapfile " I don't like swapfiles
 set timeoutlen=500
 set ttimeoutlen=0
 set pumheight=10        " Completion window max size
+set textwidth=120
+
+augroup trailing
+    au!
+    au InsertEnter * :set listchars-=trail:⌴
+    au InsertLeave * :set listchars+=trail:⌴
+augroup END
 "}}}
 
 "{{{ UNGROUPED
@@ -99,6 +108,8 @@ let html_no_rendering=1 " Don't render italic, bold, links in HTML
 set updatetime=100
 set virtualedit=block " Enable virtual edit mode in block selection
 set wildmenu
+set wildmode=list:full
+set wildignorecase
 set wildignore+=**/node_modules   " ignores node_modules
 set wildignore+=**/bower_components   " ignores node_modules
 "}}}
@@ -113,16 +124,23 @@ map <right> <nop>
 map <down> <nop>
 map <up> <nop>
 
-nnoremap Hh ^
-nnoremap Ll $
+noremap H ^
+noremap L $
+vnoremap L g_
 
 vnoremap $ g_
+
+inoremap <c-a> <esc>I
+inoremap <c-e> <esc>A
 
 vmap <silent> > >gv
 vmap <silent> < <gv
 
 " I want each newline to create undo point
 inoremap <return> <C-g>u<cr>
+
+" Keep the cursor in place while joining lines
+nnoremap J mzJ`z
 
 " Make numbers a little bit closer on mac
 if has('mac')
@@ -164,6 +182,8 @@ map <C-f> :NERDTreeFind<CR>
 
 map <C-p> :FZF<CR>
 map ; :Buffers<cr>
+
+nnoremap vv ^vg_
 
 " Zooming into specific split.
 map <silent> zi :tabedit +<C-r>=line(".")<cr> %<cr>zz
