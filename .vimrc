@@ -9,7 +9,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'majutsushi/tagbar'
 Plug 'joshdick/onedark.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-unimpaired'
@@ -32,6 +31,12 @@ Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
 Plug 'w0rp/ale'
 Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
+Plug 'scrooloose/nerdcommenter'
+Plug 't9md/vim-choosewin'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'AndrewRadev/splitjoin.vim'
 call plug#end()
 
 filetype indent plugin on
@@ -45,6 +50,7 @@ set laststatus=2    " Always show status line
 set showtabline=0   " Show tab line
 set number          " Show numbers...
 set relativenumber  " relatively
+set numberwidth=6   " Make line numbers space wider
 set cursorline      " Draw line cursor
 set colorcolumn=120 " Want to see right margin
 set noshowmode      " Don't need mode to be shown
@@ -58,21 +64,21 @@ set splitright      " Vertical split should appear on right
 "{{{ Search
 set hlsearch    " Highlight search matches
 set incsearch   " Incremental search
-
 set ignorecase  " Ignore case...
 set smartcase   " unless I start search keyword with capital letter
 "}}}
 
 "{{{ Editor
-set softtabstop=4   " Treat tab as 4 spaces during editing
-set shiftwidth=4    " Spaces for shifting/indenting
-set expandtab       " We need spaces, not tabs
-set backspace=2     " Backspace behavior I used to
-set whichwrap+=<,>,h,l,[,] " Wrapping behavior
+set softtabstop=4       " Treat tab as 4 spaces during editing
+set shiftwidth=4        " Spaces for shifting/indenting
+set expandtab           " We need spaces, not tabs
+set backspace=2         " Backspace behavior I used to
+set whichwrap+=<,>,[,]  " Wrapping behavior
 set showmatch
 set noswapfile " I don't like swapfiles
 set timeoutlen=500
 set ttimeoutlen=0
+set pumheight=10        " Completion window max size
 "}}}
 
 "{{{ UNGROUPED
@@ -87,6 +93,7 @@ if !has('nvim')
     set ttyfast
 endif
 set scrolljump=8        " Scroll 8 lines at a time at bottom/top
+set scrolloff=3         " Don't reach borders when dummy-scrolling
 set mouse=a
 let html_no_rendering=1 " Don't render italic, bold, links in HTML
 set updatetime=100
@@ -99,14 +106,20 @@ set wildignore+=**/bower_components   " ignores node_modules
 "{{{ Bindings
 let mapleader=","
 
+nmap - <Plug>(choosewin)
+
 map <left> <nop>
 map <right> <nop>
 map <down> <nop>
 map <up> <nop>
-imap <bs> <nop>
 
 nnoremap Hh ^
 nnoremap Ll $
+
+vnoremap $ g_
+
+vmap <silent> > >gv
+vmap <silent> < <gv
 
 " I want each newline to create undo point
 inoremap <return> <C-g>u<cr>
@@ -144,7 +157,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 nnoremap Y y$
-nnoremap <esc><esc> :silent! nohls<cr>
+nnoremap <silent> <esc><esc> :nohls<cr>
 
 map <C-n> :NERDTree<cr> 
 map <C-f> :NERDTreeFind<CR>
@@ -153,9 +166,9 @@ map <C-p> :FZF<CR>
 map ; :Buffers<cr>
 
 " Zooming into specific split.
-map zi :tabedit +<C-r>=line(".")<cr> %<cr>zz
-map Zi :only<cr>
-map zo :call ZoomOut()<cr>
+map <silent> zi :tabedit +<C-r>=line(".")<cr> %<cr>zz
+map <silent> Zi :only<cr>
+map <silent> zo :call ZoomOut()<cr>
 function! ZoomOut()
     let linenr = line(".")
     exec 'tabclose'
@@ -302,32 +315,34 @@ let g:deoplete#enable_at_startup = 1
 let g:livedown_browser = "safari"
 "}}}
 
-"{{{ Abbreviations
-iabbrev @@ peshkovroman@gmail.com
-"}}}
-
 "{{{ Lightline
 let g:lightline = {
     \ 'active': {
-    \   'left': [['mode'], ['readonly', 'filename', 'modified'], ['tagbar']],
+    \   'left': [['mode'], ['readonly', 'filename', 'modified']],
     \   'right': [['lineinfo'], ['filetype']]
     \ },
     \ 'component': {
     \   'lineinfo': '%l\%L [%p%%], %c, %n',
-    \   'tagbar': '%{tagbar#currenttag("[%s]", "", "f")}',
     \ },
     \ }
 "}}}
 
 "{{{ [Rust] configuration
+let g:rustfmt_autosave = 1
 augroup filetype_rust
     autocmd!
-    autocmd FileType rust nmap <leader>r :Cargo run<cr>
-    autocmd FileType rust nmap <leader>t :Cargo test<cr>
-    autocmd FileType rust nmap <leader>b :Cargo build<cr>
+    autocmd FileType rust nmap <leader>r :make run<cr>
+    autocmd FileType rust nmap <leader>t :make test<cr>
+    autocmd FileType rust nmap <leader>b :make build<cr>
+    autocmd FileType rust compiler cargo
 augroup END
 "}}}
 
 "{{{ FZF configuration
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+"}}}
+
+"{{{ NERDCommenter
+let g:NERDSpaceDelims = 1       " Add spaces after comment delimiters by default
+let g:NERDDefaultAlign = 'left' " Align line-wise comment delimiters flush left instead of following code indentation
 "}}}
