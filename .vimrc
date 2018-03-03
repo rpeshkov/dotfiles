@@ -61,6 +61,12 @@ set splitbelow      " Horizontal split should appear below
 set splitright      " Vertical split should appear on right
 set synmaxcol=300   " Don't highlight lines longer than 300 characters
 set list            " Show additional characters
+set title           " Change title of terminal
+augroup cline
+    au!
+    au WinLeave,InsertEnter * set nocursorline
+    au WinEnter,InsertLeave * set cursorline
+augroup END
 "}}}
 
 "{{{ Search
@@ -82,6 +88,7 @@ set timeoutlen=500
 set ttimeoutlen=0
 set pumheight=10        " Completion window max size
 set textwidth=120
+set shiftround          " Round indent
 
 augroup trailing
     au!
@@ -139,6 +146,8 @@ vmap <silent> < <gv
 " I want each newline to create undo point
 inoremap <return> <C-g>u<cr>
 
+nnoremap <cr> o<esc>
+
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
 
@@ -177,11 +186,11 @@ nnoremap <C-l> <C-w>l
 nnoremap Y y$
 nnoremap <silent> <esc><esc> :nohls<cr>
 
-map <C-n> :NERDTree<cr> 
+map <C-n> :NERDTree<cr>
 map <C-f> :NERDTreeFind<CR>
 
 map <C-p> :FZF<CR>
-map ; :Buffers<cr>
+" map ; :Buffers<cr>
 
 nnoremap vv ^vg_
 
@@ -253,9 +262,9 @@ augroup END
 "}}}
 
 "{{{ GUI configuration
-if has('gui') 
+if has('gui')
     set guioptions-=L
-    set guifont=Iosevka:h15
+    set guifont=Source Code Pro:h12
 endif
 "}}}
 
@@ -349,6 +358,7 @@ let g:lightline = {
 
 "{{{ [Rust] configuration
 let g:rustfmt_autosave = 1
+
 augroup filetype_rust
     autocmd!
     autocmd FileType rust nmap <leader>r :make run<cr>
