@@ -1,29 +1,35 @@
 [user]
-        name=Roman Peshkov
-	email = peshkovroman@gmail.com
+    name = Roman Peshkov
+    email = peshkovroman@gmail.com
 
 [advice]
-        statusHints = false
+    statusHints = false
 
 [alias]
-        co = checkout
-        st = status
-        lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	amend = commit --amend
-        poh = push origin HEAD
+    aa = add .
+    c = commit
+    co = checkout
+    cob = checkout -b
+    s = status
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    amend = commit --amend
+    poh = push origin HEAD
 
 [status]
-        showUntrackedFiles=all
-        short=true
+    showUntrackedFiles = all
+    short = true
 
 [core]
-	editor = nvim
+    editor = nvim
 
 [diff]
     tool = default-difftool
+
 [difftool "default-difftool"]
     cmd = code --wait --diff $LOCAL $REMOTE
+
 [log]
-        date = short
+    date = short
+
 [color]
-	ui = auto
+    ui = auto

@@ -3,40 +3,133 @@ set nocompatible
 "{{{ Plugins
 filetype off
 call plug#begin('~/.local/share/nvim/plugged')
+"{{{ Vim-go
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries', 'for': 'go' }
-Plug 'tpope/vim-fugitive'
+
+augroup filetype_go
+    autocmd!
+    autocmd FileType go nmap <leader>r  <Plug>(go-run)
+    autocmd FileType go nmap <leader>t  <Plug>(go-test)
+    autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+    autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+    autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+    autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+    autocmd FileType go nmap <Leader>i <Plug>(go-info)
+    autocmd FileType go setlocal tabstop=8
+    autocmd FileType go setlocal softtabstop=8
+    autocmd FileType go setlocal shiftwidth=8
+    autocmd FileType go setlocal noexpandtab
+    autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+    autocmd FileType go cabbrev god GoDecls 
+augroup END
+
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#cmd#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+let g:go_list_type = "quickfix"
+let g:go_fmt_command = "goimports"
+let g:go_highlight_build_constraints = 1
+let g:go_auto_type_info = 0
+let g:go_highlight_extra_types = 1
+let g:go_highlight_types = 1
+let g:go_echo_go_info = 0
+"}}}
+"{{{ NERDTree
 Plug 'scrooloose/nerdtree'
+
+let NERDTreeChDirMode=0
+let NERDTreeWinSize=50
+let NERDTreeShowBookmarks=0
+let NERDTreeMinimalUI=1
+let NERDTreeHijackNetrw=1
+"}}}
+"{{{ Lightline
 Plug 'itchyny/lightline.vim'
+
+let g:lightline = {
+    \ 'active': {
+    \   'left': [['mode', 'movement_mode'], ['readonly', 'filename', 'modified']],
+    \   'right': [['lineinfo'], ['filetype']]
+    \ },
+    \ 'component': {
+    \   'lineinfo': '%l\%L [%p%%], %c, %n',
+    \   'movement_mode': 'LightlineMovement',
+    \ },
+    \ 'component_function': {
+    \   'movement_mode': 'LightlineMovement',
+    \ },
+    \ }
+
+function! LightlineMovement()
+    return g:movement_mode
+endfunction
+"}}}
+"{{{ FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+"}}}
+"{{{ Livedown
+Plug 'shime/vim-livedown'
+
+let g:livedown_browser = "safari"
+"}}}
+Plug 'tpope/vim-fugitive'
 Plug 'joshdick/onedark.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-obsession'
-if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-    Plug 'Shougo/deoplete.nvim'
+if !has('nvim')
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
-Plug 'zchee/deoplete-go'
 Plug 'nsf/gocode', {'rtp': 'vim/'}
-Plug 'shime/vim-livedown'
 Plug 'cespare/vim-toml'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'davidhalter/jedi'
-Plug 'zchee/deoplete-jedi'
-Plug 'rust-lang/rust.vim'
-Plug 'racer-rust/vim-racer'
+"{{{ Ale
 Plug 'w0rp/ale'
+
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+"}}}
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
+"{{{ NERDCommenter
 Plug 'scrooloose/nerdcommenter'
+
+let g:NERDSpaceDelims = 1       " Add spaces after comment delimiters by default
+let g:NERDDefaultAlign = 'left' " Align line-wise comment delimiters flush left instead of following code indentation
+"}}}
 Plug 't9md/vim-choosewin'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug '~/Developer/vim-hugo'
+Plug 'roxma/nvim-completion-manager'
+"{{{ Rust
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
+Plug 'roxma/nvim-cm-racer'
+let g:rustfmt_autosave = 1
+
+augroup filetype_rust
+    autocmd!
+    autocmd FileType rust nmap <leader>r :make run<cr>
+    autocmd FileType rust nmap <leader>t :make test<cr>
+    autocmd FileType rust nmap <leader>b :make build<cr>
+    autocmd FileType rust compiler cargo
+augroup END
+"}}}
 call plug#end()
 
 filetype indent plugin on
@@ -61,12 +154,8 @@ set splitbelow      " Horizontal split should appear below
 set splitright      " Vertical split should appear on right
 set synmaxcol=300   " Don't highlight lines longer than 300 characters
 set list            " Show additional characters
+set listchars=tab:‣\ ,trail:·,precedes:«,extends:»,eol:¬
 set title           " Change title of terminal
-augroup cline
-    au!
-    au WinLeave,InsertEnter * set nocursorline
-    au WinEnter,InsertLeave * set cursorline
-augroup END
 "}}}
 
 "{{{ Search
@@ -124,29 +213,62 @@ set wildignore+=**/bower_components   " ignores node_modules
 "{{{ Bindings
 let mapleader=","
 
+" Vimrc editing simplification
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
 nmap - <Plug>(choosewin)
 
+" No arrows please
 map <left> <nop>
 map <right> <nop>
 map <down> <nop>
 map <up> <nop>
 
+" Moving through visual line by default
+noremap j gj
+noremap k gk
+noremap gj j
+noremap gk k
+
+" Easier jump to begin/end of line
 noremap H ^
 noremap L $
 vnoremap L g_
-
 vnoremap $ g_
-
 inoremap <c-a> <esc>I
 inoremap <c-e> <esc>A
+
+" Select the line
+nnoremap vv ^vg_
+
+let g:movement_mode = 'movement'
+function! SwitchMode()
+    if g:movement_mode ==# 'movement'
+        let g:movement_mode = 'errors'
+        noremap j :cnext<cr>
+        noremap k :cprev<cr>
+        " lnext and lprev are not able to jump to location when there are only 1 item in the list. Fixing this here
+        noremap <silent> l :execute len(getloclist(0)) == 1 ? "lrewind" : "lnext"<cr>
+        noremap <silent> h :execute len(getloclist(0)) == 1 ? "lrewind" : "lprev"<cr>
+    else
+        let g:movement_mode = 'movement'
+        noremap j gj
+        noremap k gk
+        noremap gj j
+        noremap gk k
+        noremap h h
+        noremap l l
+    endif
+endfunction
+
+nnoremap <silent> <tab> :call SwitchMode()<cr>
 
 vmap <silent> > >gv
 vmap <silent> < <gv
 
 " I want each newline to create undo point
 inoremap <return> <C-g>u<cr>
-
-nnoremap <cr> o<esc>
 
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
@@ -164,9 +286,6 @@ if has('mac')
     map ¬ 9
     map … 0
 endif
-
-noremap j gj
-noremap k gk
 
 nnoremap n nzzzv
 nnoremap N Nzzzv
@@ -188,11 +307,7 @@ nnoremap <silent> <esc><esc> :nohls<cr>
 
 map <C-n> :NERDTree<cr>
 map <C-f> :NERDTreeFind<CR>
-
 map <C-p> :FZF<CR>
-" map ; :Buffers<cr>
-
-nnoremap vv ^vg_
 
 " Zooming into specific split.
 map <silent> zi :tabedit +<C-r>=line(".")<cr> %<cr>zz
@@ -203,6 +318,11 @@ function! ZoomOut()
     exec 'tabclose'
     exec 'normal ' . linenr . 'G'
 endfunction
+
+" Operator-pending bindings
+onoremap p i(
+onoremap ib i{
+onoremap ab a{
 "}}}
 
 "{{{ [C] configuration
@@ -210,41 +330,6 @@ augroup filetype_c
     autocmd!
     autocmd FileType c nmap <leader>b :make!<cr>
 augroup END
-"}}}
-
-"{{{ [Go] configuration
-augroup filetype_go
-    autocmd!
-    autocmd FileType go nmap <leader>r  <Plug>(go-run)
-    autocmd FileType go nmap <leader>t  <Plug>(go-test)
-    autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-    autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-    autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-    autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
-    autocmd FileType go nmap <Leader>i <Plug>(go-info)
-    autocmd FileType go setlocal tabstop=8
-    autocmd FileType go setlocal softtabstop=8
-    autocmd FileType go setlocal shiftwidth=8
-    autocmd FileType go setlocal noexpandtab
-    autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-augroup END
-
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#cmd#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
-
-let g:go_list_type = "quickfix"
-let g:go_fmt_command = "goimports"
-let g:go_highlight_build_constraints = 1
-let g:go_auto_type_info = 0
-let g:go_highlight_extra_types = 1
-let g:go_highlight_types = 1
-let g:go_echo_go_info = 0
 "}}}
 
 "{{{ [Vim] configuration
@@ -264,19 +349,11 @@ augroup END
 "{{{ GUI configuration
 if has('gui')
     set guioptions-=L
-    set guifont=Source Code Pro:h12
+    set guifont=Source\ Code\ Pro:h12
 endif
 "}}}
 
-"{{{ NERDTree configuration
-let NERDTreeChDirMode=0
-let NERDTreeWinSize=50
-let NERDTreeShowBookmarks=0
-let NERDTreeMinimalUI=1
-"}}}
-
 "{{{ AG configuration
-" The Silver Searcher
 if executable('ag')
     " Use ag over grep
     set grepprg=ag\ --nogroup\ --nocolor
@@ -287,9 +364,10 @@ if executable('ag')
     let g:ctrlp_use_caching = 0
 endif
 
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-cabbrev ag Ag
+nnoremap K :Ag <C-R><C-W><cr>
+"<CR>:cw<CR>
+" command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+" cabbrev ag Ag
 "}}}
 
 "{{{ CScope
@@ -297,25 +375,25 @@ set cscopequickfix=s-,c-,d-,i-,t-,e-,a-,g-
 
 " All next keymaps set R mark so you are able to return back
 " Find assignments to this symbol
-nmap <C-i>a mR:cs find a <C-R>=expand("<cword>")<CR><CR>:cwin<CR>
+nmap <C-s>a mR:cs find a <C-R>=expand("<cword>")<CR><CR>:cwin<CR>
 "Find this C symbol
-nmap <C-i>s mR:cs find s <C-R>=expand("<cword>")<CR><CR>:cwin<CR> 
+nmap <C-s>s mR:cs find s <C-R>=expand("<cword>")<CR><CR>:cwin<CR> 
 "Find this definition
-nmap <C-i>g mR:cs find g <C-R>=expand("<cword>")<CR><CR>:cwin<CR> 
+nmap <C-s>g mR:cs find g <C-R>=expand("<cword>")<CR><CR>:cwin<CR> 
 "Find functions calling this function
-nmap <C-i>c mR:cs find c <C-R>=expand("<cword>")<CR><CR>:cwin<CR> 
+nmap <C-s>c mR:cs find c <C-R>=expand("<cword>")<CR><CR>:cwin<CR> 
 "Find this text string
-nmap <C-i>t mR:cs find t <C-R>=expand("<cword>")<CR><CR>:cwin<CR> 
+nmap <C-s>t mR:cs find t <C-R>=expand("<cword>")<CR><CR>:cwin<CR> 
 "Find this egrep pattern
-nmap <C-i>e mR:cs find e <C-R>=expand("<cword>")<CR><CR>:cwin<CR> 
+nmap <C-s>e mR:cs find e <C-R>=expand("<cword>")<CR><CR>:cwin<CR> 
 "Find this file
-nmap <C-i>f mR:cs find f <C-R>=expand("<cfile>")<CR><CR>:cwin<CR> 
+nmap <C-s>f mR:cs find f <C-R>=expand("<cfile>")<CR><CR>:cwin<CR> 
 "Find files #including this file
-nmap <C-i>i mR:cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>:cwin<CR> 
+nmap <C-s>i mR:cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>:cwin<CR> 
 "Find functions called by this function
-nmap <C-i>d mR:cs find d <C-R>=expand("<cword>")<CR><CR>:cwin<CR> 
+nmap <C-s>d mR:cs find d <C-R>=expand("<cword>")<CR><CR>:cwin<CR> 
 
-nmap <C-i>q :cexpr []<cr>
+nmap <C-s>q :cexpr []<cr>
 
 command! Cqf cexpr []
 
@@ -334,45 +412,3 @@ if has("cscope")
     set csverb
 endif
 " }}}
-
-"{{{ Deoplete
-let g:deoplete#enable_at_startup = 1
-"}}}
-
-"{{{ Livedown
-" My primary is chrome, so we can use safari for other stuff
-let g:livedown_browser = "safari"
-"}}}
-
-"{{{ Lightline
-let g:lightline = {
-    \ 'active': {
-    \   'left': [['mode'], ['readonly', 'filename', 'modified']],
-    \   'right': [['lineinfo'], ['filetype']]
-    \ },
-    \ 'component': {
-    \   'lineinfo': '%l\%L [%p%%], %c, %n',
-    \ },
-    \ }
-"}}}
-
-"{{{ [Rust] configuration
-let g:rustfmt_autosave = 1
-
-augroup filetype_rust
-    autocmd!
-    autocmd FileType rust nmap <leader>r :make run<cr>
-    autocmd FileType rust nmap <leader>t :make test<cr>
-    autocmd FileType rust nmap <leader>b :make build<cr>
-    autocmd FileType rust compiler cargo
-augroup END
-"}}}
-
-"{{{ FZF configuration
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
-"}}}
-
-"{{{ NERDCommenter
-let g:NERDSpaceDelims = 1       " Add spaces after comment delimiters by default
-let g:NERDDefaultAlign = 'left' " Align line-wise comment delimiters flush left instead of following code indentation
-"}}}
