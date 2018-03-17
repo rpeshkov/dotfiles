@@ -7,10 +7,14 @@
 
 [alias]
     aa = add .
-    c = commit
+    ci = commit
+    b = branch -vv
+    d = diff
+    dt = difftool
+    dw = diff --word-diff=color
     co = checkout
     cob = checkout -b
-    s = status
+    st = status
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     amend = commit --amend
     poh = push origin HEAD
@@ -23,7 +27,7 @@
     editor = nvim
 
 [diff]
-    tool = default-difftool
+    tool = vimdiff
 
 [difftool "default-difftool"]
     cmd = code --wait --diff $LOCAL $REMOTE
@@ -33,3 +37,5 @@
 
 [color]
     ui = auto
+[difftool]
+	prompt = false
