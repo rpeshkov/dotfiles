@@ -1,4 +1,11 @@
-#!/bin/sh
+#!/bin/bash
+
+read -p "Initialize zsh?" -n 1 -r; echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    rm -rf $HOME/.zprezto/runcoms
+    ln -s $PWD/runcoms $HOME/.zprezto/runcoms
+fi
 
 read -p "Initialize vim configuration?" -n 1 -r; echo
 if [[ $REPLY =~ ^[Yy]$ ]]

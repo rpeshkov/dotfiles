@@ -10,15 +10,17 @@
 #
 
 if [[ "$OSTYPE" == darwin* ]]; then
-  export BROWSER='open'
+    export BROWSER='open'
+elif [[ "$OSTYPE" == linux-gnu ]]; then
+    export BROWSER='xdg-open'
 fi
 
 #
 # Editors
 #
 
-export EDITOR='nano'
-export VISUAL='nano'
+export EDITOR='vim'
+export VISUAL='vim'
 export PAGER='less'
 
 #
@@ -64,12 +66,6 @@ fi
 
 export GOPATH="$HOME"
 
-alias ls="ls -F"
-
-alias kernlog="log stream --predicate 'processID == 0'"
-alias kernlogmsg="kernlog | cut -c 12-32,84-"
-
-alias vim="nvim"
-
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
+
