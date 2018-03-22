@@ -16,7 +16,7 @@ autoload -U compinit
 compinit
 
 # some more ls aliases
-alias ls='ls --color=auto -F'
+alias ls='ls -Gp'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -26,7 +26,7 @@ alias github="((git config --local --get remote.origin.url | sed -e 's/^.*git@gi
 
 #
 # NVM
-# 
+#
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

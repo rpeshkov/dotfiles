@@ -2,7 +2,7 @@ set nocompatible
 
 "{{{ Plugins
 filetype off
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin('~/.vim/plugged')
 "{{{ Vim-go
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries', 'for': 'go' }
 
@@ -49,27 +49,7 @@ let NERDTreeShowBookmarks=0
 let NERDTreeMinimalUI=1
 let NERDTreeHijackNetrw=1
 "}}}
-"{{{ Lightline
 Plug 'itchyny/lightline.vim'
-
-let g:lightline = {
-    \ 'active': {
-    \   'left': [['mode', 'movement_mode'], ['readonly', 'filename', 'modified']],
-    \   'right': [['lineinfo'], ['filetype']]
-    \ },
-    \ 'component': {
-    \   'lineinfo': '%l\%L [%p%%], %c, %n',
-    \   'movement_mode': 'LightlineMovement',
-    \ },
-    \ 'component_function': {
-    \   'movement_mode': 'LightlineMovement',
-    \ },
-    \ }
-
-function! LightlineMovement()
-    return g:movement_mode
-endfunction
-"}}}
 "{{{ FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -242,28 +222,6 @@ inoremap <c-e> <esc>A
 " Select the line
 nnoremap vv ^vg_
 
-let g:movement_mode = 'movement'
-function! SwitchMode()
-    if g:movement_mode ==# 'movement'
-        let g:movement_mode = 'errors'
-        noremap j :cnext<cr>
-        noremap k :cprev<cr>
-        " lnext and lprev are not able to jump to location when there are only 1 item in the list. Fixing this here
-        noremap <silent> l :execute len(getloclist(0)) == 1 ? "lrewind" : "lnext"<cr>
-        noremap <silent> h :execute len(getloclist(0)) == 1 ? "lrewind" : "lprev"<cr>
-    else
-        let g:movement_mode = 'movement'
-        noremap j gj
-        noremap k gk
-        noremap gj j
-        noremap gk k
-        noremap h h
-        noremap l l
-    endif
-endfunction
-
-nnoremap <silent> <tab> :call SwitchMode()<cr>
-
 vmap <silent> > >gv
 vmap <silent> < <gv
 
@@ -272,20 +230,6 @@ inoremap <return> <C-g>u<cr>
 
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
-
-" Make numbers a little bit closer on mac
-if has('mac')
-    map å 1
-    map ß 2
-    map ∂ 3
-    map ƒ 4
-    map © 5
-    map ˙ 6
-    map ∆ 7
-    map ˚ 8
-    map ¬ 9
-    map … 0
-endif
 
 nnoremap n nzzzv
 nnoremap N Nzzzv

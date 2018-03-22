@@ -24,7 +24,7 @@
     short = true
 
 [core]
-    editor = nvim
+    editor = vim
 
 [diff]
     tool = vimdiff
@@ -38,4 +38,4 @@
 [color]
     ui = auto
 [difftool]
-	prompt = false
+    prompt = false
