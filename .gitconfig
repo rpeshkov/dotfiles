@@ -1,6 +1,7 @@
 [user]
     name = Roman Peshkov
     email = peshkovroman@gmail.com
+	signingkey = 58B21D54025629C2F8D34CCD66894257D626F7F5
 
 [advice]
     statusHints = false
