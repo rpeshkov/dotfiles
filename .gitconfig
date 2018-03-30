@@ -1,7 +1,7 @@
 [user]
     name = Roman Peshkov
     email = peshkovroman@gmail.com
-	signingkey = 58B21D54025629C2F8D34CCD66894257D626F7F5
+    signingkey = 58B21D54025629C2F8D34CCD66894257D626F7F5
 
 [advice]
     statusHints = false
@@ -30,13 +30,20 @@
 [diff]
     tool = vimdiff
 
-[difftool "default-difftool"]
-    cmd = code --wait --diff $LOCAL $REMOTE
-
 [log]
     date = short
 
 [color]
     ui = auto
+
 [difftool]
     prompt = false
+
+[grep]
+    lineNumber = true
+
+[fetch]
+    prune = true
+
+[blame]
+    date = short
