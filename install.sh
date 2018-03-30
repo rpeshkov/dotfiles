@@ -7,6 +7,12 @@ then
     ln -s $PWD/runcoms $HOME/.zprezto/runcoms
 fi
 
+read -p "Initialize Tig?" -n 1 -r; echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    ln -s $PWD/.tigrc $HOME/.tigrc
+fi
+
 read -p "Initialize vim configuration?" -n 1 -r; echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
