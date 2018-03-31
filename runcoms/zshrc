@@ -18,12 +18,14 @@ fi
 # NVM
 #
 export NVM_DIR="$HOME/.nvm"
-#export NVM_LAZY_LOAD=true
+# Only do lazy loading when NOT inside vscode
+# https://github.com/Microsoft/vscode/issues/18556#issuecomment-299636934
+if [ -z "$VSCODE_PID" ]; then
+    export NVM_LAZY_LOAD=true;
+fi
 zplug "lukechilds/zsh-nvm"
 
 zplug load
-
-
 
 # Customize to your needs...
 fpath=(~/.zsh/completion $fpath) 
