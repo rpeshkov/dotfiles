@@ -24,8 +24,8 @@ window:
   # Units are physical pixels; this is not DPI aware.
   # (change requires restart)
   padding:
-    x: 2
-    y: 2
+    x: 1
+    y: 1
 
   # Window decorations
   # Setting this to false will result in window without borders and title bar.
@@ -41,17 +41,17 @@ draw_bold_text_with_bright_colors: true
 font:
   # The normal (roman) font face to use.
   normal:
-    family: Source Code Pro
+    family: Fira Code
     style: Regular
 
   # The bold font face
   bold:
-    family: Source Code Pro
+    family: Fira Code
     style: Bold
 
   # The italic font face
   italic:
-    family: Source Code Pro
+    family: Fira Code
     style: Italic
 
   # Point size of the font
