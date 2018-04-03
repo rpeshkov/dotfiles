@@ -1,5 +1,12 @@
 #!/bin/bash
 
+read -p "Initialize Alacritty?" -n 1 -r; echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    mkdir -p $HOME/.config/alacritty/
+    ln -s $PWD/alacritty.yml $HOME/.config/alacritty/alacritty.yml
+fi
+
 read -p "Initialize zsh?" -n 1 -r; echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
