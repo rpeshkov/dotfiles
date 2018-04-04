@@ -61,7 +61,6 @@ Plug 'shime/vim-livedown'
 
 let g:livedown_browser = "safari"
 "}}}
-Plug 'tpope/vim-fugitive'
 Plug 'joshdick/onedark.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-unimpaired'
@@ -72,7 +71,6 @@ endif
 Plug 'nsf/gocode', {'rtp': 'vim/'}
 Plug 'cespare/vim-toml'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'davidhalter/jedi'
 "{{{ Ale
 Plug 'w0rp/ale'
 
@@ -91,10 +89,7 @@ let g:NERDSpaceDelims = 1       " Add spaces after comment delimiters by default
 let g:NERDDefaultAlign = 'left' " Align line-wise comment delimiters flush left instead of following code indentation
 "}}}
 Plug 't9md/vim-choosewin'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug '~/Developer/vim-hugo'
 Plug 'roxma/nvim-completion-manager'
 "{{{ Rust
 Plug 'rust-lang/rust.vim'
