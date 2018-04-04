@@ -138,6 +138,7 @@ set hlsearch    " Highlight search matches
 set incsearch   " Incremental search
 set ignorecase  " Ignore case...
 set smartcase   " unless I start search keyword with capital letter
+set grepprg=rg\ --vimgrep
 "}}}
 
 "{{{ Editor
@@ -166,7 +167,7 @@ set hidden " Allow me to switch to another buffers without saving
 set autowrite " Write file if jump goes out of this file
 set completeopt-=preview
 set completeopt+=noselect
-" set clipboard=unnamed
+set clipboard=unnamed
 let loaded_matchparen=1
 set lazyredraw          " Wait to redraw
 if !has('nvim')
@@ -182,7 +183,7 @@ set wildmenu
 set wildmode=list:full
 set wildignorecase
 set wildignore+=**/node_modules   " ignores node_modules
-set wildignore+=**/bower_components   " ignores node_modules
+set wildignore+=**/bower_components   " ignores bower_components
 "}}}
 
 "{{{ Bindings
@@ -290,23 +291,6 @@ if has('gui')
     set guioptions-=L
     set guifont=Source\ Code\ Pro:h12
 endif
-"}}}
-
-"{{{ AG configuration
-if executable('ag')
-    " Use ag over grep
-    set grepprg=ag\ --nogroup\ --nocolor
-    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-    " ag is fast enough that CtrlP doesn't need to cache
-    let g:ctrlp_use_caching = 0
-endif
-
-nnoremap K :Ag <C-R><C-W><cr>
-"<CR>:cw<CR>
-" command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-" cabbrev ag Ag
 "}}}
 
 "{{{ CScope
