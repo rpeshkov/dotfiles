@@ -1,1 +1,6 @@
+# Bindings
+bind generic S :source ~/.tigrc
+bind main I :toggle id
+
+# Colors
 color cursor    black green bold
