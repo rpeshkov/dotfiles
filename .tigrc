@@ -2,5 +2,7 @@
 bind generic S :source ~/.tigrc
 bind main I :toggle id
 
+set line-graphics = utf-8
+
 # Colors
 color cursor    black green bold
