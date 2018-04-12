@@ -242,6 +242,16 @@ shell:
 #     strings. For example:
 #     - { ... , command: { program: "alacritty", args: ["-e", "vttest"] } }
 key_bindings:
+  - { key: Key1,     mods: Command, chars: "\x02\x31"                    }
+  - { key: Key2,     mods: Command, chars: "\x02\x32"                    }
+  - { key: Key3,     mods: Command, chars: "\x02\x33"                    }
+  - { key: Key4,     mods: Command, chars: "\x02\x34"                    }
+  - { key: Key5,     mods: Command, chars: "\x02\x35"                    }
+  - { key: Key6,     mods: Command, chars: "\x02\x36"                    }
+  - { key: Key7,     mods: Command, chars: "\x02\x37"                    }
+  - { key: Key8,     mods: Command, chars: "\x02\x38"                    }
+  - { key: Key9,     mods: Command, chars: "\x02\x39"                    }
+  - { key: Key0,     mods: Command, chars: "\x02\x30"                    }
   - { key: V,        mods: Command, action: Paste                        }
   - { key: C,        mods: Command, action: Copy                         }
   - { key: Q,        mods: Command, action: Quit                         }
