@@ -14,6 +14,12 @@ then
     ln -s $PWD/runcoms $HOME/.zprezto/runcoms
 fi
 
+read -p "Initialize git?" -n 1 -r; echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    ln -s $PWD/.gitconfig $HOME/.gitconfig
+fi
+
 read -p "Initialize Tig?" -n 1 -r; echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
@@ -24,6 +30,13 @@ read -p "Initialize vim configuration?" -n 1 -r; echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
     ln -s $PWD/.vimrc $HOME/.vimrc
+fi
+
+read -p "Initialize vim-plug?" -n 1 -r; echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
 read -p "Initialize neovim configuration?" -n 1 -r; echo
