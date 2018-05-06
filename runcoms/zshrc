@@ -44,7 +44,7 @@ alias serve='python -m SimpleHTTPServer'
 
 # Hugo functions
 function hn() {
-    [[ $# -gt 0 ]] && hugo new post/$1/index.md
+    [[ $# -gt 0 ]] && hugo new blog/$1/index.md
 }
 
 
