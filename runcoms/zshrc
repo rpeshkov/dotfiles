@@ -40,6 +40,10 @@ alias l='ls -CF'
 
 alias duh='du -chd1'
 
+alias vim='nvim'
+
+alias lldb='PATH="/usr/bin:$PATH" lldb'
+
 alias serve='python -m SimpleHTTPServer'
 
 # Hugo functions
@@ -58,4 +62,5 @@ alias github="((git config --local --get remote.origin.url | sed -e 's/^.*git@gi
 
 export PAGER="less"
 export LESS="-R -X -F"
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 

@@ -25,7 +25,7 @@
     short = true
 
 [core]
-    editor = vim
+    editor = nvim
 
 [diff]
     tool = vimdiff

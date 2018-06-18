@@ -3,108 +3,35 @@ set nocompatible
 "{{{ Plugins
 filetype off
 call plug#begin('~/.vim/plugged')
-"{{{ Vim-go
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+Plug 'zchee/deoplete-jedi'
+Plug 'zchee/deoplete-clang'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries', 'for': 'go' }
-
-augroup filetype_go
-    autocmd!
-    autocmd FileType go nmap <leader>r  <Plug>(go-run)
-    autocmd FileType go nmap <leader>t  <Plug>(go-test)
-    autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-    autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-    autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-    autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
-    autocmd FileType go nmap <Leader>i <Plug>(go-info)
-    autocmd FileType go setlocal tabstop=8
-    autocmd FileType go setlocal softtabstop=8
-    autocmd FileType go setlocal shiftwidth=8
-    autocmd FileType go setlocal noexpandtab
-    autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-    autocmd FileType go cabbrev god GoDecls 
-augroup END
-
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#cmd#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
-
-let g:go_list_type = "quickfix"
-let g:go_fmt_command = "goimports"
-let g:go_highlight_build_constraints = 1
-let g:go_auto_type_info = 0
-let g:go_highlight_extra_types = 1
-let g:go_highlight_types = 1
-let g:go_echo_go_info = 0
-"}}}
-"{{{ NERDTree
+Plug 'nsf/gocode', {'rtp': 'vim/'}
 Plug 'scrooloose/nerdtree'
-
-let NERDTreeChDirMode=0
-let NERDTreeWinSize=50
-let NERDTreeShowBookmarks=0
-let NERDTreeMinimalUI=1
-let NERDTreeHijackNetrw=1
-"}}}
 Plug 'itchyny/lightline.vim'
-"{{{ FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
-let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-"}}}
-"{{{ Livedown
 Plug 'shime/vim-livedown'
-
-let g:livedown_browser = "safari"
-"}}}
 Plug 'joshdick/onedark.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-unimpaired'
-if !has('nvim')
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-endif
-Plug 'nsf/gocode', {'rtp': 'vim/'}
 Plug 'cespare/vim-toml'
 Plug 'editorconfig/editorconfig-vim'
-"{{{ Ale
 Plug 'w0rp/ale'
-
-let g:ale_sign_column_always = 1
-let g:ale_sign_error = '✘'
-let g:ale_sign_warning = '⚠'
-highlight ALEErrorSign ctermbg=NONE ctermfg=red
-highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
-"}}}
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
-"{{{ NERDCommenter
 Plug 'scrooloose/nerdcommenter'
-
-let g:NERDSpaceDelims = 1       " Add spaces after comment delimiters by default
-let g:NERDDefaultAlign = 'left' " Align line-wise comment delimiters flush left instead of following code indentation
-"}}}
 Plug 't9md/vim-choosewin'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'roxma/nvim-completion-manager'
-"{{{ Rust
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
-Plug 'roxma/nvim-cm-racer'
-let g:rustfmt_autosave = 1
-
-augroup filetype_rust
-    autocmd!
-    autocmd FileType rust nmap <leader>r :make run<cr>
-    autocmd FileType rust nmap <leader>t :make test<cr>
-    autocmd FileType rust nmap <leader>b :make build<cr>
-    autocmd FileType rust compiler cargo
-augroup END
-"}}}
 call plug#end()
 
 filetype indent plugin on
@@ -334,4 +261,89 @@ if has("cscope")
     endif
     set csverb
 endif
+" }}}
+
+"{{{ NERDTree
+let NERDTreeChDirMode=0
+let NERDTreeWinSize=50
+let NERDTreeShowBookmarks=0
+let NERDTreeMinimalUI=1
+let NERDTreeHijackNetrw=1
+"}}}
+
+"{{{ Ale
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+"}}}
+
+"{{{ NERDCommenter
+let g:NERDSpaceDelims = 1       " Add spaces after comment delimiters by default
+let g:NERDDefaultAlign = 'left' " Align line-wise comment delimiters flush left instead of following code indentation
+"}}}
+
+"{{{ vim-go
+augroup filetype_go
+    autocmd!
+    autocmd FileType go nmap <leader>r  <Plug>(go-run)
+    autocmd FileType go nmap <leader>t  <Plug>(go-test)
+    autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+    autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+    autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+    autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+    autocmd FileType go nmap <Leader>i <Plug>(go-info)
+    autocmd FileType go setlocal tabstop=8
+    autocmd FileType go setlocal softtabstop=8
+    autocmd FileType go setlocal shiftwidth=8
+    autocmd FileType go setlocal noexpandtab
+    autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+    autocmd FileType go cabbrev god GoDecls 
+augroup END
+
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#cmd#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+let g:go_list_type = "quickfix"
+let g:go_fmt_command = "goimports"
+let g:go_highlight_build_constraints = 1
+let g:go_auto_type_info = 0
+let g:go_highlight_extra_types = 1
+let g:go_highlight_types = 1
+let g:go_echo_go_info = 0
+"}}}
+
+"{{{ FZF
+let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+"}}}
+
+"{{{ Livedown
+let g:livedown_browser = "safari"
+"}}}
+
+" {{{ Rust
+let g:rustfmt_autosave = 1
+
+augroup filetype_rust
+    autocmd!
+    autocmd FileType rust nmap <leader>r :make run<cr>
+    autocmd FileType rust nmap <leader>t :make test<cr>
+    autocmd FileType rust nmap <leader>b :make build<cr>
+    autocmd FileType rust compiler cargo
+augroup END
+" }}}
+
+"{{{ Deoplete
+let g:deoplete#enable_at_startup = 1
+"}}}
+"
+" {{{ Deoplete CLang
+let g:deoplete#sources#clang#libclang_path="/Library/Developer/CommandLineTools/usr/lib/libclang.dylib"
 " }}}
