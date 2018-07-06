@@ -42,9 +42,11 @@ alias duh='du -chd1'
 
 alias vim='nvim'
 
-alias lldb='PATH="/usr/bin:$PATH" lldb'
+#alias lldb='PATH="/usr/bin:$PATH" lldb'
 
 alias serve='python -m SimpleHTTPServer'
+
+alias wifi='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport'
 
 # Hugo functions
 function hn() {
@@ -64,3 +66,13 @@ export PAGER="less"
 export LESS="-R -X -F"
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
+# zsh parameter completion for the dotnet CLI
+
+_dotnet_zsh_complete() 
+{
+    local completions=("$(dotnet complete "$words")")
+
+    reply=( "${(ps:\n:)completions}" )
+}
+
+compctl -K _dotnet_zsh_complete dotnet

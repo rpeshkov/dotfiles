@@ -221,46 +221,65 @@ endif
 "}}}
 
 "{{{ CScope
+function! Cwindow_no_focus()
+    " Store the original window number
+    let l:winnr = winnr()
+
+    exec 'cwindow'
+
+    " If focus changed, jump to the last window
+    if l:winnr !=# winnr()
+        wincmd p
+    endif
+endfunction
+
+function! CScope_find(cmd, what)
+    exec 'normal mR'
+    exec 'cs find ' . a:cmd . ' ' . expand(a:what)
+    call Cwindow_no_focus()
+endfunction
 set cscopequickfix=s-,c-,d-,i-,t-,e-,a-,g-
 
 " All next keymaps set R mark so you are able to return back
 " Find assignments to this symbol
-nmap <C-s>a mR:cs find a <C-R>=expand("<cword>")<CR><CR>:cwin<CR>
+nmap <silent> <C-s>a :call CScope_find('a', '<cword>')<cr>
 "Find this C symbol
-nmap <C-s>s mR:cs find s <C-R>=expand("<cword>")<CR><CR>:cwin<CR> 
+nmap <silent> <C-s>s :call CScope_find('s', '<cword>')<cr> 
 "Find this definition
-nmap <C-s>g mR:cs find g <C-R>=expand("<cword>")<CR><CR>:cwin<CR> 
+nmap <silent> <C-s>g :call CScope_find('g', '<cword>')<cr>
 "Find functions calling this function
-nmap <C-s>c mR:cs find c <C-R>=expand("<cword>")<CR><CR>:cwin<CR> 
+nmap <silent> <C-s>c :call CScope_find('c', '<cword>')<cr> 
 "Find this text string
-nmap <C-s>t mR:cs find t <C-R>=expand("<cword>")<CR><CR>:cwin<CR> 
+nmap <silent> <C-s>t :call CScope_find('t', '<cword>')<cr> 
 "Find this egrep pattern
-nmap <C-s>e mR:cs find e <C-R>=expand("<cword>")<CR><CR>:cwin<CR> 
+nmap <silent> <C-s>e :call CScope_find('e', '<cword>')<cr>
 "Find this file
-nmap <C-s>f mR:cs find f <C-R>=expand("<cfile>")<CR><CR>:cwin<CR> 
+nmap <silent> <C-s>f :call CScope_find('f', '<cfile>')<cr>
 "Find files #including this file
-nmap <C-s>i mR:cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>:cwin<CR> 
+nmap <silent> <C-s>i :call CScope_find('i', '^<cfile>$')<cr>
 "Find functions called by this function
-nmap <C-s>d mR:cs find d <C-R>=expand("<cword>")<CR><CR>:cwin<CR> 
+nmap <silent> <C-s>d :call CScope_find('d', '<cword>')<cr>
 
-nmap <C-s>q :cexpr []<cr>
+nmap <silent> <C-s>q :cexpr []<cr>:cclose<cr>
 
 command! Cqf cexpr []
 
 if has("cscope")
     set csto=0
     set cscopetag
-    set cscoperelative
+    set cscopeprg='gtags-cscope'
     set nocsverb
+    let db = findfile("GTAGS", ".;")
     " add any database in current directory
-    if filereadable("cscope.out")
-        cs add cscope.out
+    if filereadable(db)
+        exec "cs add " . db
     " else add database pointed to by environment
     elseif $CSCOPE_DB != ""
         cs add $CSCOPE_DB
     endif
     set csverb
 endif
+
 " }}}
 
 "{{{ NERDTree
