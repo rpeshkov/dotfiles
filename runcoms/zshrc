@@ -62,6 +62,9 @@ alias github="((git config --local --get remote.origin.url | sed -e 's/^.*git@gi
 #
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
 export PAGER="less"
 export LESS="-R -X -F"
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
@@ -76,3 +79,7 @@ _dotnet_zsh_complete()
 }
 
 compctl -K _dotnet_zsh_complete dotnet
+
+function coder() {
+    code -r .
+}

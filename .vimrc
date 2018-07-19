@@ -2,6 +2,7 @@ set nocompatible
 
 "{{{ Plugins
 filetype off
+
 call plug#begin('~/.vim/plugged')
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -12,13 +13,10 @@ else
 endif
 Plug 'zchee/deoplete-jedi'
 Plug 'zchee/deoplete-clang'
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries', 'for': 'go' }
-Plug 'nsf/gocode', {'rtp': 'vim/'}
 Plug 'scrooloose/nerdtree'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'shime/vim-livedown'
 Plug 'joshdick/onedark.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-unimpaired'
@@ -63,7 +61,7 @@ set title           " Change title of terminal
 "{{{ Search
 set hlsearch    " Highlight search matches
 set incsearch   " Incremental search
-set ignorecase  " Ignore case...
+set ignorecase  " Ignore case
 set smartcase   " unless I start search keyword with capital letter
 set grepprg=rg\ --vimgrep
 "}}}
@@ -81,6 +79,7 @@ set ttimeoutlen=0
 set pumheight=10        " Completion window max size
 set textwidth=120
 set shiftround          " Round indent
+set formatoptions-=o    " Don't insert comment leader when hitting 'o'
 
 augroup trailing
     au!
@@ -94,6 +93,7 @@ set hidden " Allow me to switch to another buffers without saving
 set autowrite " Write file if jump goes out of this file
 set completeopt-=preview
 set completeopt+=noselect
+set completeopt+=noinsert
 set clipboard=unnamed
 let loaded_matchparen=1
 set lazyredraw          " Wait to redraw
@@ -107,7 +107,7 @@ let html_no_rendering=1 " Don't render italic, bold, links in HTML
 set updatetime=100
 set virtualedit=block " Enable virtual edit mode in block selection
 set wildmenu
-set wildmode=list:full
+set wildmode=longest,full
 set wildignorecase
 set wildignore+=**/node_modules   " ignores node_modules
 set wildignore+=**/bower_components   " ignores bower_components
@@ -139,8 +139,6 @@ noremap H ^
 noremap L $
 vnoremap L g_
 vnoremap $ g_
-inoremap <c-a> <esc>I
-inoremap <c-e> <esc>A
 
 " Select the line
 nnoremap vv ^vg_
@@ -159,10 +157,10 @@ nnoremap N Nzzzv
 
 nnoremap <silent> <leader>d :bp\|bd#<cr>
 nnoremap <silent> <leader>w :hide<cr>
-nnoremap <leader>W :silent! bd!<cr>
-nnoremap <leader>, :silent! bp<cr>
-nnoremap <leader>. :silent! bn<cr>
-nnoremap <leader>n :silent! enew<cr>
+nnoremap <silent> <leader>W :bd!<cr>
+nnoremap <silent> <leader>, :bp<cr>
+nnoremap <silent> <leader>. :bn<cr>
+nnoremap <silent> <leader>n :enew<cr>
 
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -294,6 +292,9 @@ let NERDTreeHijackNetrw=1
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
+let g:ale_linters = {
+            \ 'markdown': ['markdownlint']
+            \ }
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 "}}}
@@ -303,48 +304,10 @@ let g:NERDSpaceDelims = 1       " Add spaces after comment delimiters by default
 let g:NERDDefaultAlign = 'left' " Align line-wise comment delimiters flush left instead of following code indentation
 "}}}
 
-"{{{ vim-go
-augroup filetype_go
-    autocmd!
-    autocmd FileType go nmap <leader>r  <Plug>(go-run)
-    autocmd FileType go nmap <leader>t  <Plug>(go-test)
-    autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-    autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-    autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-    autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
-    autocmd FileType go nmap <Leader>i <Plug>(go-info)
-    autocmd FileType go setlocal tabstop=8
-    autocmd FileType go setlocal softtabstop=8
-    autocmd FileType go setlocal shiftwidth=8
-    autocmd FileType go setlocal noexpandtab
-    autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-    autocmd FileType go cabbrev god GoDecls 
-augroup END
-
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#cmd#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
-
-let g:go_list_type = "quickfix"
-let g:go_fmt_command = "goimports"
-let g:go_highlight_build_constraints = 1
-let g:go_auto_type_info = 0
-let g:go_highlight_extra_types = 1
-let g:go_highlight_types = 1
-let g:go_echo_go_info = 0
-"}}}
-
 "{{{ FZF
 let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-"}}}
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 
-"{{{ Livedown
-let g:livedown_browser = "safari"
 "}}}
 
 " {{{ Rust
@@ -362,7 +325,9 @@ augroup END
 "{{{ Deoplete
 let g:deoplete#enable_at_startup = 1
 "}}}
-"
+
 " {{{ Deoplete CLang
-let g:deoplete#sources#clang#libclang_path="/Library/Developer/CommandLineTools/usr/lib/libclang.dylib"
+if has('mac')
+    let g:deoplete#sources#clang#libclang_path="/Library/Developer/CommandLineTools/usr/lib/libclang.dylib"
+endif
 " }}}
