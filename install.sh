@@ -59,3 +59,9 @@ then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
+read -p "Initialize VSCode?" -n 1 -r; echo
+if [[ $REPLY =~ $[Yy]$ ]]
+then
+    ln -s $PWD/vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+    ln -s $PWD/vscode/keybindings.json $HOME/Library/Application\ Support/Code/User/keybindings.json
+fi

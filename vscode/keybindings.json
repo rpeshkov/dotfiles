@@ -1,0 +1,143 @@
+// Place your key bindings in this file to overwrite the defaults
+[
+    // Disable zoom keys
+        { "key": "cmd+numpad_add", "command": "-workbench.action.zoomIn" },
+        { "key": "shift+cmd+=", "command": "-workbench.action.zoomIn" },
+        { "key": "cmd+=", "command": "-workbench.action.zoomIn" },
+        { "key": "cmd+numpad_subtract", "command": "-workbench.action.zoomOut" },
+        { "key": "shift+cmd+-", "command": "-workbench.action.zoomOut" },
+        { "key": "cmd+-", "command": "-workbench.action.zoomOut" },
+
+
+    // More sane cmd+down and cmd+up
+        { "key": "cmd+down", "command": "cursorPageDown", "when": "editorTextFocus" },
+        { "key": "cmd+up", "command": "cursorPageUp", "when": "editorTextFocus" },
+        { "key": "shift+cmd+down", "command": "cursorPageDownSelect", "when": "editorTextFocus" },
+        { "key": "shift+cmd+up", "command": "cursorPageUpSelect", "when": "editorTextFocus" },
+
+
+    // Files creation
+        { "key": "alt+cmd+n", "command": "explorer.newFile" },
+        { "key": "ctrl+cmd+n", "command": "explorer.newFolder" },
+
+    // Emacs spirit
+        { "key": "alt+b", "command": "cursorWordStartLeft", "when": "editorTextFocus" },
+        { "key": "alt+f", "command": "cursorWordEndRight", "when": "editorTextFocus" },
+
+        {
+            "key": "escape",
+            "command": "workbench.action.focusActiveEditorGroup",
+            "when": "!editorTextFocus && !terminalFocus"
+        },
+        {
+            "key": "cmd+backspace",
+            "command": "editor.action.deleteLines",
+            "when": "editorTextFocus"
+        },
+        {
+            "key": "ctrl+c n",
+            "command": "editor.action.marker.next",
+            "when": "editorFocus && !editorReadonly"
+        },
+        {
+            "key": "ctrl+c p",
+            "command": "editor.action.marker.prev",
+            "when": "editorFocus && !editorReadonly"
+        },
+
+    // Terminal power
+        { "key": "ctrl+`", "command": "workbench.action.terminal.focus", "when": "!terminalFocus" },
+        { "key": "ctrl+`", "command": "workbench.action.focusActiveEditorGroup", "when": "terminalFocus" },
+        { "key": "shift+cmd+j", "command": "workbench.action.toggleMaximizedPanel" },
+
+        {
+            "key": "ctrl+cmd+up",
+            "command": "editor.action.smartSelect.grow",
+            "when": "editorTextFocus"
+        },
+        {
+            "key": "ctrl+cmd+down",
+            "command": "editor.action.smartSelect.shrink",
+            "when": "editorTextFocus"
+        },
+        {
+            "key": "ctrl+]",
+            "command": "editor.action.previewDeclaration",
+            "when": "editorTextFocus"
+        },
+        {
+            "key": "ctrl+shift+]",
+            "command": "editor.action.openDeclarationToTheSide",
+            "when": "editorTextFocus"
+        },
+
+    // Debug
+        { "key": "cmd+r", "command": "workbench.action.debug.start", "when": "!inDebugMode" },
+        { "key": "shift+cmd+r", "command": "workbench.action.debug.run", "when": "!inDebugMode" },
+
+    // Rust
+        {
+            "key": "ctrl+, s",
+            "command": "editor.action.insertSnippet",
+            "when": "editorTextFocus",
+            "args": {
+                "langId": "rust",
+                "name": "Some"
+            }
+        },
+        {
+            "key": "ctrl+, f",
+            "command": "editor.action.insertSnippet",
+            "when": "editorTextFocus",
+            "args": {
+                "langId": "rust",
+                "name": "Function"
+            }
+        },
+
+    // Org
+        {
+            "key": "alt+1",
+            "command": "org.insertHeadingRespectContent",
+            "when": "editorTextFocus && editorLangId == 'org'"
+        },
+        {
+            "key": "shift+left",
+            "command": "org.doPromote",
+            "when": "editorTextFocus && editorLangId == 'org'"
+        },
+        {
+            "key": "shift+right",
+            "command": "org.doDemote",
+            "when": "editorTextFocus && editorLangId == 'org'"
+        },
+        {
+            "key": "ctrl+shift+cmd+w",
+            "command": "workbench.action.closeOtherEditors",
+            "when": "editorTextFocus"
+        },
+        // Returning defaults
+        // { "key": "alt+right", "command": "cursorWordEndRight", "when": "editorTextFocus" },
+        // { "key": "alt+left", "command": "cursorWordStartLeft", "when": "editorTextFocus" },
+
+        {
+            "command": "text-tables.moveColRight",
+            "key": "alt+right",
+            "when": "tableMode"
+        },
+        {
+            "command": "text-tables.moveColLeft",
+            "key": "alt+left",
+            "when": "tableMode"
+        }
+
+
+    // Toggler
+        { "key": "ctrl+t", "command": "extension.toggle", "when": "editorTextFocus" },
+        // Toggler. Return ctrl+r back to default
+        { "key": "ctrl+r", "command": "workbench.action.openRecent" },
+
+    // Settings
+        // Open keybindings file directly
+        { "key": "cmd+k cmd+s", "command": "workbench.action.openGlobalKeybindingsFile" },
+    ]
