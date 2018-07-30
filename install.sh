@@ -60,8 +60,13 @@ then
 fi
 
 read -p "Initialize VSCode?" -n 1 -r; echo
-if [[ $REPLY =~ $[Yy]$ ]]
+if [[ $REPLY =~ ^[Yy]$ ]]
 then
+    [[ -f $HOME/Library/Application\ Support/Code/User/settings.json ]] && rm $HOME/Library/Application\ Support/Code/User/settings.json
     ln -s $PWD/vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+
+    [[ -f $HOME/Library/Application\ Support/Code/User/keybindings.json ]] && rm $HOME/Library/Application\ Support/Code/User/keybindings.json
     ln -s $PWD/vscode/keybindings.json $HOME/Library/Application\ Support/Code/User/keybindings.json
+
+    cat $PWD/vscode/extensions | xargs -L 1 code --install-extension
 fi

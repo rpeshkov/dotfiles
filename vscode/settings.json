@@ -108,19 +108,5 @@
     "go-tests-outline.go-test-params": "-race",
 
 // Text tables
-    "text-tables.mode": "org",
-
-// Settings Sync
-    "sync.gist": "a72227658ff7ff98e64e8efb527f2ffc",
-    "sync.lastUpload": "2018-07-16T15:06:39.372Z",
-    "sync.autoDownload": false,
-    "sync.autoUpload": false,
-    "sync.lastDownload": "2018-04-17T20:41:07.872Z",
-    "sync.forceDownload": false,
-    "sync.host": "",
-    "sync.pathPrefix": "",
-    "sync.quietSync": false,
-    "sync.askGistName": false,
-    "sync.removeExtensions": true,
-    "sync.syncExtensions": true
+    "text-tables.mode": "org"
 }
