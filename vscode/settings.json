@@ -1,0 +1,126 @@
+{
+// Editor
+    "editor.codeLens": false,
+    "editor.cursorBlinking": "solid",
+    "editor.dragAndDrop": false,
+    "editor.fontFamily": "SF Mono",
+    "editor.fontSize": 12,
+    "editor.hover.delay": 200,
+    "editor.minimap.enabled": false,
+    "editor.overviewRulerBorder": false,
+    "editor.parameterHints": false,
+    "editor.renderIndentGuides": false,
+    "editor.renderWhitespace": "none",
+    "editor.rulers": [120],
+    "editor.scrollBeyondLastLine": false,
+    "editor.smoothScrolling": true,
+    "editor.tabCompletion": true,
+    "editor.wordBasedSuggestions": false,
+
+// Workbench
+    "workbench.activityBar.visible": false,
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.statusBar.feedback.visible": false,
+    "workbench.tips.enabled": false,
+    "workbench.view.alwaysShowHeaderActions": true,
+
+// Window
+    "window.newWindowDimensions": "maximized",
+    "window.closeWhenEmpty": true,
+
+// Files
+    "files.defaultLanguage": "markdown",
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "**/bower_components/**": true,
+        "**/out": true
+    },
+
+// File explorer
+    "explorer.openEditors.visible": 0,
+    "explorer.decorations.badges": false,
+    "explorer.decorations.colors": false,
+
+// Search
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/out": true,
+        "Cargo.lock": true,
+    },
+
+// HTML
+    "html.suggest.angular1": false,
+    "html.suggest.ionic": false,
+
+// Markdown
+
+    "[markdown]": {
+        "editor.wordWrap": "bounded",
+        "editor.quickSuggestions": false,
+        "editor.wordWrapColumn": 80,
+        "editor.rulers": [ 80 ],
+        "editor.tabSize": 2
+    },
+
+
+// Terminal
+    "terminal.integrated.macOptionIsMeta": true,
+    "terminal.integrated.fontSize": 12,
+
+// Problems View
+
+    "problems.decorations.enabled": false,
+
+    "vsicons.projectDetection.disableDetect": true,
+
+// Git
+    "scm.diffDecorations": "none",
+    "git.enableSmartCommit": true,
+
+// Rust
+    "rust.unstable_features": true,
+    "[rust]": {
+        "editor.rulers": [99],
+    },
+
+// Org
+    "[org]": {
+        "editor.rulers": [ 80 ],
+        "editor.wrappingIndent": "same",
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wordWrapColumn": 80,
+    },
+
+// TypeScript
+    "tslint.run": "onSave",
+
+
+// Go Tests outline
+    "go-tests-outline.go-test-params": "-race",
+
+// Text tables
+    "text-tables.mode": "org",
+
+// Settings Sync
+    "sync.gist": "a72227658ff7ff98e64e8efb527f2ffc",
+    "sync.lastUpload": "2018-07-16T15:06:39.372Z",
+    "sync.autoDownload": false,
+    "sync.autoUpload": false,
+    "sync.lastDownload": "2018-04-17T20:41:07.872Z",
+    "sync.forceDownload": false,
+    "sync.host": "",
+    "sync.pathPrefix": "",
+    "sync.quietSync": false,
+    "sync.askGistName": false,
+    "sync.removeExtensions": true,
+    "sync.syncExtensions": true
+}
