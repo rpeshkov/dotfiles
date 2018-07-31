@@ -62,7 +62,6 @@
     "html.suggest.ionic": false,
 
 // Markdown
-
     "[markdown]": {
         "editor.wordWrap": "bounded",
         "editor.quickSuggestions": false,
@@ -71,15 +70,14 @@
         "editor.tabSize": 2
     },
 
-
 // Terminal
     "terminal.integrated.macOptionIsMeta": true,
     "terminal.integrated.fontSize": 12,
 
 // Problems View
-
     "problems.decorations.enabled": false,
 
+// VS Code Icons
     "vsicons.projectDetection.disableDetect": true,
 
 // Git
@@ -103,10 +101,11 @@
 // TypeScript
     "tslint.run": "onSave",
 
-
 // Go Tests outline
     "go-tests-outline.go-test-params": "-race",
 
 // Text tables
-    "text-tables.mode": "org"
+    "text-tables.mode": "org",
+
+    "searchRipgrep.enable": true
 }
