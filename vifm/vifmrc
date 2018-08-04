@@ -1,6 +1,48 @@
 colorscheme dracula
+
+" Good vertical border
+set fillchars=vborder:｜
+
+" Delete all margins
+set tuioptions-=ps
 set vicmd=nvim
-set statusline="  %t%= %A %10u:%-7g %15E %20d  "
+set statusline="%t%= %A %10u:%-7g %15E %20d"
+"
+" RipGrep FTW
 set grepprg=rg\ --vimgrep
-set viewcolumns=-{name}..,6{size},11{perms}
-map qq :q<cr>
+
+" default set of view columns
+set viewcolumns="*{name}..,6{}."
+
+" Beautiful commands autocompletion
+set wildmenu
+set wildstyle=popup
+
+" Use vim-style help
+set vimhelp
+
+" Time format I'm used to
+set timefmt="%Y-%m-%d %H:%M"
+
+" Natural numbers sorting
+set sortnumbers
+
+" {{{ Keybindings
+" Reach config fast
+map ,ev :edit $MYVIFMRC<cr>
+map ,sv :source $MYVIFMRC<cr>
+
+map ,v :set lsview!<cr>
+map <C-q> :view<cr>
+
+" brief information about files
+nnoremap ,b :set viewcolumns=*{name}..,6{}.<cr>
+
+" detailed information about files
+nnoremap ,d :set viewcolumns=*{name}.,10{perms},12{uname},-7{gname},10{size}.,20{mtime}<cr>
+
+" Sane pane resizing
+nnoremap < :if paneisat('left') | :exec "5 wincmd <" | else | :exec "5 wincmd >" | endif<cr>
+nnoremap > :if paneisat('right') | :exec "5 wincmd <" | else | :exec "5 wincmd >" | endif<cr>
+" }}}
+

@@ -205,6 +205,13 @@ augroup filetype_vim
 augroup END
 "}}}
 
+"{{{ [Vifm] configuration
+augroup filetype_vifm
+    autocmd!
+    autocmd BufRead,BufNewFile vifmrc set filetype=vim
+augroup END
+"}}}
+
 "{{{ [Yaml] configuration
 augroup filetype_yaml
     autocmd!
