@@ -70,3 +70,9 @@ then
 
     cat $PWD/vscode/extensions | xargs -L 1 code --install-extension
 fi
+
+read -p "Initialize vifm?" -n 1 -r; echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    ln -s $PWD/vifm $HOME/.vifm
+fi

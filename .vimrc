@@ -18,6 +18,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'joshdick/onedark.vim'
+Plug 'dracula/vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-unimpaired'
 Plug 'cespare/vim-toml'
@@ -38,7 +39,7 @@ filetype indent plugin on
 "{{{ Visual
 syntax on           " Turn on syntax highlight
 set background=dark " Setting background to dark
-colorscheme onedark " Sweet theme
+colorscheme dracula " Sweet theme
 set laststatus=2    " Always show status line
 set showtabline=0   " Show tab line
 set number          " Show numbers...

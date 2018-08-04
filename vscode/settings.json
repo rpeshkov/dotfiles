@@ -11,7 +11,7 @@
     "editor.parameterHints": false,
     "editor.renderIndentGuides": false,
     "editor.renderWhitespace": "none",
-    "editor.rulers": [120],
+    "editor.rulers": [100],
     "editor.scrollBeyondLastLine": false,
     "editor.smoothScrolling": true,
     "editor.tabCompletion": true,

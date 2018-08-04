@@ -48,14 +48,21 @@ alias duh='du -chd1'
 
 # I prefer nvim
 alias vim='nvim'
+alias fm='vifm'
 
 # Open current folder in VS Code
 alias coder='code -r .'
+alias notes='vim -c "cd ~/Dropbox/Notes/" ~/Dropbox/Notes/'
 
 # Fast http serve for current folder
 alias serve='python -m SimpleHTTPServer'
 
 alias wifi='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport'
+
+hash -d -- dev=$HOME/Developer
+hash -d -- dropbox=$HOME/Dropbox
+hash -d -- notes=$HOME/Dropbox/Notes
+hash -d -- downloads=$HOME/Downloads
 
 # Open github page for current repo+branch+path in browser
 # Taken from https://github.com/jonhoo/configs/blob/master/.bashrc
