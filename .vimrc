@@ -18,7 +18,6 @@ Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'joshdick/onedark.vim'
-Plug 'dracula/vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-unimpaired'
 Plug 'cespare/vim-toml'
@@ -39,7 +38,7 @@ filetype indent plugin on
 "{{{ Visual
 syntax on           " Turn on syntax highlight
 set background=dark " Setting background to dark
-colorscheme dracula " Sweet theme
+colorscheme onedark " Sweet theme
 set laststatus=2    " Always show status line
 set showtabline=0   " Show tab line
 set number          " Show numbers...
@@ -315,7 +314,6 @@ let g:NERDDefaultAlign = 'left' " Align line-wise comment delimiters flush left 
 "{{{ FZF
 let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-
 "}}}
 
 " {{{ Rust
