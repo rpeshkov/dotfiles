@@ -19,6 +19,8 @@
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     amend = commit --amend
     poh = push origin HEAD
+    tags = tag -l -n2
+    remotes = remote -v
 
 [status]
     showUntrackedFiles = all

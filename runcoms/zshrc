@@ -41,10 +41,12 @@ compinit
 #
 # Aliases
 #
-alias ls='ls -F'
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+#alias ls='ls -F'
+#alias ll='ls -alF'
+#alias la='ls -A'
+#alias l='ls -CF'
+alias ls='exa -F  --header'
+alias ll='exa -lF --time-style=long-iso --header'
 
 # Measure directories in current path
 alias duh='du -chd1'
@@ -76,8 +78,12 @@ alias github="((git config --local --get remote.origin.url | sed -e 's/^.*git@gi
 #
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+#export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+#export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+export FZF_DEFAULT_COMMAND="fd . $HOME"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd -t d . $HOME"
 
 #
 # Rust
