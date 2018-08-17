@@ -4,7 +4,7 @@ read -p "Initialize Alacritty?" -n 1 -r; echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
     mkdir -p $HOME/.config/alacritty/
-    ln -s $PWD/alacritty.yml $HOME/.config/alacritty/alacritty.yml
+    ln -s $PWD/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.yml
 fi
 
 read -p "Initialize zsh?" -n 1 -r; echo
@@ -17,19 +17,19 @@ fi
 read -p "Initialize git?" -n 1 -r; echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    ln -s $PWD/.gitconfig $HOME/.gitconfig
+    ln -s $PWD/git/gitconfig $HOME/.gitconfig
 fi
 
 read -p "Initialize Tig?" -n 1 -r; echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    ln -s $PWD/.tigrc $HOME/.tigrc
+    ln -s $PWD/tig/tigrc $HOME/.tigrc
 fi
 
 read -p "Initialize vim configuration?" -n 1 -r; echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    ln -s $PWD/.vimrc $HOME/.vimrc
+    ln -s $PWD/vim/vimrc $HOME/.vimrc
 fi
 
 read -p "Initialize vim-plug?" -n 1 -r; echo
@@ -43,14 +43,14 @@ read -p "Initialize neovim configuration?" -n 1 -r; echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
     mkdir -p $HOME/.config/nvim/
-    ln -s $PWD/.vimrc $HOME/.config/nvim/init.vim
+    ln -s $PWD/vim/vimrc $HOME/.config/nvim/init.vim
 fi
 
 read -p "Initialize tmux configuration?" -n 1 -r; echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    ln -s $PWD/.tmux.conf $HOME/.tmux.conf
-    ln -s $PWD/.tmux-status.conf $HOME/.tmux-status.conf
+    ln -s $PWD/tmux/tmux.conf $HOME/.tmux.conf
+    ln -s $PWD/tmux/tmux-status.conf $HOME/.tmux-status.conf
 fi
 
 read -p "Install tmux plugin manager?" -n 1 -r; echo

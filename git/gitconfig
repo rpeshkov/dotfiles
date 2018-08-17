@@ -21,6 +21,7 @@
     poh = push origin HEAD
     tags = tag -l -n2
     remotes = remote -v
+    patch = !git --no-pager diff --no-color
 
 [status]
     showUntrackedFiles = all
@@ -49,3 +50,6 @@
 
 [blame]
     date = short
+
+[core]
+    pager = diff-so-fancy | less

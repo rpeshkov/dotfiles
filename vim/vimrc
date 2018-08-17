@@ -4,16 +4,7 @@ set nocompatible
 filetype off
 
 call plug#begin('~/.vim/plugged')
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-Plug 'zchee/deoplete-jedi'
-Plug 'zchee/deoplete-clang'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeFind'] }
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -22,40 +13,38 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-unimpaired'
 Plug 'cespare/vim-toml'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'w0rp/ale'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 't9md/vim-choosewin'
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'rust-lang/rust.vim'
-Plug 'racer-rust/vim-racer'
 call plug#end()
 
 filetype indent plugin on
 "}}}
 
 "{{{ Visual
-syntax on           " Turn on syntax highlight
-set background=dark " Setting background to dark
-colorscheme onedark " Sweet theme
-set laststatus=2    " Always show status line
-set showtabline=0   " Show tab line
-set number          " Show numbers...
-set relativenumber  " relatively
-set numberwidth=6   " Make line numbers space wider
-set cursorline      " Draw line cursor
-set colorcolumn=+1  " Want to see right margin
-set noshowmode      " Don't need mode to be shown
-set linebreak       " Don't break in the middle of word
-let &showbreak='↪ ' " Good break marker
-set shortmess+=c    " Hide '1 match' and other related messages
-set splitbelow      " Horizontal split should appear below
-set splitright      " Vertical split should appear on right
-set synmaxcol=300   " Don't highlight lines longer than 300 characters
-set list            " Show additional characters
+syntax on               " Turn on syntax highlight
+set background=dark     " Setting background to dark
+colorscheme onedark     " Sweet theme
+set laststatus=2        " Always show status line
+set showtabline=0       " Show tab line
+set number              " Show numbers...
+set relativenumber      " relatively
+set numberwidth=6       " Make line numbers space wider
+set cursorline          " Draw line cursor
+set colorcolumn=+1      " Want to see right margin
+set noshowmode          " Don't need mode to be shown
+set linebreak           " Don't break in the middle of word
+let &showbreak='↪ '     " Good break marker
+set shortmess+=c        " Hide '1 match' and other related messages
+set splitbelow          " Horizontal split should appear below
+set splitright          " Vertical split should appear on right
+set synmaxcol=300       " Don't highlight lines longer than 300 characters
+set title               " Change title of terminal
+set lazyredraw          " Wait to redraw
+let html_no_rendering=1 " Don't render italic, bold, links in HTML
+set list                " Show additional characters
 set listchars=tab:‣\ ,trail:·,precedes:«,extends:»,eol:¬
-set title           " Change title of terminal
 "}}}
 
 "{{{ Search
@@ -67,19 +56,27 @@ set grepprg=rg\ --vimgrep
 "}}}
 
 "{{{ Editor
+set autowrite           " Write file if jump goes out of this file
+set clipboard=unnamed   " Use system clipboard
+set hidden              " Allow me to switch to another buffers without saving
 set softtabstop=4       " Treat tab as 4 spaces during editing
 set shiftwidth=4        " Spaces for shifting/indenting
 set expandtab           " We need spaces, not tabs
 set backspace=2         " Backspace behavior I used to
 set whichwrap+=<,>,[,]  " Wrapping behavior
 set showmatch
-set noswapfile " I don't like swapfiles
+set noswapfile          " I don't like swapfiles
 set timeoutlen=500
 set ttimeoutlen=0
 set pumheight=10        " Completion window max size
 set textwidth=120
 set shiftround          " Round indent
 set formatoptions-=o    " Don't insert comment leader when hitting 'o'
+set virtualedit=block   " Enable virtual edit mode in block selection
+
+set completeopt-=preview
+set completeopt+=noselect
+set completeopt+=noinsert
 
 augroup trailing
     au!
@@ -89,23 +86,13 @@ augroup END
 "}}}
 
 "{{{ UNGROUPED
-set hidden " Allow me to switch to another buffers without saving
-set autowrite " Write file if jump goes out of this file
-set completeopt-=preview
-set completeopt+=noselect
-set completeopt+=noinsert
-set clipboard=unnamed
 let loaded_matchparen=1
-set lazyredraw          " Wait to redraw
 if !has('nvim')
     set ttyfast
 endif
 set scrolljump=8        " Scroll 8 lines at a time at bottom/top
 set scrolloff=3         " Don't reach borders when dummy-scrolling
 set mouse=a
-let html_no_rendering=1 " Don't render italic, bold, links in HTML
-set updatetime=100
-set virtualedit=block " Enable virtual edit mode in block selection
 set wildmenu
 set wildmode=longest,full
 set wildignorecase
@@ -170,9 +157,9 @@ nnoremap <C-l> <C-w>l
 nnoremap Y y$
 nnoremap <silent> <esc><esc> :nohls<cr>
 
-map <C-n> :NERDTree<cr>
-map <C-f> :NERDTreeFind<CR>
-map <C-p> :FZF<CR>
+map <silent> <C-n> :NERDTree<cr>
+map <silent> <C-f> :NERDTreeFind<CR>
+map <silent> <C-p> :FZF<CR>
 
 " Zooming into specific split.
 map <silent> zi :tabedit +<C-r>=line(".")<cr> %<cr>zz
@@ -216,13 +203,6 @@ augroup filetype_yaml
     autocmd!
     autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 augroup END
-"}}}
-
-"{{{ GUI configuration
-if has('gui')
-    set guioptions-=L
-    set guifont=Source\ Code\ Pro:h12
-endif
 "}}}
 
 "{{{ CScope
@@ -295,45 +275,13 @@ let NERDTreeMinimalUI=1
 let NERDTreeHijackNetrw=1
 "}}}
 
-"{{{ Ale
-let g:ale_sign_column_always = 1
-let g:ale_sign_error = '✘'
-let g:ale_sign_warning = '⚠'
-let g:ale_linters = {
-            \ 'markdown': ['markdownlint']
-            \ }
-highlight ALEErrorSign ctermbg=NONE ctermfg=red
-highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
-"}}}
-
 "{{{ NERDCommenter
 let g:NERDSpaceDelims = 1       " Add spaces after comment delimiters by default
 let g:NERDDefaultAlign = 'left' " Align line-wise comment delimiters flush left instead of following code indentation
 "}}}
 
 "{{{ FZF
-let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+let $FZF_DEFAULT_COMMAND = 'fd --type f'
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 "}}}
 
-" {{{ Rust
-let g:rustfmt_autosave = 1
-
-augroup filetype_rust
-    autocmd!
-    autocmd FileType rust nmap <leader>r :make run<cr>
-    autocmd FileType rust nmap <leader>t :make test<cr>
-    autocmd FileType rust nmap <leader>b :make build<cr>
-    autocmd FileType rust compiler cargo
-augroup END
-" }}}
-
-"{{{ Deoplete
-let g:deoplete#enable_at_startup = 1
-"}}}
-
-" {{{ Deoplete CLang
-if has('mac')
-    let g:deoplete#sources#clang#libclang_path="/Library/Developer/CommandLineTools/usr/lib/libclang.dylib"
-endif
-" }}}

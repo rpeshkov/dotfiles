@@ -1,0 +1,118 @@
+#
+# Tmux autoload
+#
+# Tmux starts only if we're not inside VSCode or Vim
+#
+if [ ${TERM_PROGRAM:-default} != "vscode" ] && [ -z $VIM ]; then
+    if which tmux 2>&1 >/dev/null; then
+        if [ $TERM != "screen-256color" ] && [ $TERM != "screen" ]; then
+            if tmux has -t tmux 2>&1 >/dev/null; then
+                tmux attach -t tmux -d
+            else
+                tmux new -s tmux
+            fi
+            exit
+        fi
+    fi
+fi
+
+#
+# Modules
+#
+autoload -U colors && colors
+
+#
+# Options
+#
+
+# Use directory stack
+setopt auto_pushd
+# Don't push duplicates in stack
+setopt pushd_ignore_dups
+
+setopt auto_remove_slash
+
+#
+# Bindings
+#
+bindkey -e
+
+# delete char with backspaces and delete
+bindkey '^[[3~' delete-char
+bindkey '^?' backward-delete-char
+
+#
+# Aliases
+#
+
+# Directory stack navigation
+alias d="dirs -v"
+for index ({1..9}) alias "$index"="cd +${index}"; unset index
+
+alias ls="exa -F  --header"
+alias ll="exa -lF --time-style=long-iso --header"
+alias vim="nvim"
+alias duh="du -chd1"
+alias serve="python -m SimpleHTTPServer"
+alias wifi="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport"
+alias coder="code -r ."
+alias notes="vim -c 'cd ~/Dropbox/Notes/' ~/Dropbox/Notes/"
+
+
+hash -d -- dev=$HOME/Developer
+hash -d -- dropbox=$HOME/Dropbox
+hash -d -- notes=$HOME/Dropbox/Notes
+hash -d -- downloads=$HOME/Downloads
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export FZF_DEFAULT_COMMAND="fd . $HOME"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd -t d . $HOME"
+
+source "${HOME}/.zgen/zgen.zsh"
+if ! zgen saved; then
+    zgen load mafredri/zsh-async
+    zgen load sindresorhus/pure
+    zgen load rpeshkov/zsh-snv
+    zgen save
+fi
+
+#
+# Completion
+#
+
+autoload -Uz compinit && compinit -C
+
+# forces zsh to realize new commands
+zstyle ':completion:*' completer _oldlist _expand _complete _match _ignored _approximate
+
+# matches case insensitive for lowercase
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# pasting with tabs doesn't perform completion
+zstyle ':completion:*' insert-tab pending
+
+# rehash if command not found (possibly recently installed)
+zstyle ':completion:*' rehash true
+
+# menu if nb items > 2
+zstyle ':completion:*' menu select=2
+
+# colored menu
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+
+#
+# History
+#
+HISTFILE=~/.zsh_history
+HISTSIZE=1024
+SAVEHIST=1024
+setopt append_history
+setopt hist_ignore_all_dups
+setopt hist_reduce_blanks
+setopt hist_verify
+setopt inc_append_history
+setopt share_history
+setopt bang_hist
