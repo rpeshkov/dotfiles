@@ -57,6 +57,7 @@ alias serve="python -m SimpleHTTPServer"
 alias wifi="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport"
 alias coder="code -r ."
 alias notes="vim -c 'cd ~/Dropbox/Notes/' ~/Dropbox/Notes/"
+alias iwl_log="log stream --predicate 'sender == \"IntelWifi\"' --style compact"
 
 
 hash -d -- dev=$HOME/Developer

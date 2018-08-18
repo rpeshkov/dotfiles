@@ -10,8 +10,9 @@ fi
 read -p "Initialize zsh?" -n 1 -r; echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    rm -rf $HOME/.zprezto/runcoms
-    ln -s $PWD/runcoms $HOME/.zprezto/runcoms
+    ln -s $PWD/zsh/zshrc $HOME/.zshrc
+    ln -s $PWD/zsh/zprofile $HOME/.zprofile
+    ln -s $PWD/zsh/zshenv $HOME/.zshenv
 fi
 
 read -p "Initialize git?" -n 1 -r; echo
