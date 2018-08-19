@@ -45,10 +45,11 @@ set listchars=tab:‣\ ,trail:·,precedes:«,extends:»,eol:¬
 "}}}
 
 "{{{ Search
-set hlsearch    " Highlight search matches
-set incsearch   " Incremental search
-set ignorecase  " Ignore case
-set smartcase   " unless I start search keyword with capital letter
+set hlsearch           " Highlight search matches
+set incsearch          " Incremental search
+set ignorecase         " Ignore case
+set smartcase          " unless I start search keyword with capital letter
+set inccommand=nosplit " Live substitute awesomeness
 set grepprg=rg\ --vimgrep
 "}}}
 
