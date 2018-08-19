@@ -14,7 +14,7 @@ export PAGER="less"
 export GOPATH="$HOME"
 export PATH="$GOPATH/bin:$PATH"
 
-export SNV="v8.11.3"
+export SNV="v8.11.4"
 export PURE_PROMPT_SYMBOL="λ"
 
 export CLICOLOR=1

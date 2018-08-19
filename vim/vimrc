@@ -1,8 +1,6 @@
 set nocompatible
 
 "{{{ Plugins
-filetype off
-
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeFind'] }
 Plug 'itchyny/lightline.vim'
@@ -18,11 +16,10 @@ Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 't9md/vim-choosewin'
 call plug#end()
-
-filetype indent plugin on
 "}}}
 
 "{{{ Visual
+filetype indent plugin on
 syntax on               " Turn on syntax highlight
 set background=dark     " Setting background to dark
 colorscheme onedark     " Sweet theme
@@ -258,10 +255,9 @@ nmap <silent> <C-s>q :cexpr []<cr>:cclose<cr>
 command! Cqf cexpr []
 
 if has("cscope")
-    set csto=0
     set cscopetag
     set cscopeprg='gtags-cscope'
-    set nocsverb
+    " Search for GTAGS upwards until it's found
     let db = findfile("GTAGS", ".;")
     " add any database in current directory
     if filereadable(db)
@@ -270,7 +266,6 @@ if has("cscope")
     elseif $CSCOPE_DB != ""
         cs add $CSCOPE_DB
     endif
-    set csverb
 endif
 
 " }}}
@@ -292,4 +287,3 @@ let g:NERDDefaultAlign = 'left' " Align line-wise comment delimiters flush left 
 let $FZF_DEFAULT_COMMAND = 'fd --type f'
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 "}}}
-
