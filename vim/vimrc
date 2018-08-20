@@ -19,8 +19,8 @@ call plug#end()
 "}}}
 
 "{{{ Visual
-filetype indent plugin on
 syntax on               " Turn on syntax highlight
+set termguicolors       " TrueColor
 set background=dark     " Setting background to dark
 colorscheme onedark     " Sweet theme
 set laststatus=2        " Always show status line
@@ -261,7 +261,7 @@ if has("cscope")
     " Search for GTAGS upwards until it's found
     let db = findfile("GTAGS", ".;")
     " add any database in current directory
-    if filereadable(db)
+    if filereadable(db) && !cscope_connection(0, db)
         exec "cs add " . db
     " else add database pointed to by environment
     elseif $CSCOPE_DB != ""
