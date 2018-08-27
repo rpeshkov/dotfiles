@@ -113,6 +113,11 @@ map <right> <nop>
 map <down> <nop>
 map <up> <nop>
 
+" No Ex mode
+nnoremap Q <Nop>
+command! -nargs=0 -bang Qa qall!
+command! -nargs=0 -bang QA qall!
+
 " Moving through visual line by default
 noremap j gj
 noremap k gk
