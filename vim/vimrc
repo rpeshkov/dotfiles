@@ -293,3 +293,21 @@ let g:NERDDefaultAlign = 'left' " Align line-wise comment delimiters flush left 
 let $FZF_DEFAULT_COMMAND = 'fd --type f'
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 "}}}
+
+"{{{ Vim Help
+augroup vim_help
+    autocmd!
+
+    " Open help always to the right.
+    autocmd FileType help wincmd L
+augroup END
+"}}}
+
+"{{{Terminal
+tnoremap <Esc><Esc> <C-\><C-n>
+augroup terminal
+    au!
+    autocmd BufWinEnter,WinEnter term://*
+                \ setlocal nonumber norelativenumber
+augroup END
+"}}}
