@@ -8,7 +8,6 @@
     "editor.hover.delay": 200,
     "editor.minimap.enabled": false,
     "editor.overviewRulerBorder": false,
-    "editor.parameterHints": false,
     "editor.renderIndentGuides": false,
     "editor.renderWhitespace": "none",
     "editor.rulers": [100],
@@ -107,6 +106,7 @@
 // Text tables
     "text-tables.mode": "org",
 
-    "searchRipgrep.enable": true
-
+    "searchRipgrep.enable": true,
+    "go.useLanguageServer": true,
+    "window.titleBarStyle": "native"
 }

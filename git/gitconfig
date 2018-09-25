@@ -53,3 +53,6 @@
 
 [core]
     pager = diff-so-fancy | less
+
+[url "git@github.com:rpeshkov/"]
+    insteadOf = rp:
