@@ -3,7 +3,8 @@
     "editor.codeLens": false,
     "editor.cursorBlinking": "solid",
     "editor.dragAndDrop": false,
-    "editor.fontFamily": "SF Mono",
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
     "editor.fontSize": 12,
     "editor.hover.delay": 200,
     "editor.minimap.enabled": false,
@@ -84,7 +85,6 @@
     "git.enableSmartCommit": true,
 
 // Rust
-    "rust.unstable_features": true,
     "[rust]": {
         "editor.rulers": [99],
     },
@@ -100,13 +100,9 @@
 // TypeScript
     "tslint.run": "onSave",
 
-// Go Tests outline
-    "go-tests-outline.go-test-params": "-race",
-
 // Text tables
     "text-tables.mode": "org",
 
     "searchRipgrep.enable": true,
-    "go.useLanguageServer": true,
-    "window.titleBarStyle": "native"
+    "workbench.settings.editor": "json"
 }
