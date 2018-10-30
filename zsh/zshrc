@@ -52,12 +52,14 @@ for index ({1..9}) alias "$index"="cd +${index}"; unset index
 alias ls="exa -F  --header"
 alias ll="exa -lF --time-style=long-iso --header"
 alias vim="nvim"
+alias fm="vifm"
 alias duh="du -chd1"
 alias serve="python -m SimpleHTTPServer"
 alias wifi="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport"
 alias coder="code -r ."
 alias notes="vim -c 'cd ~/Dropbox/Notes/' ~/Dropbox/Notes/"
 alias iwl_log="log stream --predicate 'sender == \"IntelWifi\"' --style compact"
+alias dev="cd ~dev"
 
 
 hash -d -- dev=$HOME/Developer
@@ -83,6 +85,7 @@ fi
 # Completion
 #
 
+fpath+=~/.zfunc
 autoload -Uz compinit && compinit -C
 
 # forces zsh to realize new commands
@@ -117,3 +120,4 @@ setopt hist_verify
 setopt inc_append_history
 setopt share_history
 setopt bang_hist
+
