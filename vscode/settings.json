@@ -14,10 +14,9 @@
     "editor.rulers": [100],
     "editor.minimap.enabled": false,
     "editor.overviewRulerBorder": false,
-
     "editor.dragAndDrop": false,
     "editor.wordWrapColumn": 100,
-    "editor.wordWrap": "bounded",
+    "editor.wordWrap": "off",
     "editor.scrollBeyondLastLine": false,
     "editor.smoothScrolling": true,
     "editor.tabCompletion": "on",
@@ -45,6 +44,7 @@
     "workbench.colorTheme": "Dark+ Material",
     "workbench.colorCustomizations": {
         "[Dark+ Material]": {
+            "sideBar.background": "#191919",
             "sideBar.border": "#303030",
             "editorRuler.foreground": "#303030",
             "editor.lineHighlightBackground": "#303030",
@@ -56,7 +56,8 @@
             "editorGroup.border": "#303030",
             "tab.inactiveBackground": "#212121",
             "tab.activeBackground": "#303030",
-            "editorGroupHeader.tabsBackground": "#212121"
+            "editorGroupHeader.tabsBackground": "#212121",
+            "scrollbar.shadow": "#00000020",
         },
     },
 //#endregion
