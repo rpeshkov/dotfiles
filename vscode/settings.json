@@ -1,37 +1,71 @@
 {
-// Editor
-    "editor.codeLens": false,
-    "editor.cursorBlinking": "solid",
-    "editor.dragAndDrop": false,
+//#region Editor
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
     "editor.fontSize": 12,
-    "editor.hover.delay": 200,
-    "editor.minimap.enabled": false,
-    "editor.overviewRulerBorder": false,
+    "editor.lineHeight": 22,
+
+    "editor.codeLens": false,
+    "editor.lineNumbers": "off",
+    "editor.cursorBlinking": "solid",
+    "editor.renderLineHighlight": "none",
     "editor.renderIndentGuides": false,
     "editor.renderWhitespace": "none",
     "editor.rulers": [100],
+    "editor.minimap.enabled": false,
+    "editor.overviewRulerBorder": false,
+
+    "editor.dragAndDrop": false,
+    "editor.wordWrapColumn": 100,
+    "editor.wordWrap": "bounded",
     "editor.scrollBeyondLastLine": false,
     "editor.smoothScrolling": true,
-    "editor.tabCompletion": true,
-    "editor.wordBasedSuggestions": false,
+    "editor.tabCompletion": "on",
 
-// Workbench
+    "editor.parameterHints.cycle": true,
+    "editor.wordBasedSuggestions": false,
+//#endregion
+//#region Workbench
     "workbench.activityBar.visible": false,
-    "workbench.editor.enablePreview": false,
-    "workbench.editor.enablePreviewFromQuickOpen": false,
-    "workbench.iconTheme": "vscode-icons",
-    "workbench.startupEditor": "newUntitledFile",
     "workbench.statusBar.feedback.visible": false,
     "workbench.tips.enabled": false,
-    "workbench.view.alwaysShowHeaderActions": true,
+    "workbench.editor.showTabs": false,
+    "workbench.editor.highlightModifiedTabs": true,
 
-// Window
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.editor.revealIfOpen": true,
+
+    "workbench.view.alwaysShowHeaderActions": false,
+
+    "workbench.settings.editor": "json",
+    "workbench.settings.openDefaultSettings": false,
+    "workbench.settings.openDefaultKeybindings": false,
+
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Dark+ Material",
+    "workbench.colorCustomizations": {
+        "[Dark+ Material]": {
+            "sideBar.border": "#303030",
+            "editorRuler.foreground": "#303030",
+            "editor.lineHighlightBackground": "#303030",
+            "editor.lineHighlightBorder": "#00000000",
+            "diffEditor.removedTextBorder": "#00000000",
+            "diffEditor.insertedTextBorder": "#00000000",
+            "diffEditor.border": "#00000000",
+            "titleBar.activeBackground": "#212121",
+            "editorGroup.border": "#303030",
+            "tab.inactiveBackground": "#212121",
+            "tab.activeBackground": "#303030",
+            "editorGroupHeader.tabsBackground": "#212121"
+        },
+    },
+//#endregion
+//#region Window
     "window.newWindowDimensions": "maximized",
     "window.closeWhenEmpty": true,
-
-// Files
+    "window.title": "${activeEditorMedium}${separator}${rootName}",
+//#endregion
+//#region Files
     "files.defaultLanguage": "markdown",
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
@@ -43,66 +77,82 @@
         "**/bower_components/**": true,
         "**/out": true
     },
-
-// File explorer
+//#endregion
+//#region File explorer
     "explorer.openEditors.visible": 0,
-    "explorer.decorations.badges": false,
-    "explorer.decorations.colors": false,
-
-// Search
+    "explorer.decorations.badges": true,
+    "explorer.decorations.colors": true,
+//#endregion
+//#region Search
     "search.exclude": {
         "**/node_modules": true,
         "**/bower_components": true,
         "**/out": true,
         "Cargo.lock": true,
     },
-
-// HTML
-    "html.suggest.angular1": false,
-    "html.suggest.ionic": false,
-
-// Markdown
-    "[markdown]": {
-        "editor.wordWrap": "bounded",
-        "editor.quickSuggestions": false,
-        "editor.wordWrapColumn": 80,
-        "editor.rulers": [ 80 ],
-        "editor.tabSize": 2
-    },
-
-// Terminal
+    "search.smartCase": true,
+    "search.runInExtensionHost": true,
+//#endregion
+//#region Diff & SCM
+    "git.enableSmartCommit": true,
+    "scm.diffDecorations": "none",
+    "diffEditor.renderSideBySide": false,
+//#endregion
+//#region Terminal
     "terminal.integrated.macOptionIsMeta": true,
     "terminal.integrated.fontSize": 12,
-
-// Problems View
+    "terminal.integrated.lineHeight": 1.5,
+    "terminal.integrated.showExitAlert": false,
+//#endregion
+//#region Problems View
     "problems.decorations.enabled": false,
+//#endregion
+//#region Debug
+    "debug.toolBarLocation": "docked",
+//#endregion
 
-// VS Code Icons
-    "vsicons.projectDetection.disableDetect": true,
-
-// Git
-    "scm.diffDecorations": "none",
-    "git.enableSmartCommit": true,
-
-// Rust
-    "[rust]": {
-        "editor.rulers": [99],
-    },
-
-// Org
+//#region Language specific
+//#region Org
     "[org]": {
         "editor.rulers": [ 80 ],
         "editor.wrappingIndent": "same",
         "editor.wordWrap": "wordWrapColumn",
         "editor.wordWrapColumn": 80,
     },
-
-// TypeScript
+//#endregion
+//#region Markdown
+    "[markdown]": {
+        "editor.wordWrap": "bounded",
+        "editor.quickSuggestions": false,
+        "editor.wordBasedSuggestions": true,
+        "editor.wordWrapColumn": 80,
+        "editor.rulers": [ 80 ],
+        "editor.tabSize": 2
+    },
+//#endregion
+//#region TypeScript
     "tslint.run": "onSave",
+    "typescript.preferences.quoteStyle": "single",
+//#endregion
+//#endregion
 
-// Text tables
+//#region Plugins
+
+//#region Text tables
     "text-tables.mode": "org",
+//#endregion
 
-    "searchRipgrep.enable": true,
-    "workbench.settings.editor": "json"
+//#region Material icon theme
+    "material-icon-theme.hidesExplorerArrows": true,
+    "material-icon-theme.opacity": 1,
+//#endregion
+
+//#region Custom css/js
+    "vscode_custom_css.imports": [
+        "file:///Users/rpeshkov/.vscode/tree-guides.css"
+    ],
+    "vscode_custom_css.policy": true,
+//#endregion
+
+//#endregion
 }

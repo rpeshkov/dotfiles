@@ -30,17 +30,11 @@
 [core]
     editor = nvim
 
-[diff]
-    tool = vimdiff
-
 [log]
     date = short
 
 [color]
     ui = auto
-
-[difftool]
-    prompt = false
 
 [grep]
     lineNumber = true
@@ -56,3 +50,15 @@
 
 [url "git@github.com:rpeshkov/"]
     insteadOf = rp:
+
+[merge]
+    tool = vscode
+[mergetool "vscode"]
+    cmd = "code -n -w $MERGED"
+
+[diff]
+    tool = vscode
+[difftool]
+    prompt = false
+[difftool "vscode"]
+    cmd = "code -n -w -d $LOCAL $REMOTE"
