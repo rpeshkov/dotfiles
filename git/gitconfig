@@ -1,7 +1,5 @@
-[user]
-    name = Roman Peshkov
-    email = peshkovroman@gmail.com
-    signingkey = 58B21D54025629C2F8D34CCD66894257D626F7F5
+[include]
+    path = .gitconfig_local
 
 [advice]
     statusHints = false
@@ -14,6 +12,7 @@
     dt = difftool
     dw = diff --word-diff=color
     co = checkout
+    col = checkout
     cob = checkout -b
     st = status -b
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
@@ -22,6 +21,7 @@
     tags = tag -l -n2
     remotes = remote -v
     patch = !git --no-pager diff --no-color
+    feature = "!git checkout -b $1 develop #"
 
 [status]
     showUntrackedFiles = all

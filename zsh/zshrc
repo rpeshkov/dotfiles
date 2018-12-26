@@ -21,6 +21,9 @@ fi
 #
 autoload -U colors && colors
 
+autoload -U select-word-style
+select-word-style bash
+
 #
 # Options
 #
@@ -55,9 +58,7 @@ alias vim="nvim"
 alias fm="vifm"
 alias duh="du -chd1"
 alias serve="python -m SimpleHTTPServer"
-alias wifi="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport"
 alias coder="code -r ."
-alias notes="vim -c 'cd ~/Dropbox/Notes/' ~/Dropbox/Notes/"
 alias iwl_log="log stream --predicate 'sender == \"IntelWifi\"' --style compact"
 alias dev="cd ~dev"
 
@@ -85,8 +86,8 @@ fi
 # Completion
 #
 
-fpath+=~/.zfunc
-autoload -Uz compinit && compinit -C
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
 
 # forces zsh to realize new commands
 zstyle ':completion:*' completer _oldlist _expand _complete _match _ignored _approximate
@@ -120,3 +121,10 @@ setopt inc_append_history
 setopt share_history
 setopt bang_hist
 
+function denter() {
+    if [ -z "$1" ]; then
+        echo "\nPlease:\n denter [ContainerName]\n\nView:\n docker container ls\n"
+    else
+        docker exec -it "$1" /bin/bash
+    fi
+}
