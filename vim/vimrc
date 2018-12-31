@@ -2,79 +2,113 @@ set nocompatible
 
 "{{{ Plugins
 call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeFind'] }
 Plug 'itchyny/lightline.vim'
+Plug 'joshdick/onedark.vim'
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'joshdick/onedark.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-unimpaired'
-Plug 'cespare/vim-toml'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
-Plug 'scrooloose/nerdcommenter'
-Plug 't9md/vim-choosewin'
+Plug 'w0rp/ale'
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-commentary'
+
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'cespare/vim-toml'
 call plug#end()
 "}}}
 
 "{{{ Visual
-syntax on               " Turn on syntax highlight
-set termguicolors       " TrueColor
-set background=dark     " Setting background to dark
-colorscheme onedark     " Sweet theme
-set laststatus=2        " Always show status line
-set showtabline=0       " Show tab line
-set number              " Show numbers...
-set relativenumber      " relatively
-set numberwidth=6       " Make line numbers space wider
-set cursorline          " Draw line cursor
-set colorcolumn=+1      " Want to see right margin
-set noshowmode          " Don't need mode to be shown
-set linebreak           " Don't break in the middle of word
-let &showbreak='↪ '     " Good break marker
-set shortmess+=c        " Hide '1 match' and other related messages
-set splitbelow          " Horizontal split should appear below
-set splitright          " Vertical split should appear on right
-set synmaxcol=300       " Don't highlight lines longer than 300 characters
-set title               " Change title of terminal
-set lazyredraw          " Wait to redraw
-let html_no_rendering=1 " Don't render italic, bold, links in HTML
-set list                " Show additional characters
-set listchars=tab:‣\ ,trail:·,precedes:«,extends:»,eol:¬
+" Turn on syntax highlight
+syntax on
+" TrueColor terminal
+set termguicolors
+" Setting background to dark
+set background=dark
+" Sweet theme
+colorscheme onedark
+" Don't ever show tabline
+set showtabline=0
+" Show numbers... relatively
+set number relativenumber
+" Make line numbers space wider
+set numberwidth=6
+" Draw line cursor
+set cursorline
+" Want to see right margin
+set colorcolumn=+1
+" Don't need mode to be shown
+set noshowmode
+" Break smart
+set linebreak
+" Good break marker
+let &showbreak='↪ '
+" Hide '1 match' and other related messages
+set shortmess+=c
+" Horizontal split below, vertical - right
+set splitbelow splitright
+" Don't syntax highlight too long lines
+set synmaxcol=300
+" Change title of terminal
+set title
+" Wait to redraw
+set lazyredraw
+" Don't render links, bolds, italics in HTML
+let html_no_rendering=1
+" Show additional characters
+set list listchars=tab:‣\ ,trail:·,precedes:«,extends:»,eol:¬
 "}}}
 
 "{{{ Search
-set hlsearch           " Highlight search matches
-set incsearch          " Incremental search
-set ignorecase         " Ignore case
-set smartcase          " unless I start search keyword with capital letter
-set inccommand=nosplit " Live substitute awesomeness
+" Highlight search matches
+set hlsearch
+" Incremental search
+set incsearch
+" Ignore case, but be smart
+set ignorecase smartcase
+" Live substitute awesomeness
+set inccommand=nosplit
 set grepprg=rg\ --vimgrep
 "}}}
 
 "{{{ Editor
-set autowrite           " Write file if jump goes out of this file
-set clipboard=unnamed   " Use system clipboard
-set hidden              " Allow me to switch to another buffers without saving
-set softtabstop=4       " Treat tab as 4 spaces during editing
-set shiftwidth=4        " Spaces for shifting/indenting
-set expandtab           " We need spaces, not tabs
-set backspace=2         " Backspace behavior I used to
-set whichwrap+=<,>,[,]  " Wrapping behavior
+" Write file if jump goes out of this file
+set autowrite
+" Use system clipboard
+set clipboard=unnamedplus
+" Allow me to switch to another buffers without saving
+set hidden
+" Treat tab as 4 spaces during editing
+set softtabstop=4
+" Spaces for shifting/indenting
+set shiftwidth=4
+" We need spaces, not tabs
+set expandtab
+" Backspace behavior I used to
+set backspace=2
+
 set showmatch
-set noswapfile          " I don't like swapfiles
+" I don't like swapfiles
+set noswapfile
 set timeoutlen=500
 set ttimeoutlen=0
-set pumheight=10        " Completion window max size
-set textwidth=120
-set shiftround          " Round indent
-set formatoptions-=o    " Don't insert comment leader when hitting 'o'
-set virtualedit=block   " Enable virtual edit mode in block selection
+" Completion window max size
+set pumheight=10
+set textwidth=80
+" Round indent
+set shiftround
+" Don't insert comment leader when hitting 'o'
+set formatoptions-=o
+" Enable virtual edit mode in block selection
+set virtualedit=block
 
-set completeopt-=preview
+" set completeopt-=preview
 set completeopt+=noselect
 set completeopt+=noinsert
+set completeopt+=menuone
 
 augroup trailing
     au!
@@ -88,24 +122,29 @@ let loaded_matchparen=1
 if !has('nvim')
     set ttyfast
 endif
-set scrolljump=8        " Scroll 8 lines at a time at bottom/top
-set scrolloff=3         " Don't reach borders when dummy-scrolling
+" Scroll 8 lines at a time at bottom/top
+set scrolljump=8
+" Don't reach borders when dummy-scrolling
+set scrolloff=3
 set mouse=a
 set wildmenu
 set wildmode=longest,full
 set wildignorecase
-set wildignore+=**/node_modules   " ignores node_modules
-set wildignore+=**/bower_components   " ignores bower_components
+" ignores node_modules
+set wildignore+=**/node_modules
+" ignores bower_components
+set wildignore+=**/bower_components
 "}}}
 
 "{{{ Bindings
-let mapleader=","
+let mapleader=" "
+
+nmap s <Plug>(easymotion-s2)
+nmap t <Plug>(easymotion-t2)
 
 " Vimrc editing simplification
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-
-nmap - <Plug>(choosewin)
 
 " No arrows please
 map <left> <nop>
@@ -123,6 +162,8 @@ noremap j gj
 noremap k gk
 noremap gj j
 noremap gk k
+
+nnoremap Y y$
 
 " Easier jump to begin/end of line
 noremap H ^
@@ -146,23 +187,15 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 
 nnoremap <silent> <leader>d :bp\|bd#<cr>
-nnoremap <silent> <leader>w :hide<cr>
-nnoremap <silent> <leader>W :bd!<cr>
-nnoremap <silent> <leader>, :bp<cr>
-nnoremap <silent> <leader>. :bn<cr>
+nnoremap <silent> <leader>w :write<cr>
+nnoremap <silent> <leader>ww :write!<cr>
+nnoremap <silent> <leader>q :q<cr>
 nnoremap <silent> <leader>n :enew<cr>
 
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-nnoremap Y y$
 nnoremap <silent> <esc><esc> :nohls<cr>
 
-map <silent> <C-n> :NERDTree<cr>
-map <silent> <C-f> :NERDTreeFind<CR>
 map <silent> <C-p> :FZF<CR>
+nmap <leader>b :make!<cr>
 
 " Zooming into specific split.
 map <silent> zi :tabedit +<C-r>=line(".")<cr> %<cr>zz
@@ -188,17 +221,10 @@ function! ExecuteMacroOverVisualRange()
 endfunction
 "}}}
 
-"{{{ [C] configuration
-augroup filetype_c
-    autocmd!
-    autocmd FileType c nmap <leader>b :make!<cr>
-augroup END
-"}}}
-
 "{{{ [Vim] configuration
 augroup filetype_vim
     autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
+    autocmd FileType vim setlocal foldmethod=marker formatoptions-=o
 augroup END
 "}}}
 
@@ -209,10 +235,17 @@ augroup filetype_vifm
 augroup END
 "}}}
 
+"{{{ Karabiner
+augroup filetype_karabiner_edn
+    autocmd!
+    autocmd BufRead,BufNewFile karabiner.edn set makeprg=goku
+augroup END
+"}}}
+
 "{{{ [Yaml] configuration
 augroup filetype_yaml
     autocmd!
-    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType yaml setlocal ts=2 sts=2 sw=2
 augroup END
 "}}}
 
@@ -240,13 +273,13 @@ set cscopequickfix=s-,c-,d-,i-,t-,e-,a-,g-
 " Find assignments to this symbol
 nmap <silent> <C-s>a :call CScope_find('a', '<cword>')<cr>
 "Find this C symbol
-nmap <silent> <C-s>s :call CScope_find('s', '<cword>')<cr> 
+nmap <silent> <C-s>s :call CScope_find('s', '<cword>')<cr>
 "Find this definition
 nmap <silent> <C-s>g :call CScope_find('g', '<cword>')<cr>
 "Find functions calling this function
-nmap <silent> <C-s>c :call CScope_find('c', '<cword>')<cr> 
+nmap <silent> <C-s>c :call CScope_find('c', '<cword>')<cr>
 "Find this text string
-nmap <silent> <C-s>t :call CScope_find('t', '<cword>')<cr> 
+nmap <silent> <C-s>t :call CScope_find('t', '<cword>')<cr>
 "Find this egrep pattern
 nmap <silent> <C-s>e :call CScope_find('e', '<cword>')<cr>
 "Find this file
@@ -276,19 +309,6 @@ endif
 
 " }}}
 
-"{{{ NERDTree
-let NERDTreeChDirMode=0
-let NERDTreeWinSize=50
-let NERDTreeShowBookmarks=0
-let NERDTreeMinimalUI=1
-let NERDTreeHijackNetrw=1
-"}}}
-
-"{{{ NERDCommenter
-let g:NERDSpaceDelims = 1       " Add spaces after comment delimiters by default
-let g:NERDDefaultAlign = 'left' " Align line-wise comment delimiters flush left instead of following code indentation
-"}}}
-
 "{{{ FZF
 let $FZF_DEFAULT_COMMAND = 'fd --type f'
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
@@ -299,15 +319,33 @@ augroup vim_help
     autocmd!
 
     " Open help always to the right.
-    autocmd FileType help wincmd L
+    autocmd FileType help
+                \ wincmd L |
+                \ 80 wincmd |
 augroup END
 "}}}
 
-"{{{Terminal
-tnoremap <Esc><Esc> <C-\><C-n>
-augroup terminal
-    au!
-    autocmd BufWinEnter,WinEnter term://*
-                \ setlocal nonumber norelativenumber
+"{{{ ALE
+let g:ale_completion_enabled = 1
+let g:ale_fixers = {
+            \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+            \}
+let g:ale_linters = {
+            \ 'rust': ['rls']
+            \ }
+let g:ale_rust_rls_toolchain = 'stable'
+let g:ale_sign_error = "✗"
+let g:ale_sign_warning = "⚠"
+let g:ale_fix_on_save = 1
+let g:ale_sign_column_always = 1
+"}}}
+
+"{{{ JXA
+augroup filetype_scpt
+    autocmd!
+
+    autocmd BufRead,BufNewFile,BufReadPost *.scpt
+                \ set filetype=javascript |
+                \ setlocal makeprg=osascript\ -l\ JavaScript\ %
 augroup END
 "}}}

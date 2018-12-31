@@ -1,5 +1,8 @@
 // Place your key bindings in this file to overwrite the defaults
 [
+    { "key": "ctrl+cmd+shift+=", "command": "toggleVim"},
+    { "key": "cmd+k cmd+k", "command": "workbench.action.quickOpen"},
+
     //#region Disable zoom keys
     { "key": "cmd+numpad_add", "command": "-workbench.action.zoomIn" },
     { "key": "shift+cmd+=", "command": "-workbench.action.zoomIn" },
@@ -37,6 +40,7 @@
 
 
     //#region ListView tweaks
+    { "key": "ctrl+l", "command": "workbench.action.navigateRight"},
     { "key": "cmd+n", "command": "explorer.newFile", "when": "explorerViewletFocus && !inputFocus" },
     { "key": "shift+cmd+n", "command": "explorer.newFolder", "when": "explorerViewletFocus && !inputFocus" },
     { "key": "enter", "command": "-renameFile",

@@ -4,11 +4,13 @@
     "editor.fontLigatures": true,
     "editor.fontSize": 12,
     "editor.lineHeight": 22,
+    "editor.suggestFontSize": 10,
+    "editor.suggestLineHeight": 16,
 
     "editor.codeLens": false,
-    "editor.lineNumbers": "off",
+    "editor.lineNumbers": "relative",
     "editor.cursorBlinking": "solid",
-    "editor.renderLineHighlight": "none",
+    "editor.renderLineHighlight": "all",
     "editor.renderIndentGuides": false,
     "editor.renderWhitespace": "none",
     "editor.rulers": [100],
@@ -18,9 +20,8 @@
     "editor.wordWrapColumn": 100,
     "editor.wordWrap": "off",
     "editor.scrollBeyondLastLine": false,
-    "editor.smoothScrolling": true,
+    "editor.smoothScrolling": false,
     "editor.tabCompletion": "on",
-
     "editor.parameterHints.cycle": true,
     "editor.wordBasedSuggestions": false,
 //#endregion
@@ -78,6 +79,7 @@
         "**/bower_components/**": true,
         "**/out": true
     },
+
 //#endregion
 //#region File explorer
     "explorer.openEditors.visible": 0,
@@ -153,6 +155,64 @@
         "file:///Users/rpeshkov/.vscode/tree-guides.css"
     ],
     "vscode_custom_css.policy": true,
+//#endregion
+
+//#region Vim
+    "vim.hlsearch": true,
+    "vim.visualModeKeyBindings": [
+        { "before": ["L"], "after": ["g", "_"] },
+        { "before": ["$"], "after": ["g", "_"] }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        { "before": [">"], "after": [">", "g", "v"] },
+        { "before": ["<"], "after": ["<", "g", "v"] },
+        { "before": ["L"], "after": ["g", "_"] },
+        { "before": ["$"], "after": ["g", "_"] }
+    ],
+    "vim.insertModeKeyBindings": [
+        // alt + j
+        { "before": ["∆"], "commands": ["cursorRight"]},
+        // alt + k
+        { "before": ["˚"], "after": [" ", "=", ">", " "]}
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        { "before": ["c", "p"], "after": ["f", "(", "c", "i", "b"] },
+        { "before": ["j"], "after": ["g", "j"] },
+        { "before": ["k"], "after": ["g", "k"] },
+        { "before": ["H"], "after": ["^"] },
+        { "before": ["L"], "after": ["$"] },
+        { "before": ["Y"], "after": ["y", "$"] },
+        { "before": ["J"], "after": ["m", "z", "J", "`", "z"] },
+
+        { "before": ["<leader>", "m"], "commands": ["bookmarks.toggle"] },
+        { "before": ["<leader>", "b"], "commands": ["bookmarks.list"] },
+        { "before": ["<leader>", "e"], "commands": ["workbench.action.showAllEditors"] },
+        { "before": ["<leader>", "<leader>", "r"], "commands": [ "workbench.action.openRecent" ] },
+
+        { "before": ["<C-h>"], "commands": [ "workbench.action.navigateLeft" ] },
+        { "before": ["<C-l>"], "commands": [ "workbench.action.navigateRight" ] },
+        { "before": ["<C-k>"], "commands": [ "workbench.action.navigateUp" ] },
+        { "before": ["<C-j>"], "commands": [ "workbench.action.navigateDown" ] },
+
+        { "before": ["]", "q"], "commands": ["editor.action.marker.next"] },
+        { "before": ["[", "q"], "commands": ["editor.action.marker.prev"] }
+    ],
+    "vim.easymotion": true,
+    "vim.easymotionMarkerBackgroundColor": "#3cc",
+    "vim.easymotionMarkerForegroundColorOneChar": "#222",
+    "vim.easymotionMarkerForegroundColorTwoChar": "#222",
+    "vim.easymotionMarkerFontSize": "14",
+    "vim.easymotionMarkerFontWeight": "Bold",
+    "vim.easymotionMarkerFontFamily": "Fira Code",
+    "vim.easymotionKeys": "hjklfds",
+    "vim.easymotionMarkerHeight": 22,
+    "vim.sneak": true,
+    "vim.leader": "<space>",
+    "vim.enableNeovim": true,
+    "vim.handleKeys": {
+        "<C-d>": true,
+        "<C-l>": true
+    }
 //#endregion
 
 //#endregion

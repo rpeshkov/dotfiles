@@ -3,18 +3,22 @@
 #
 # Tmux starts only if we're not inside VSCode or Vim
 #
-if [ ${TERM_PROGRAM:-default} != "vscode" ] && [ -z $VIM ]; then
-    if which tmux 2>&1 >/dev/null; then
-        if [ $TERM != "screen-256color" ] && [ $TERM != "screen" ]; then
-            if tmux has -t tmux 2>&1 >/dev/null; then
-                tmux attach -t tmux -d
-            else
-                tmux new -s tmux
+function _tmux_autostart() {
+    if [ ${TERM_PROGRAM:-default} != "vscode" ] && [ -z $VIM ]; then
+        if which tmux 2>&1 >/dev/null; then
+            if [ $TERM != "screen-256color" ] && [ $TERM != "screen" ]; then
+                if tmux has -t tmux 2>&1 >/dev/null; then
+                    tmux attach -t tmux -d
+                else
+                    tmux new -s tmux
+                fi
+                exit
             fi
-            exit
         fi
     fi
-fi
+}
+
+_tmux_autostart
 
 #
 # Modules
@@ -34,6 +38,7 @@ setopt auto_pushd
 setopt pushd_ignore_dups
 
 setopt auto_remove_slash
+setopt auto_cd
 
 #
 # Bindings
@@ -43,7 +48,8 @@ bindkey -e
 # delete char with backspaces and delete
 bindkey '^[[3~' delete-char
 bindkey '^?' backward-delete-char
-
+bindkey '\e[1~' beginning-of-line
+bindkey '\e[4~' end-of-line
 #
 # Aliases
 #
@@ -55,17 +61,27 @@ for index ({1..9}) alias "$index"="cd +${index}"; unset index
 alias ls='exa -F  --header'
 alias ll='exa -lF --time-style=long-iso --header'
 alias vim='nvim'
+alias e='nvim'
 alias fm='vifm'
 alias duh='du -chd1'
 alias serve='python -m SimpleHTTPServer'
 alias coder='code -r .'
 alias dev='cd ~dev'
 alias cwd='pwd | pbcopy'
+alias o='open'
+alias weather='curl wttr.in'
+alias ek='$EDITOR ~/.config/karabiner.edn'
+alias bi='brew install'
+alias bu='brew update'
+alias bup='brew upgrade'
+alias bun='brew uninstall'
+
+alias notes='cd ~n && nvim ~n'
 
 hash -d -- dev=$HOME/Developer
 hash -d -- dropbox=$HOME/Dropbox
-hash -d -- notes=$HOME/Dropbox/Notes
 hash -d -- downloads=$HOME/Downloads
+hash -d -- n=$HOME/Documents/Notes
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
