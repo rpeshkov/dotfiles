@@ -210,8 +210,6 @@ endfunction
 
 " Operator-pending bindings
 onoremap p i(
-onoremap ib i{
-onoremap ab a{
 
 " https://github.com/stoeffel/.dotfiles/blob/master/vim/visual-at.vim
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
