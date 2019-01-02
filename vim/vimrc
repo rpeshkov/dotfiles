@@ -179,6 +179,7 @@ vmap <silent> < <gv
 
 " I want each newline to create undo point
 inoremap <return> <C-g>u<cr>
+inoremap <C-l> =>
 
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
