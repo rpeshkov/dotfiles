@@ -2,10 +2,10 @@
 //#region Editor
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
-    "editor.fontSize": 12,
+    "editor.fontSize": 14,
     "editor.lineHeight": 22,
-    "editor.suggestFontSize": 10,
-    "editor.suggestLineHeight": 16,
+    "editor.suggestFontSize": 12,
+    "editor.suggestLineHeight": 17,
 
     "editor.codeLens": false,
     "editor.lineNumbers": "relative",
@@ -172,8 +172,7 @@
     "vim.insertModeKeyBindings": [
         // alt + j
         { "before": ["∆"], "commands": ["cursorRight"]},
-        // alt + k
-        { "before": ["˚"], "after": [" ", "=", ">", " "]}
+        { "before": ["<C-l>"], "after": [" ", "=", ">", " "]}
     ],
     "vim.normalModeKeyBindingsNonRecursive": [
         { "before": ["c", "p"], "after": ["f", "(", "c", "i", "b"] },
@@ -187,7 +186,6 @@
         { "before": ["<leader>", "m"], "commands": ["bookmarks.toggle"] },
         { "before": ["<leader>", "b"], "commands": ["bookmarks.list"] },
         { "before": ["<leader>", "e"], "commands": ["workbench.action.showAllEditors"] },
-        { "before": ["<leader>", "<leader>", "r"], "commands": [ "workbench.action.openRecent" ] },
 
         { "before": ["<C-h>"], "commands": [ "workbench.action.navigateLeft" ] },
         { "before": ["<C-l>"], "commands": [ "workbench.action.navigateRight" ] },
@@ -201,7 +199,8 @@
     "vim.easymotionMarkerBackgroundColor": "#3cc",
     "vim.easymotionMarkerForegroundColorOneChar": "#222",
     "vim.easymotionMarkerForegroundColorTwoChar": "#222",
-    "vim.easymotionMarkerFontSize": "14",
+    "vim.easymotionMarkerFontSize": "16",
+    "vim.easymotionMarkerWidthPerChar": 10,
     "vim.easymotionMarkerFontWeight": "Bold",
     "vim.easymotionMarkerFontFamily": "Fira Code",
     "vim.easymotionKeys": "hjklfds",

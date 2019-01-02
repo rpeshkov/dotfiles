@@ -1,5 +1,6 @@
 // Place your key bindings in this file to overwrite the defaults
 [
+    { "key": "o", "command": "list.select", "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus" },
     { "key": "ctrl+cmd+shift+=", "command": "toggleVim"},
     { "key": "cmd+k cmd+k", "command": "workbench.action.quickOpen"},
 

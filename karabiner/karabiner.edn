@@ -4,7 +4,6 @@
          :rules [[:##caps_lock :left_control nil {:alone :escape}]
                  [:left_control :fn]
                  [:escape :!TOup_arrow]
-                 [:right_shift :!Ctab]
                  [:##non_us_backslash :##grave_accent_and_tilde]
                  ]}
         {:des "right cmd -> Alfred"
