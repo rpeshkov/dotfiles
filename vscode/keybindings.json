@@ -1,9 +1,5 @@
 // Place your key bindings in this file to overwrite the defaults
 [
-    { "key": "o", "command": "list.select", "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus" },
-    { "key": "ctrl+cmd+shift+=", "command": "toggleVim"},
-    { "key": "cmd+k cmd+k", "command": "workbench.action.quickOpen"},
-
     //#region Disable zoom keys
     { "key": "cmd+numpad_add", "command": "-workbench.action.zoomIn" },
     { "key": "shift+cmd+=", "command": "-workbench.action.zoomIn" },
@@ -28,7 +24,6 @@
     //#endregion
 
     //#region Terminal
-    { "key": "cmd+t", "command": "workbench.action.terminal.toggleTerminal" },
     { "key": "alt+cmd+right", "command": "workbench.action.terminal.focusNext", "when": "terminalFocus" },
     { "key": "alt+cmd+left", "command": "workbench.action.terminal.focusPrevious", "when": "terminalFocus" },
     { "key": "shift+cmd+n", "command": "workbench.action.terminal.new", "when": "terminalFocus" },
@@ -37,8 +32,6 @@
     { "key": "cmd+backspace", "command": "editor.action.deleteLines", "when": "editorTextFocus" },
     { "key": "ctrl+shift+up", "command": "workbench.action.showEditorsInGroup"},
     { "key": "ctrl+shift+down", "command": "workbench.action.showAllEditors"},
-
-
 
     //#region ListView tweaks
     { "key": "ctrl+l", "command": "workbench.action.navigateRight"},
@@ -60,10 +53,10 @@
     { "key": "shift+cmd+r", "command": "workbench.action.debug.run", "when": "!inDebugMode" },
     { "key": "cmd+r", "command": "workbench.action.debug.continue", "when": "inDebugMode" },
     { "key": "shift+cmd+r", "command": "workbench.action.debug.restart", "when": "inDebugMode" },
-    { "key": "cmd+'", "command": "workbench.action.debug.stepOver", "when": "inDebugMode" },
-    { "key": "cmd+;", "command": "workbench.action.debug.stepInto", "when": "inDebugMode" },
-    { "key": "shift+cmd+;", "command": "workbench.action.debug.stepOut", "when": "inDebugMode" },
-    { "key": "cmd+\\", "command": "workbench.action.debug.pause", "when": "inDebugMode" },
+    { "key": "cmd+[Quote]", "command": "workbench.action.debug.stepOver", "when": "inDebugMode" },
+    { "key": "cmd+[Semicolon]", "command": "workbench.action.debug.stepInto", "when": "inDebugMode" },
+    { "key": "shift+cmd+[Semicolon]", "command": "workbench.action.debug.stepOut", "when": "inDebugMode" },
+    { "key": "cmd+[Backslash]", "command": "workbench.action.debug.pause", "when": "inDebugMode" },
     //#endregion
 
     //#region Subwords movement
@@ -119,6 +112,6 @@
     //#endregion
 
     //#region Settings
-    { "key": "shift+cmd+,", "command": "workbench.action.openGlobalKeybindingsFile" },
+    { "key": "shift+cmd+[Comma]", "command": "workbench.action.openGlobalKeybindingsFile" },
     //#endregion
 ]
