@@ -2,6 +2,12 @@
 [
     { "key": "alt+up", "command": "editor.action.smartSelect.grow"},
     { "key": "alt+down", "command": "editor.action.smartSelect.shrink"},
+
+    { "key": "ctrl+l g", "command": "-extension.openInGitHub" },
+    { "key": "ctrl+l c", "command": "-extension.copyGitHubLinkToClipboard" },
+    { "key": "ctrl+l p", "command": "-extension.openPrGitProvider"},
+    { "key": "cmd+k g", "command": "extension.openInGitHub" },
+
     //#region Disable zoom keys
     { "key": "cmd+numpad_add", "command": "-workbench.action.zoomIn" },
     { "key": "shift+cmd+=", "command": "-workbench.action.zoomIn" },

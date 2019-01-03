@@ -2,8 +2,8 @@
 //#region Editor
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
-    "editor.fontSize": 12,
-    "editor.lineHeight": 22,
+    "editor.fontSize": 14,
+    "editor.lineHeight": 24,
     "editor.suggestFontSize": 12,
     "editor.suggestLineHeight": 18,
 
@@ -23,15 +23,14 @@
     "editor.wordBasedSuggestions": false,
 //#endregion
 //#region Workbench
+    "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.activityBar.visible": false,
     "workbench.statusBar.feedback.visible": false,
     "workbench.tips.enabled": false,
     "workbench.editor.highlightModifiedTabs": true,
     "workbench.commandPalette.history": 5,
-
     "workbench.startupEditor": "newUntitledFile",
     "workbench.editor.revealIfOpen": true,
-
     "workbench.view.alwaysShowHeaderActions": false,
 
     "workbench.settings.editor": "json",
@@ -55,7 +54,10 @@
             "tab.inactiveBackground": "#212121",
             "tab.activeBackground": "#303030",
             "editorGroupHeader.tabsBackground": "#212121",
-            "scrollbar.shadow": "#00000020",
+            "editorGroupHeader.tabsBorder": "#303030",
+            "scrollbar.shadow": "#00000000",
+            "titleBar.border": "#303030"
+
         },
     },
 //#endregion
@@ -148,7 +150,7 @@
     "vscode_custom_css.imports": [
         "file:///Users/rpeshkov/.vscode/tree-guides.css"
     ],
-    "vscode_custom_css.policy": true,
+    "vscode_custom_css.policy": true
 //#endregion
 
 //#endregion
