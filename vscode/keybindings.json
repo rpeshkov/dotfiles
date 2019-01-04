@@ -22,8 +22,6 @@
     { "key": "ctrl+shift+left", "command": "workbench.action.decreaseViewSize" },
 
     { "key": "shift+cmd+1", "command": "workbench.action.editorLayoutSingle", "when": "editorTextFocus" },
-    { "key": "ctrl+cmd+down", "command": "workbench.action.moveEditorToBelowGroup", "when": "editorTextFocus" },
-    { "key": "ctrl+cmd+up", "command": "workbench.action.moveEditorToAboveGroup", "when": "editorTextFocus" },
 
     { "key": "ctrl+left", "command": "workbench.action.navigateLeft" },
     { "key": "ctrl+right", "command": "workbench.action.navigateRight" },
@@ -36,10 +34,6 @@
     { "key": "alt+cmd+left", "command": "workbench.action.terminal.focusPrevious", "when": "terminalFocus" },
     { "key": "shift+cmd+n", "command": "workbench.action.terminal.new", "when": "terminalFocus" },
     //#endregion
-
-    { "key": "cmd+backspace", "command": "editor.action.deleteLines", "when": "editorTextFocus" },
-    { "key": "ctrl+shift+up", "command": "workbench.action.showEditorsInGroup"},
-    { "key": "ctrl+shift+down", "command": "workbench.action.showAllEditors"},
 
     //#region ListView tweaks
     { "key": "cmd+n", "command": "explorer.newFile", "when": "explorerViewletFocus && !inputFocus" },
@@ -91,28 +85,24 @@
 
     {
         "key": "ctrl+]",
-        "command": "editor.action.marker.next",
+        "command": "editor.action.marker.nextInFiles",
         "when": "editorFocus && !editorReadonly"
     },
     {
         "key": "ctrl+[",
-        "command": "editor.action.marker.prev",
+        "command": "editor.action.marker.prevInFiles",
         "when": "editorFocus && !editorReadonly"
     },
     {
         "key": "shift+cmd+j",
         "command": "workbench.action.toggleMaximizedPanel"
     },
-    {
-        "key": "cmd+]",
-        "command": "editor.action.goToDeclaration",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "cmd+alt+]",
-        "command": "editor.action.openDeclarationToTheSide",
-        "when": "editorTextFocus"
-    },
+    // {
+    //     "key": "cmd+]",
+    //     "command": "editor.action.goToDeclaration",
+    //     "when": "editorTextFocus"
+    // },
+
 
     //#region Text Tables reign
     { "command": "text-tables.moveColRight", "key": "alt+right", "when": "tableMode" },
