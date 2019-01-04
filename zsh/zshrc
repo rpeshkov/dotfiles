@@ -77,6 +77,7 @@ alias bup='brew upgrade'
 alias bun='brew uninstall'
 
 alias notes='cd ~n && nvim ~n'
+alias dots='cd $HOME/.dotfiles/'
 
 hash -d -- dev=$HOME/Developer
 hash -d -- dropbox=$HOME/Dropbox
