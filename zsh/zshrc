@@ -144,3 +144,4 @@ function denter() {
         docker exec -it "$1" /bin/bash
     fi
 }
+export PATH="/usr/local/sbin:$PATH"
