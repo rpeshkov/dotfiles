@@ -73,7 +73,11 @@
 				(set-fill-column 80)))
 
 ;; Modeline
+(use-package smart-mode-line-atom-one-dark-theme
+  :ensure t)
+
 (use-package smart-mode-line
+  :requires smart-mode-line-atom-one-dark-theme
   :ensure t
   :config
   (setq sml/theme 'atom-one-dark)
