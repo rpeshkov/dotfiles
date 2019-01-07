@@ -37,6 +37,7 @@
     "workbench.settings.openDefaultKeybindings": false,
 
     "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Material Theme Palenight High Contrast",
 //#endregion
 //#region Window
     "window.newWindowDimensions": "maximized",
@@ -129,7 +130,7 @@
         "file:///Users/rpeshkov/.vscode/tree-guides.css"
     ],
     "vscode_custom_css.policy": true,
-    "workbench.colorTheme": "Sublime Material Theme - Dark"
+
 //#endregion
 
 //#endregion
