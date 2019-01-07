@@ -78,6 +78,7 @@ alias bun='brew uninstall'
 
 alias notes='cd ~n && nvim ~n'
 alias dots='cd $HOME/.dotfiles/'
+alias em='/Applications/Emacs.app/Contents/MacOS/Emacs'
 
 hash -d -- dev=$HOME/Developer
 hash -d -- dropbox=$HOME/Dropbox

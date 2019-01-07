@@ -3,9 +3,12 @@
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file 'noerror)
+
+(add-to-list 'load-path "~/.emacs.d/lisp/")
 
 ;; Disable Splash, Startup message
 (setq inhibit-splash-screen t
@@ -33,10 +36,13 @@
 
 ;; Show matching parens
 (show-paren-mode 1)
+(setq show-paren-style 'expression)
 
-;; Tab width. Obsiously
+;; Tab width. Obsiously... Not exactly
 (setq-default indent-tabs-mode nil)
 (setq tab-width 4)
+(setq-default c-basic-offset 4)
+(setq-default standart-indent 4)
 
 ;; Set Cmd+left and Cmd+right to move beginning/end of line respectively
 (global-set-key (kbd "<s-right>") 'move-end-of-line)
@@ -76,3 +82,21 @@
 
 ;; TODO: Right margin is still subject to research. All the solutions I've seen
 ;; are work quite bad... I just want line on 80 column and that's it...
+
+
+;; Start as a server if it's not running yet
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+
+;; Draw empty lines indicator
+(setq-default indicate-empty-lines t)
+
+(setq require-final-newline t)
+(setq next-line-add-newlines nil)
+
+(global-set-key (kbd "C-c o")
+                (lambda() (interactive) (find-file "~/organizer.org")))
+
+(global-set-key (kbd "C-c C-e")
+                (lambda() (interactive) (find-file "~/.emacs")))

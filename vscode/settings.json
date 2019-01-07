@@ -1,6 +1,6 @@
 {
 //#region Editor
-    "editor.fontFamily": "Fira Code",
+    "editor.fontFamily": "IBM Plex Mono",
     "editor.fontLigatures": true,
     "editor.fontSize": 12,
     "editor.lineHeight": 22,
