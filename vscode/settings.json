@@ -92,14 +92,6 @@
 //#endregion
 
 //#region Language specific
-//#region Org
-    "[org]": {
-        "editor.rulers": [ 80 ],
-        "editor.wrappingIndent": "same",
-        "editor.wordWrap": "wordWrapColumn",
-        "editor.wordWrapColumn": 80,
-    },
-//#endregion
 //#region Markdown
     "[markdown]": {
         "editor.wordWrap": "bounded",
@@ -130,7 +122,10 @@
         "file:///Users/rpeshkov/.vscode/tree-guides.css"
     ],
     "vscode_custom_css.policy": true,
+//#endregion
 
+//#region Center Editor Window
+    "center-editor-window.threeStateToggle": true
 //#endregion
 
 //#endregion
