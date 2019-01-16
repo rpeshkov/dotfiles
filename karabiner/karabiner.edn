@@ -1,11 +1,14 @@
 {:templates {:open "osascript -e 'activate application \"%s\"'"}
  :applications {:vscode ["^com\\.microsoft\\.VSCode$"]}
- :simlayers {:w-mode {:key :w}}
+ :simlayers {:w-mode {:key :w}
+             :pok-mode {:key :caps_lock}
+             }
  :main [{:des "caps-lock"
-         :rules [[:##caps_lock :left_control nil {:alone :escape}]
-                 [:left_control :fn]
-                 [:escape :!TOup_arrow]
-                 [:##non_us_backslash :##grave_accent_and_tilde]
+         :rules [
+                 ; [:##caps_lock :left_control nil {:alone :escape}]
+                 ; [:left_control :fn]
+                 ; [:escape :!TOup_arrow]
+                 ; [:##non_us_backslash :##grave_accent_and_tilde]
                  ]}
         {:des "right cmd -> Alfred"
          :rules [[:right_command :right_command nil {:alone :!CTOSspacebar}]]}
@@ -15,6 +18,42 @@
          :rules [
                  [{:pkey :button4} :!Thyphen :vscode]
                  [{:pkey :button5} :!TShyphen :vscode]]}
+        {:des "Poker"
+         :rules [
+                 ; [:caps_lock ["pok-mode" 1] ["pok-mode" 0] ]
+                 ; [:caps_lock ["pok-mode" 0] ["pok-mode" 1] ]
+
+                 [:##caps_lock ["pok-mode" 1] nil {:afterup ["pok-mode" 0]
+                                                   :alone :escape
+                                                   }]
+
+                 [:grave_accent_and_tilde  :escape ["pok-mode" 0]]
+                 [:escape  :grave_accent_and_tilde ["pok-mode" 1]]
+                 [:##i :##up_arrow ["pok-mode" 1]]
+                 [:##k :##down_arrow ["pok-mode" 1]]
+                 [:##j :##left_arrow ["pok-mode" 1]]
+                 [:##l :##right_arrow ["pok-mode" 1]]
+                 [:##u :##page_up ["pok-mode" 1]]
+                 [:##o :##page_down ["pok-mode" 1]]
+                 [:##h :##home ["pok-mode" 1]]
+                 [:##n :##end ["pok-mode" 1]]
+
+                 [:##quote :##delete_forward ["pok-mode" 1]]
+
+                 [:##1 :##f1 ["pok-mode" 1]]
+                 [:##2 :##f2 ["pok-mode" 1]]
+                 [:##3 :##f3 ["pok-mode" 1]]
+                 [:##4 :##f4 ["pok-mode" 1]]
+                 [:##5 :##f5 ["pok-mode" 1]]
+                 [:##6 :##f6 ["pok-mode" 1]]
+                 [:##7 :##f7 ["pok-mode" 1]]
+                 [:##8 :##f8 ["pok-mode" 1]]
+                 [:##9 :##f9 ["pok-mode" 1]]
+                 [:##0 :##f10 ["pok-mode" 1]]
+                 [:##hyphen :##f11 ["pok-mode" 1]]
+                 [:##equal_sign :##f12 ["pok-mode" 1]]
+                 ]
+         }
         {:des "w-mode"
          :rules [:w-mode
                  [:k :!CTOSk]
