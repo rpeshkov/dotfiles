@@ -1,21 +1,21 @@
 // Place your key bindings in this file to overwrite the defaults
 [
     { "key": "cmd+=", "command": "workbench.action.tasks.runTask" },
-    { "key": "ctrl+v", "command": "cursorMove", "args": {"to": "down", "by": "line", "value": 10} },
-    { "key": "alt+v", "command": "cursorMove", "args": {"to": "up", "by": "line", "value": 10} },
+    { "key": "ctrl+v", "command": "cursorMove", "args": {"to": "down", "by": "line", "value": 10}, "when": "editorTextFocus" },
+    { "key": "alt+v", "command": "cursorMove", "args": {"to": "up", "by": "line", "value": 10}, "when": "editorTextFocus" },
 
 
 
     //#region Precise page moving
-    { "key": "cmd+down", "command": "cursorMove", "args": {"to": "down", "by": "line", "value": 10} },
-    { "key": "cmd+up", "command": "cursorMove", "args": {"to": "up", "by": "line", "value": 10} },
-    { "key": "shift+cmd+down", "command": "cursorMove", "args": {"to": "down", "by": "line", "value": 10, "select": true} },
-    { "key": "shift+cmd+up", "command": "cursorMove", "args": {"to": "up", "by": "line", "value": 10, "select": true } },
+    { "key": "cmd+down", "command": "cursorMove", "args": {"to": "down", "by": "line", "value": 10}, "when": "editorTextFocus" },
+    { "key": "cmd+up", "command": "cursorMove", "args": {"to": "up", "by": "line", "value": 10}, "when": "editorTextFocus" },
+    { "key": "shift+cmd+down", "command": "cursorMove", "args": {"to": "down", "by": "line", "value": 10, "select": true}, "when": "editorTextFocus" },
+    { "key": "shift+cmd+up", "command": "cursorMove", "args": {"to": "up", "by": "line", "value": 10, "select": true }, "when": "editorTextFocus" },
 
-    { "key": "pagedown", "command": "cursorMove", "args": {"to": "down", "by": "line", "value": 10} },
-    { "key": "pageup", "command": "cursorMove", "args": {"to": "up", "by": "line", "value": 10} },
-    { "key": "shift+pagedown", "command": "cursorMove", "args": {"to": "down", "by": "line", "value": 10, "select": true} },
-    { "key": "shift+pageup", "command": "cursorMove", "args": {"to": "up", "by": "line", "value": 10, "select": true } },
+    { "key": "pagedown", "command": "cursorMove", "args": {"to": "down", "by": "line", "value": 10}, "when": "editorTextFocus" },
+    { "key": "pageup", "command": "cursorMove", "args": {"to": "up", "by": "line", "value": 10}, "when": "editorTextFocus" },
+    { "key": "shift+pagedown", "command": "cursorMove", "args": {"to": "down", "by": "line", "value": 10, "select": true}, "when": "editorTextFocus" },
+    { "key": "shift+pageup", "command": "cursorMove", "args": {"to": "up", "by": "line", "value": 10, "select": true }, "when": "editorTextFocus" },
     //#endregion
 
     { "key": "alt+up", "command": "editor.action.smartSelect.grow"},
