@@ -1,5 +1,23 @@
 // Place your key bindings in this file to overwrite the defaults
 [
+    { "key": "cmd+=", "command": "workbench.action.tasks.runTask" },
+    { "key": "ctrl+v", "command": "cursorMove", "args": {"to": "down", "by": "line", "value": 10} },
+    { "key": "alt+v", "command": "cursorMove", "args": {"to": "up", "by": "line", "value": 10} },
+
+
+
+    //#region Precise page moving
+    { "key": "cmd+down", "command": "cursorMove", "args": {"to": "down", "by": "line", "value": 10} },
+    { "key": "cmd+up", "command": "cursorMove", "args": {"to": "up", "by": "line", "value": 10} },
+    { "key": "shift+cmd+down", "command": "cursorMove", "args": {"to": "down", "by": "line", "value": 10, "select": true} },
+    { "key": "shift+cmd+up", "command": "cursorMove", "args": {"to": "up", "by": "line", "value": 10, "select": true } },
+
+    { "key": "pagedown", "command": "cursorMove", "args": {"to": "down", "by": "line", "value": 10} },
+    { "key": "pageup", "command": "cursorMove", "args": {"to": "up", "by": "line", "value": 10} },
+    { "key": "shift+pagedown", "command": "cursorMove", "args": {"to": "down", "by": "line", "value": 10, "select": true} },
+    { "key": "shift+pageup", "command": "cursorMove", "args": {"to": "up", "by": "line", "value": 10, "select": true } },
+    //#endregion
+
     { "key": "alt+up", "command": "editor.action.smartSelect.grow"},
     { "key": "alt+down", "command": "editor.action.smartSelect.shrink"},
 
@@ -38,9 +56,9 @@
     //#region ListView tweaks
     { "key": "cmd+n", "command": "explorer.newFile", "when": "explorerViewletFocus && !inputFocus" },
     { "key": "shift+cmd+n", "command": "explorer.newFolder", "when": "explorerViewletFocus && !inputFocus" },
-    { "key": "enter", "command": "-renameFile",
-        "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
-    },
+    // { "key": "enter", "command": "-renameFile",
+    //     "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+    // },
     //#endregion
     //#region Emacs spirit
     { "key": "alt+b", "command": "cursorWordStartLeft", "when": "editorTextFocus" },
@@ -97,11 +115,11 @@
         "key": "shift+cmd+j",
         "command": "workbench.action.toggleMaximizedPanel"
     },
-    // {
-    //     "key": "cmd+]",
-    //     "command": "editor.action.goToDeclaration",
-    //     "when": "editorTextFocus"
-    // },
+    {
+        "key": "cmd+]",
+        "command": "editor.action.goToDeclaration",
+        "when": "editorTextFocus"
+    },
 
 
     //#region Text Tables reign

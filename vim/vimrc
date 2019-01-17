@@ -3,7 +3,7 @@ set nocompatible
 "{{{ Plugins
 call plug#begin('~/.vim/plugged')
 Plug 'itchyny/lightline.vim'
-Plug 'joshdick/onedark.vim'
+Plug 'drewtempelmeyer/palenight.vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -28,7 +28,7 @@ set termguicolors
 " Setting background to dark
 set background=dark
 " Sweet theme
-colorscheme onedark
+colorscheme palenight
 " Don't ever show tabline
 set showtabline=0
 " Show numbers... relatively
@@ -346,4 +346,10 @@ augroup filetype_scpt
                 \ set filetype=javascript |
                 \ setlocal makeprg=osascript\ -l\ JavaScript\ %
 augroup END
+"}}}
+
+"{{{LightLine
+let g:lightline = {
+    \ 'colorscheme': 'palenight'
+    \ }
 "}}}

@@ -3,9 +3,10 @@
     "editor.fontFamily": "IBM Plex Mono",
     "editor.fontLigatures": true,
     "editor.fontSize": 12,
-    "editor.lineHeight": 22,
-    "editor.suggestFontSize": 11,
-    "editor.suggestLineHeight": 18,
+    "editor.folding": false,
+    // "editor.lineHeight": 22,
+    // "editor.suggestFontSize": 11,
+    // "editor.suggestLineHeight": 18,
 
     "editor.codeLens": true,
     "editor.cursorBlinking": "solid",
@@ -27,7 +28,7 @@
     "workbench.activityBar.visible": false,
     "workbench.statusBar.feedback.visible": false,
     "workbench.tips.enabled": false,
-    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.editor.highlightModifiedTabs": false,
     "workbench.commandPalette.history": 5,
     "workbench.startupEditor": "newUntitledFile",
     "workbench.view.alwaysShowHeaderActions": false,
@@ -119,7 +120,7 @@
 
 //#region Custom css/js
     "vscode_custom_css.imports": [
-        "file:///Users/rpeshkov/.vscode/tree-guides.css"
+        "file:///Users/pesro01/.vscode/tree-guides.css"
     ],
     "vscode_custom_css.policy": true,
 //#endregion
