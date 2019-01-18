@@ -145,12 +145,6 @@ nmap t <Plug>(easymotion-t2)
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-" No arrows please
-map <left> <nop>
-map <right> <nop>
-map <down> <nop>
-map <up> <nop>
-
 " No Ex mode
 nnoremap Q <Nop>
 command! -nargs=0 -bang Qa qall!
@@ -178,7 +172,6 @@ vmap <silent> < <gv
 
 " I want each newline to create undo point
 inoremap <return> <C-g>u<cr>
-inoremap <C-l> =>
 
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z

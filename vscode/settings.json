@@ -10,7 +10,7 @@
 
     "editor.codeLens": true,
     "editor.cursorBlinking": "solid",
-    "editor.renderLineHighlight": "none",
+    "editor.renderLineHighlight": "all",
     "editor.renderIndentGuides": false,
     "editor.renderWhitespace": "none",
     "editor.rulers": [100],

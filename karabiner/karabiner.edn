@@ -23,12 +23,10 @@
                  ; [:caps_lock ["pok-mode" 1] ["pok-mode" 0] ]
                  ; [:caps_lock ["pok-mode" 0] ["pok-mode" 1] ]
 
-                 [:##caps_lock ["pok-mode" 1] nil {:afterup ["pok-mode" 0]
-                                                   :alone :escape
-                                                   }]
+                 [:##caps_lock ["pok-mode" 1] nil {:afterup ["pok-mode" 0]}]
 
-                 [:grave_accent_and_tilde  :escape ["pok-mode" 0]]
-                 [:escape  :grave_accent_and_tilde ["pok-mode" 1]]
+                 ; [:grave_accent_and_tilde  :escape ["pok-mode" 0]]
+                 ; [:escape  :grave_accent_and_tilde ["pok-mode" 1]]
                  [:##i :##up_arrow ["pok-mode" 1]]
                  [:##k :##down_arrow ["pok-mode" 1]]
                  [:##j :##left_arrow ["pok-mode" 1]]

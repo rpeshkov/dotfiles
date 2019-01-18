@@ -1,5 +1,7 @@
 // Place your key bindings in this file to overwrite the defaults
 [
+    { "key": "cmd+k cmd+e", "command": "workbench.explorer.fileView.focus"},
+    { "key": "shift+cmd+e",           "command": "-workbench.view.explorer" },
     { "key": "cmd+=", "command": "workbench.action.tasks.runTask" },
     { "key": "ctrl+v", "command": "cursorMove", "args": {"to": "down", "by": "line", "value": 10}, "when": "editorTextFocus" },
     { "key": "alt+v", "command": "cursorMove", "args": {"to": "up", "by": "line", "value": 10}, "when": "editorTextFocus" },
