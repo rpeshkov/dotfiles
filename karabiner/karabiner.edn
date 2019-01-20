@@ -1,7 +1,6 @@
 {:templates {:open "osascript -e 'activate application \"%s\"'"}
  :applications {:vscode ["^com\\.microsoft\\.VSCode$"]}
- :simlayers {:w-mode {:key :w}
-             :pok-mode {:key :caps_lock}
+ :simlayers {:pok-mode {:key :caps_lock}
              }
  :main [{:des "caps-lock"
          :rules [
@@ -24,9 +23,10 @@
                  ; [:caps_lock ["pok-mode" 0] ["pok-mode" 1] ]
 
                  [:##caps_lock ["pok-mode" 1] nil {:afterup ["pok-mode" 0]}]
+                 [:##application ["pok-mode" 1] nil {:afterup ["pok-mode" 0]}]
 
-                 ; [:grave_accent_and_tilde  :escape ["pok-mode" 0]]
-                 ; [:escape  :grave_accent_and_tilde ["pok-mode" 1]]
+                 [:grave_accent_and_tilde  :escape ["pok-mode" 0]]
+                 [:escape  :grave_accent_and_tilde ["pok-mode" 1]]
                  [:##i :##up_arrow ["pok-mode" 1]]
                  [:##k :##down_arrow ["pok-mode" 1]]
                  [:##j :##left_arrow ["pok-mode" 1]]
@@ -52,11 +52,4 @@
                  [:##equal_sign :##f12 ["pok-mode" 1]]
                  ]
          }
-        {:des "w-mode"
-         :rules [:w-mode
-                 [:k :!CTOSk]
-                 [:j :!CTOSj]
-                 [:m :!CTOSm]
-                 [:c :!CTOSc]
-                 [:h :!CTOSh]
-                 ]}]}
+        ]}
