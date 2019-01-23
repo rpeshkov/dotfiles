@@ -9,10 +9,10 @@
                  ; [:escape :!TOup_arrow]
                  ; [:##non_us_backslash :##grave_accent_and_tilde]
                  ]}
-        {:des "right cmd -> Alfred"
-         :rules [[:right_command :right_command nil {:alone :!CTOSspacebar}]]}
-        {:des "right option -> Contexts"
-         :rules [[:right_option :right_option nil {:alone :!CTOStab}]]}
+        ; {:des "right cmd -> Alfred"
+        ;  :rules [[:right_command :right_command nil {:alone :!CTOSspacebar}]]}
+        ; {:des "right option -> Contexts"
+        ;  :rules [[:right_option :right_option nil {:alone :!CTOStab}]]}
         {:des "back-forward"
          :rules [
                  [{:pkey :button4} :!Thyphen :vscode]
@@ -23,7 +23,11 @@
                  ; [:caps_lock ["pok-mode" 0] ["pok-mode" 1] ]
 
                  [:##caps_lock ["pok-mode" 1] nil {:afterup ["pok-mode" 0]}]
-                 [:##application ["pok-mode" 1] nil {:afterup ["pok-mode" 0]}]
+                 ; [:application ["pok-mode" 1] ["pok-mode" 0]]
+                 ; [:application ["pok-mode" 0] ["pok-mode" 1]]
+                 [:application ["pok-mode" 1] nil {:afterup ["pok-mode" 0]}]
+                 [:##right_option ["pok-mode" 1] nil {:afterup ["pok-mode" 0]}]
+                 ; [:##caps_lock :left_control nil {:alone :escape}]
 
                  [:grave_accent_and_tilde  :escape ["pok-mode" 0]]
                  [:escape  :grave_accent_and_tilde ["pok-mode" 1]]
@@ -35,8 +39,19 @@
                  [:##o :##page_down ["pok-mode" 1]]
                  [:##h :##home ["pok-mode" 1]]
                  [:##n :##end ["pok-mode" 1]]
+                 ; [:##p :##up_arrow ["pok-mode" 1]]
+                 ; [:##semicolon :##down_arrow ["pok-mode" 1]]
+                 ; [:##l :##left_arrow ["pok-mode" 1]]
+                 ; [:##quote :##right_arrow ["pok-mode" 1]]
+                 ; [:##k :##page_up ["pok-mode" 1]]
+                 ; [:##comma :##page_down ["pok-mode" 1]]
+                 ; [:##open_bracket :##home ["pok-mode" 1]]
+                 ; [:##close_bracket :##end ["pok-mode" 1]]
+                 [:##g :##left_option ["pok-mode" 1]]
+                 [:##f :##left_command ["pok-mode" 1]]
+                 [:##d :##left_shift ["pok-mode" 1]]
 
-                 [:##quote :##delete_forward ["pok-mode" 1]]
+                 ; [:##quote :##delete_forward ["pok-mode" 1]]
 
                  [:##1 :##f1 ["pok-mode" 1]]
                  [:##2 :##f2 ["pok-mode" 1]]
