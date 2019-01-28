@@ -1,18 +1,4 @@
-{:templates {:open "osascript -e 'activate application \"%s\"'"}
- :applications {:vscode ["^com\\.microsoft\\.VSCode$"]}
- :simlayers {:pok-mode {:key :caps_lock}
-             }
- :main [{:des "caps-lock"
-         :rules [
-                 ; [:##caps_lock :left_control nil {:alone :escape}]
-                 ; [:left_control :fn]
-                 ; [:escape :!TOup_arrow]
-                 ; [:##non_us_backslash :##grave_accent_and_tilde]
-                 ]}
-        ; {:des "right cmd -> Alfred"
-        ;  :rules [[:right_command :right_command nil {:alone :!CTOSspacebar}]]}
-        ; {:des "right option -> Contexts"
-        ;  :rules [[:right_option :right_option nil {:alone :!CTOStab}]]}
+{:main [
         {:des "back-forward"
          :rules [
                  [{:pkey :button4} :!Thyphen :vscode]
@@ -35,23 +21,16 @@
                  [:##k :##down_arrow ["pok-mode" 1]]
                  [:##j :##left_arrow ["pok-mode" 1]]
                  [:##l :##right_arrow ["pok-mode" 1]]
-                 [:##u :##page_up ["pok-mode" 1]]
-                 [:##o :##page_down ["pok-mode" 1]]
+                 [:##o :##page_up ["pok-mode" 1]]
+                 [:##n :##page_down ["pok-mode" 1]]
                  [:##h :##home ["pok-mode" 1]]
                  [:##n :##end ["pok-mode" 1]]
-                 ; [:##p :##up_arrow ["pok-mode" 1]]
-                 ; [:##semicolon :##down_arrow ["pok-mode" 1]]
-                 ; [:##l :##left_arrow ["pok-mode" 1]]
-                 ; [:##quote :##right_arrow ["pok-mode" 1]]
-                 ; [:##k :##page_up ["pok-mode" 1]]
-                 ; [:##comma :##page_down ["pok-mode" 1]]
-                 ; [:##open_bracket :##home ["pok-mode" 1]]
-                 ; [:##close_bracket :##end ["pok-mode" 1]]
-                 [:##g :##left_option ["pok-mode" 1]]
-                 [:##f :##left_command ["pok-mode" 1]]
+                 [:##f :##left_option ["pok-mode" 1]]
                  [:##d :##left_shift ["pok-mode" 1]]
+                 [:##s :##left_command ["pok-mode" 1]]
+                 [:##a :##left_control ["pok-mode" 1]]
 
-                 ; [:##quote :##delete_forward ["pok-mode" 1]]
+                 [:##delete_or_backspace :##delete_forward ["pok-mode" 1]]
 
                  [:##1 :##f1 ["pok-mode" 1]]
                  [:##2 :##f2 ["pok-mode" 1]]
