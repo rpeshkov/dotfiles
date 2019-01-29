@@ -1,0 +1,79 @@
+<<<<<<< HEAD
+{:devices {:red-square [{:vendor_id 1539 :product_id 254}]}
+ :main [{:des "Red square keyboard overrides"
+         :rules [
+                 [:##left_option :##left_command [:red-square]]
+                 [:##left_command :##left_option [:red-square]]
+                 [:##application :##fn [:red-square]]
+
+                 ]}
+=======
+{:main [
+        {:des "back-forward"
+         :rules [
+                 [{:pkey :button4} :!Thyphen :vscode]
+                 [{:pkey :button5} :!TShyphen :vscode]]}
+>>>>>>> 95b1e83aa7ee52332aa04552d7a23ae74c376dc7
+        {:des "Poker"
+         :rules [
+                 ; [:caps_lock ["pok-mode" 1] ["pok-mode" 0] ]
+                 ; [:caps_lock ["pok-mode" 0] ["pok-mode" 1] ]
+
+                 [:##caps_lock ["pok-mode" 1] nil {:afterup ["pok-mode" 0] :alone :escape}]
+
+                 ; Delete
+                 [:##delete_or_backspace :##delete_forward ["pok-mode" 1]]
+
+                 ; Escape
+                 ; [:grave_accent_and_tilde :escape ["pok-mode" 0]]
+                 ; [:escape :grave_accent_and_tilde ["pok-mode" 1]]
+
+                 ; Arrow keys
+                 [:##i :##up_arrow ["pok-mode" 1]]
+                 [:##k :##down_arrow ["pok-mode" 1]]
+                 [:##j :##left_arrow ["pok-mode" 1]]
+                 [:##l :##right_arrow ["pok-mode" 1]]
+<<<<<<< HEAD
+
+                 ; Page Up/Down
+                 [:##u :##page_up ["pok-mode" 1]]
+                 [:##o :##page_down ["pok-mode" 1]]
+
+                 ; Home/End
+                 [:##h :##home ["pok-mode" 1]]
+                 [:##n :##end ["pok-mode" 1]]
+
+                 ; Modifiers
+                 [:##a :##left_control ["pok-mode" 1]]
+                 [:##s :##left_command ["pok-mode" 1]]
+                 [:##f :##left_option ["pok-mode" 1]]
+                 [:##d :##left_shift ["pok-mode" 1]]
+=======
+                 [:##o :##page_up ["pok-mode" 1]]
+                 [:##n :##page_down ["pok-mode" 1]]
+                 [:##h :##home ["pok-mode" 1]]
+                 [:##n :##end ["pok-mode" 1]]
+                 [:##f :##left_option ["pok-mode" 1]]
+                 [:##d :##left_shift ["pok-mode" 1]]
+                 [:##s :##left_command ["pok-mode" 1]]
+                 [:##a :##left_control ["pok-mode" 1]]
+
+                 [:##delete_or_backspace :##delete_forward ["pok-mode" 1]]
+>>>>>>> 95b1e83aa7ee52332aa04552d7a23ae74c376dc7
+
+                 ; F keys
+                 [:##1 :##f1 ["pok-mode" 1]]
+                 [:##2 :##f2 ["pok-mode" 1]]
+                 [:##3 :##f3 ["pok-mode" 1]]
+                 [:##4 :##f4 ["pok-mode" 1]]
+                 [:##5 :##f5 ["pok-mode" 1]]
+                 [:##6 :##f6 ["pok-mode" 1]]
+                 [:##7 :##f7 ["pok-mode" 1]]
+                 [:##8 :##f8 ["pok-mode" 1]]
+                 [:##9 :##f9 ["pok-mode" 1]]
+                 [:##0 :##f10 ["pok-mode" 1]]
+                 [:##hyphen :##f11 ["pok-mode" 1]]
+                 [:##equal_sign :##f12 ["pok-mode" 1]]
+                 ]
+         }
+        ]}
