@@ -57,6 +57,13 @@ bindkey '\e\e[C' forward-word
 bindkey '\e\e[D' backward-word
 bindkey -s '\e\e[A' '^Ucd ..; ls^M'
 
+function _fzf-tmux-pane-path {
+    zle -U "$(tmux lsp -F \#{pane_current_path} | uniq | fzf --height=5%)"
+    zle redisplay
+}
+zle -N _fzf-tmux-pane-path
+bindkey '\et' _fzf-tmux-pane-path
+
 #
 # Aliases
 #
