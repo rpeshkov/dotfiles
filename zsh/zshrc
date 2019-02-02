@@ -40,6 +40,8 @@ setopt pushd_ignore_dups
 setopt auto_remove_slash
 setopt auto_cd
 
+setopt no_beep
+
 #
 # Bindings
 #
@@ -51,6 +53,10 @@ bindkey '^?' backward-delete-char
 bindkey '\e[1~' beginning-of-line
 bindkey '\e[4~' end-of-line
 bindkey '^[[Z' reverse-menu-complete
+bindkey '\e\e[C' forward-word
+bindkey '\e\e[D' backward-word
+bindkey -s '\e\e[A' '^Ucd ..; ls^M'
+
 #
 # Aliases
 #
@@ -80,6 +86,7 @@ alias bun='brew uninstall'
 alias notes='cd ~n && nvim ~n'
 alias dots='cd $HOME/.dotfiles/'
 alias em='/Applications/Emacs.app/Contents/MacOS/Emacs'
+alias grep='rg'
 
 hash -d -- dev=$HOME/Developer
 hash -d -- dropbox=$HOME/Dropbox
@@ -97,6 +104,8 @@ if ! zgen saved; then
     zgen load mafredri/zsh-async
     zgen load sindresorhus/pure
     zgen load rpeshkov/zsh-snv
+    zgen load eendroroy/zed-zsh
+    zgen load zsh-users/zsh-syntax-highlighting
     zgen save
 fi
 

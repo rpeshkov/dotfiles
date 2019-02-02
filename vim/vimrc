@@ -290,7 +290,7 @@ if has("cscope")
     " Search for GTAGS upwards until it's found
     let db = findfile("GTAGS", ".;")
     " add any database in current directory
-    if filereadable(db) && !cscope_connection(0, db)
+    if filereadable(db) && !executable(db) && !cscope_connection(0, db)
         exec "cs add " . db
     " else add database pointed to by environment
     elseif $CSCOPE_DB != ""
