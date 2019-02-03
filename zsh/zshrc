@@ -64,6 +64,11 @@ function _fzf-tmux-pane-path {
 zle -N _fzf-tmux-pane-path
 bindkey '\et' _fzf-tmux-pane-path
 
+function copy-kill-whole-line {
+    zle kill-whole-line
+    echo -n $CUTBUFFER | pbcopy
+}
+zle -N copy-kill-whole-line
 #
 # Aliases
 #
