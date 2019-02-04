@@ -42,5 +42,5 @@
     description: Install brew packages
 
 - vscodefile:
-    file: Vscodefile
+    file: vscode/extensions
     insiders: false
