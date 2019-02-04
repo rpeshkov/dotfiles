@@ -39,6 +39,7 @@
                  [:##s :##left_command ["pok-mode" 1]]
                  [:##f :##left_option ["pok-mode" 1]]
                  [:##d :##left_shift ["pok-mode" 1]]
+                 [:##tab :##fn ["pok-mode" 1]]
 
                  ; F keys
                  [:##1 :##f1 ["pok-mode" 1]]
