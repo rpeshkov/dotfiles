@@ -40,3 +40,7 @@
   -
     command: brew bundle
     description: Install brew packages
+
+- vscodefile:
+    file: Vscodefile
+    insiders: false
