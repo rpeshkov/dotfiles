@@ -1,12 +1,10 @@
 // Place your key bindings in this file to overwrite the defaults
 [
-    { "key": "cmd+k cmd+e", "command": "workbench.explorer.fileView.focus"},
-    { "key": "shift+cmd+e",           "command": "-workbench.view.explorer" },
+    { "key": "cmd+k cmd+e", "command": "workbench.view.explorer"},
+    { "key": "shift+cmd+e", "command": "-workbench.view.explorer" },
     { "key": "cmd+=", "command": "workbench.action.tasks.runTask" },
     { "key": "ctrl+v", "command": "cursorMove", "args": {"to": "down", "by": "line", "value": 10}, "when": "editorTextFocus" },
     { "key": "alt+v", "command": "cursorMove", "args": {"to": "up", "by": "line", "value": 10}, "when": "editorTextFocus" },
-
-
 
     //#region Precise page moving
     { "key": "cmd+down", "command": "cursorMove", "args": {"to": "down", "by": "line", "value": 10}, "when": "editorTextFocus" },
@@ -58,9 +56,6 @@
     //#region ListView tweaks
     { "key": "cmd+n", "command": "explorer.newFile", "when": "explorerViewletFocus && !inputFocus" },
     { "key": "shift+cmd+n", "command": "explorer.newFolder", "when": "explorerViewletFocus && !inputFocus" },
-    // { "key": "enter", "command": "-renameFile",
-    //     "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
-    // },
     //#endregion
     //#region Emacs spirit
     { "key": "alt+b", "command": "cursorWordStartLeft", "when": "editorTextFocus" },
