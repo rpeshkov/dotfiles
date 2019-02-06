@@ -13,8 +13,9 @@ kaiwood.center-editor-window
 lehni.vscode-titlebar-less-macos
 ms-vscode.Go
 msjsdiag.debugger-for-chrome
+PeterJausovec.vscode-docker
 PKief.material-icon-theme
-pnp.polacode
 RomanPeshkov.vscode-text-tables
 rust-lang.rust
 vadimcn.vscode-lldb
+ziyasal.vscode-open-in-github
