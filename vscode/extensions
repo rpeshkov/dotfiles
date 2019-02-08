@@ -1,5 +1,4 @@
 Angular.ng-template
-be5invis.vscode-custom-css
 bungcip.better-toml
 christian-kohler.path-intellisense
 DavidAnson.vscode-markdownlint
@@ -10,7 +9,6 @@ eg2.vscode-npm-script
 Equinusocio.vsc-material-theme
 infinity1207.angular2-switcher
 kaiwood.center-editor-window
-lehni.vscode-titlebar-less-macos
 ms-vscode.Go
 msjsdiag.debugger-for-chrome
 PeterJausovec.vscode-docker

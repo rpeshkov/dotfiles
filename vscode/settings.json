@@ -4,9 +4,6 @@
     "editor.fontLigatures": true,
     "editor.fontSize": 12,
     "editor.folding": false,
-    // "editor.lineHeight": 22,
-    // "editor.suggestFontSize": 11,
-    // "editor.suggestLineHeight": 18,
 
     "editor.codeLens": true,
     "editor.cursorBlinking": "solid",
@@ -22,6 +19,8 @@
     "editor.tabCompletion": "on",
     "editor.parameterHints.cycle": true,
     "editor.wordBasedSuggestions": false,
+
+    "workbench.tree.indent": 16,
 //#endregion
 //#region Workbench
     "workbench.editor.enablePreviewFromQuickOpen": false,
@@ -111,18 +110,7 @@
 //#region Plugins
 
 //#region Text tables
-    "text-tables.mode": "org",
-//#endregion
-
-//#region Material icon theme
-    "material-icon-theme.hidesExplorerArrows": true,
-//#endregion
-
-//#region Custom css/js
-    "vscode_custom_css.imports": [
-        "file:///Users/pesro01/.vscode/tree-guides.css"
-    ],
-    "vscode_custom_css.policy": true,
+    "text-tables.mode": "markdown",
 //#endregion
 
 //#region Center Editor Window
