@@ -4,7 +4,6 @@
                  [:##left_option :##left_command [:red-square]]
                  [:##left_command :##left_option [:red-square]]
                  [:##application :##fn [:red-square]]
-
                  ]}
         {:des "Poker"
          :rules [

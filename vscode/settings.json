@@ -1,7 +1,6 @@
 {
 //#region Editor
     "editor.fontFamily": "IBM Plex Mono",
-    "editor.fontLigatures": true,
     "editor.fontSize": 12,
     "editor.folding": false,
 
@@ -19,18 +18,14 @@
     "editor.tabCompletion": "on",
     "editor.parameterHints.cycle": true,
     "editor.wordBasedSuggestions": false,
-
-    "workbench.tree.indent": 16,
 //#endregion
 //#region Workbench
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.activityBar.visible": false,
     "workbench.statusBar.feedback.visible": false,
     "workbench.tips.enabled": false,
-    "workbench.editor.highlightModifiedTabs": false,
     "workbench.commandPalette.history": 5,
     "workbench.startupEditor": "newUntitledFile",
-    "workbench.view.alwaysShowHeaderActions": false,
 
     "workbench.settings.editor": "json",
     "workbench.settings.openDefaultSettings": false,
@@ -38,11 +33,10 @@
 
     "workbench.iconTheme": "material-icon-theme",
     "workbench.colorTheme": "Material Theme Palenight High Contrast",
+    "workbench.tree.indent": 16,
 //#endregion
 //#region Window
     "window.newWindowDimensions": "maximized",
-    "window.closeWhenEmpty": false,
-    "window.title": "${activeEditorMedium}${separator}${rootName}",
 //#endregion
 //#region Files
     "files.defaultLanguage": "markdown",
@@ -72,6 +66,7 @@
     },
     "search.smartCase": true,
     "search.runInExtensionHost": true,
+    "search.showLineNumbers": true,
 //#endregion
 //#region Diff & SCM
     "git.enableSmartCommit": true,
@@ -108,7 +103,6 @@
 //#endregion
 
 //#region Plugins
-
 //#region Text tables
     "text-tables.mode": "markdown",
 //#endregion
@@ -116,6 +110,5 @@
 //#region Center Editor Window
     "center-editor-window.threeStateToggle": true
 //#endregion
-
 //#endregion
 }
