@@ -26,8 +26,8 @@
                  [:##l :##right_arrow ["pok-mode" 1]]
 
                  ; Page Up/Down
-                 [:##u :##page_up ["pok-mode" 1]]
-                 [:##o :##page_down ["pok-mode" 1]]
+                 [:##o :##page_up ["pok-mode" 1]]
+                 [:##m :##page_down ["pok-mode" 1]]
 
                  ; Home/End
                  [:##h :##home ["pok-mode" 1]]
