@@ -11,7 +11,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
-Plug 'w0rp/ale'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-commentary'
 
@@ -262,25 +261,25 @@ set cscopequickfix=s-,c-,d-,i-,t-,e-,a-,g-
 
 " All next keymaps set R mark so you are able to return back
 " Find assignments to this symbol
-nmap <silent> <C-s>a :call CScope_find('a', '<cword>')<cr>
+nmap <silent> <C-g>a :call CScope_find('a', '<cword>')<cr>
 "Find this C symbol
-nmap <silent> <C-s>s :call CScope_find('s', '<cword>')<cr>
+nmap <silent> <C-g>s :call CScope_find('s', '<cword>')<cr>
 "Find this definition
-nmap <silent> <C-s>g :call CScope_find('g', '<cword>')<cr>
+nmap <silent> <C-g>g :call CScope_find('g', '<cword>')<cr>
 "Find functions calling this function
-nmap <silent> <C-s>c :call CScope_find('c', '<cword>')<cr>
+nmap <silent> <C-g>c :call CScope_find('c', '<cword>')<cr>
 "Find this text string
-nmap <silent> <C-s>t :call CScope_find('t', '<cword>')<cr>
+nmap <silent> <C-g>t :call CScope_find('t', '<cword>')<cr>
 "Find this egrep pattern
-nmap <silent> <C-s>e :call CScope_find('e', '<cword>')<cr>
+nmap <silent> <C-g>e :call CScope_find('e', '<cword>')<cr>
 "Find this file
-nmap <silent> <C-s>f :call CScope_find('f', '<cfile>')<cr>
+nmap <silent> <C-g>f :call CScope_find('f', '<cfile>')<cr>
 "Find files #including this file
-nmap <silent> <C-s>i :call CScope_find('i', '^<cfile>$')<cr>
+nmap <silent> <C-g>i :call CScope_find('i', '^<cfile>$')<cr>
 "Find functions called by this function
-nmap <silent> <C-s>d :call CScope_find('d', '<cword>')<cr>
+nmap <silent> <C-g>d :call CScope_find('d', '<cword>')<cr>
 
-nmap <silent> <C-s>q :cexpr []<cr>:cclose<cr>
+nmap <silent> <C-g>q :cexpr []<cr>:cclose<cr>
 
 command! Cqf cexpr []
 
@@ -314,21 +313,6 @@ augroup vim_help
                 \ wincmd L |
                 \ 80 wincmd |
 augroup END
-"}}}
-
-"{{{ ALE
-let g:ale_completion_enabled = 1
-let g:ale_fixers = {
-            \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-            \}
-let g:ale_linters = {
-            \ 'rust': ['rls']
-            \ }
-let g:ale_rust_rls_toolchain = 'stable'
-let g:ale_sign_error = "✗"
-let g:ale_sign_warning = "⚠"
-let g:ale_fix_on_save = 1
-let g:ale_sign_column_always = 1
 "}}}
 
 "{{{ JXA
