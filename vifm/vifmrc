@@ -1,5 +1,8 @@
 colorscheme dracula
 
+command open open *.{html} &
+filetype *.html open
+
 " Good vertical border
 set fillchars=vborder:｜
 
