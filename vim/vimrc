@@ -16,6 +16,7 @@ Plug 'tpope/vim-commentary'
 
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'cespare/vim-toml'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 call plug#end()
 "}}}
 
@@ -326,7 +327,17 @@ augroup END
 "}}}
 
 "{{{LightLine
+" let g:lightline = {
+"     \ 'colorscheme': 'palenight'
+"     \ }
 let g:lightline = {
-    \ 'colorscheme': 'palenight'
-    \ }
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status'
+      \ },
+      \ }
 "}}}

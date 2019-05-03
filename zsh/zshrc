@@ -24,6 +24,7 @@ _tmux_autostart
 # Modules
 #
 autoload -U colors && colors
+autoload -U edit-command-line
 
 autoload -U select-word-style
 select-word-style bash
@@ -32,15 +33,14 @@ select-word-style bash
 # Options
 #
 
-# Use directory stack
-setopt auto_pushd
-# Don't push duplicates in stack
-setopt pushd_ignore_dups
+setopt AUTO_PUSHD
+setopt AUTO_CD
+setopt PUSHD_IGNORE_DUPS
 
-setopt auto_remove_slash
-setopt auto_cd
+setopt AUTO_REMOVE_SLASH
+setopt NO_BEEP
+setopt EXTENDED_GLOB
 
-setopt no_beep
 
 #
 # Bindings
@@ -58,7 +58,7 @@ bindkey '\e\e[D' backward-word
 bindkey -s '\e\e[A' '^Ucd ..; ls^M'
 
 function _fzf-tmux-pane-path {
-    zle -U "$(tmux lsp -F \#{pane_current_path} | uniq | fzf --height=5%)"
+    zle -U "$(tmux lsp -F \#{pane_current_path} | uniq | fzf --height=7)"
     zle redisplay
 }
 zle -N _fzf-tmux-pane-path
@@ -69,6 +69,11 @@ function copy-kill-whole-line {
     echo -n $CUTBUFFER | pbcopy
 }
 zle -N copy-kill-whole-line
+bindkey '^x^x' copy-kill-whole-line
+
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
+
 #
 # Aliases
 #
@@ -166,6 +171,18 @@ function denter() {
     else
         docker exec -it "$1" /bin/bash
     fi
+}
+
+git-commit-show () 
+{
+  git lg | \
+   fzf --ansi --no-sort --reverse --tiebreak=index --preview \
+   'f() { set -- $(echo -- "$@" | grep -o "[a-f0-9]\{7\}"); [ $# -eq 0 ] || git show --color=always $1 ; }; f {}' \
+   --bind "j:down,k:up,alt-j:preview-down,alt-k:preview-up,ctrl-f:preview-page-down,ctrl-b:preview-page-up,q:abort,ctrl-m:execute:
+                (grep -o '[a-f0-9]\{7\}' | head -1 |
+                xargs -I % sh -c 'git show --color=always %') << 'FZF-EOF'
+                {}
+FZF-EOF" --preview-window=right:60%
 }
 export PATH="/usr/local/sbin:$PATH"
 

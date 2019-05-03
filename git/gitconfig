@@ -17,7 +17,7 @@
     st = status -b
     for = fetch origin
     fup = fetch upstream
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lg = log --graph --color=always --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     amend = commit --amend
     poh = push origin HEAD
     tags = tag -l -n2
