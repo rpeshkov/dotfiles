@@ -2,11 +2,12 @@ Angular.ng-template
 bungcip.better-toml
 christian-kohler.path-intellisense
 DavidAnson.vscode-markdownlint
-deerawan.vscode-dash
+dcortes92.FreeMarker
 EditorConfig.EditorConfig
 eg2.tslint
 eg2.vscode-npm-script
 Equinusocio.vsc-material-theme
+humao.rest-client
 infinity1207.angular2-switcher
 kaiwood.center-editor-window
 ms-vscode.Go
