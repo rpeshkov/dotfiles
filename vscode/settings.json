@@ -100,6 +100,10 @@
 //#region TypeScript
     "typescript.preferences.quoteStyle": "single",
 //#endregion
+
+//#region Go
+    "go.useLanguageServer": true,
+//#endregion
 //#endregion
 
 //#region Plugins
