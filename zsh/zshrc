@@ -173,8 +173,7 @@ function denter() {
     fi
 }
 
-git-commit-show () 
-{
+function git-commit-show() {
   git lg | \
    fzf --ansi --no-sort --reverse --tiebreak=index --preview \
    'f() { set -- $(echo -- "$@" | grep -o "[a-f0-9]\{7\}"); [ $# -eq 0 ] || git show --color=always $1 ; }; f {}' \
@@ -185,10 +184,15 @@ git-commit-show ()
 FZF-EOF" --preview-window=right:60%
 }
 
-function npr()
-{
-    jq -r '.scripts | keys[]' ./package.json | fzf --bind "enter:execute(npm run {})"
+function npr() {
+    if [ -z "$1" ]; then
+        jq -r '.scripts | keys[]' ./package.json |\
+            fzf --height 7 --bind "enter:execute(npm run {})"
+    else
+        npm run "$1"
+    fi
 }
+
 export PATH="/usr/local/sbin:$PATH"
 
 export SDKMAN_DIR="$HOME/.sdkman"
