@@ -17,6 +17,8 @@ Plug 'tpope/vim-commentary'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'cespare/vim-toml'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'sheerun/vim-polyglot'
+Plug 'mattn/emmet-vim'
 call plug#end()
 "}}}
 
