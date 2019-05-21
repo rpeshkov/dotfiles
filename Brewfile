@@ -1,6 +1,6 @@
 brew 'bat'
 brew 'diff-so-fancy'
-brew 'exa'
+brew 'lsd'
 brew 'fd'
 brew 'git'
 brew 'global'
