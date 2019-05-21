@@ -55,7 +55,6 @@ bindkey '\e[4~' end-of-line
 bindkey '^[[Z' reverse-menu-complete
 bindkey '\e\e[C' forward-word
 bindkey '\e\e[D' backward-word
-bindkey -s '\e\e[A' '^Ucd ..; ls^M'
 
 function _fzf-tmux-pane-path {
     zle -U "$(tmux lsp -F \#{pane_current_path} | uniq | fzf --height=7)"
@@ -82,8 +81,12 @@ bindkey '^x^e' edit-command-line
 alias d="dirs -v"
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
-alias ls='exa -F  --header'
-alias ll='exa -lF --time-style=long-iso --header'
+alias ls='lsd'
+alias l='ls -l'
+alias lla='ls -la'
+alias lt='ls --tree'
+# alias ls='exa -F  --header'
+# alias ll='exa -lF --time-style=long-iso --header'
 alias vim='nvim'
 alias e='nvim'
 alias fm='vifm'
