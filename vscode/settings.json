@@ -1,12 +1,11 @@
 {
 //#region Editor
     "editor.fontFamily": "Fira Code",
-    "editor.fontSize": 14,
-    "editor.lineHeight": 24,
+    "editor.fontSize": 12,
     "editor.folding": false,
     "editor.fontLigatures": true,
 
-    "editor.codeLens": true,
+    "editor.codeLens": false,
     "editor.cursorBlinking": "solid",
     "editor.renderLineHighlight": "all",
     "editor.renderIndentGuides": false,
@@ -65,6 +64,7 @@
         "**/bower_components": true,
         "**/out": true,
         "Cargo.lock": true,
+        "package-lock.json": true
     },
     "search.smartCase": true,
     "search.runInExtensionHost": true,
