@@ -116,10 +116,6 @@
     "text-tables.mode": "markdown",
 //#endregion
 
-//#region Center Editor Window
-    "center-editor-window.threeStateToggle": true,
-//#endregion
-
 //#region REST client
     "rest-client.fontSize": 12
 //#endregion

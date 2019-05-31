@@ -3,8 +3,6 @@
     { "key": "cmd+k cmd+e", "command": "workbench.view.explorer"},
     { "key": "shift+cmd+e", "command": "-workbench.view.explorer" },
     { "key": "cmd+=", "command": "workbench.action.tasks.runTask" },
-    { "key": "ctrl+v", "command": "cursorMove", "args": {"to": "down", "by": "line", "value": 10}, "when": "editorTextFocus" },
-    { "key": "alt+v", "command": "cursorMove", "args": {"to": "up", "by": "line", "value": 10}, "when": "editorTextFocus" },
 
     //#region Precise page moving
     { "key": "cmd+down", "command": "cursorMove", "args": {"to": "down", "by": "line", "value": 10}, "when": "editorTextFocus" },
@@ -21,11 +19,6 @@
     { "key": "alt+up", "command": "editor.action.smartSelect.grow"},
     { "key": "alt+down", "command": "editor.action.smartSelect.shrink"},
 
-    { "key": "ctrl+l g", "command": "-extension.openInGitHub" },
-    { "key": "ctrl+l c", "command": "-extension.copyGitHubLinkToClipboard" },
-    { "key": "ctrl+l p", "command": "-extension.openPrGitProvider"},
-    { "key": "cmd+k g", "command": "extension.openInGitHub" },
-
     //#region Disable zoom keys
     { "key": "cmd+numpad_add", "command": "-workbench.action.zoomIn" },
     { "key": "shift+cmd+=", "command": "-workbench.action.zoomIn" },
@@ -39,7 +32,7 @@
     { "key": "ctrl+shift+right", "command": "workbench.action.increaseViewSize" },
     { "key": "ctrl+shift+left", "command": "workbench.action.decreaseViewSize" },
 
-    { "key": "shift+cmd+1", "command": "workbench.action.editorLayoutSingle", "when": "editorTextFocus" },
+    { "key": "shift+cmd+1", "command": "workbench.action.editorLayoutSingle" },
 
     { "key": "ctrl+left", "command": "workbench.action.navigateLeft" },
     { "key": "ctrl+right", "command": "workbench.action.navigateRight" },
@@ -51,15 +44,18 @@
     { "key": "alt+cmd+right", "command": "workbench.action.terminal.focusNext", "when": "terminalFocus" },
     { "key": "alt+cmd+left", "command": "workbench.action.terminal.focusPrevious", "when": "terminalFocus" },
     { "key": "shift+cmd+n", "command": "workbench.action.terminal.new", "when": "terminalFocus" },
+    { "key": "cmd+k cmd+k", "command": "workbench.action.terminal.focus"},
     //#endregion
+
+    { "key": "cmd+k cmd+1", "command": "workbench.action.problems.focus"},
+    { "key": "cmd+k cmd+2", "command": "workbench.action.output.toggleOutput"},
+    { "key": "cmd+k cmd+3", "command": "workbench.debug.action.focusRepl"},
+    { "key": "cmd+k cmd+4", "command": "workbench.action.terminal.focus"},
+
 
     //#region ListView tweaks
     { "key": "cmd+n", "command": "explorer.newFile", "when": "explorerViewletFocus && !inputFocus" },
     { "key": "shift+cmd+n", "command": "explorer.newFolder", "when": "explorerViewletFocus && !inputFocus" },
-    //#endregion
-    //#region Emacs spirit
-    { "key": "alt+b", "command": "cursorWordStartLeft", "when": "editorTextFocus" },
-    { "key": "alt+f", "command": "cursorWordEndRight", "when": "editorTextFocus" },
     //#endregion
     //#region Escape power
     { "key": "escape", "command": "workbench.action.focusActiveEditorGroup",
@@ -89,34 +85,15 @@
         "command": "editor.emmet.action.wrapWithAbbreviation",
         "when": "editorTextFocus"
     },
-
     {
         "key": "shift+alt+f",
         "command": "editor.action.formatSelection",
         "when": "editorTextFocus && !editorReadonly && editorHasSelection"
     },
-    { "key": "shift+alt+i", "command": "editor.action.insertCursorAtEndOfEachLineSelected",
-        "when": "editorTextFocus" },
+    { "key": "shift+alt+i", "command": "editor.action.insertCursorAtEndOfEachLineSelected", "when": "editorTextFocus" },
 
-    {
-        "key": "ctrl+]",
-        "command": "editor.action.marker.nextInFiles",
-        "when": "editorFocus && !editorReadonly"
-    },
-    {
-        "key": "ctrl+[",
-        "command": "editor.action.marker.prevInFiles",
-        "when": "editorFocus && !editorReadonly"
-    },
-    {
-        "key": "shift+cmd+j",
-        "command": "workbench.action.toggleMaximizedPanel"
-    },
-    {
-        "key": "cmd+]",
-        "command": "editor.action.goToDeclaration",
-        "when": "editorTextFocus"
-    },
+    { "key": "shift+cmd+j", "command": "workbench.action.toggleMaximizedPanel" },
+    { "key": "cmd+]", "command": "editor.action.goToDeclaration", "when": "editorTextFocus" },
 
 
     //#region Text Tables reign
