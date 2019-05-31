@@ -1,11 +1,12 @@
 {
 //#region Editor
+
     "editor.fontFamily": "FuraCode Nerd Font",
     "editor.fontSize": 12,
     "editor.folding": false,
     "editor.fontLigatures": true,
 
-    "editor.codeLens": true,
+    "editor.codeLens": false,
     "editor.cursorBlinking": "solid",
     "editor.renderLineHighlight": "all",
     "editor.renderIndentGuides": false,
@@ -66,6 +67,7 @@
         "**/out": true,
         "**/target": true,
         "Cargo.lock": true,
+        "package-lock.json": true
     },
     "search.smartCase": true,
     "search.runInExtensionHost": true,
