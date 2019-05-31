@@ -6,7 +6,7 @@
     "editor.folding": false,
     "editor.fontLigatures": true,
 
-    "editor.codeLens": false,
+    "editor.codeLens": true,
     "editor.cursorBlinking": "solid",
     "editor.renderLineHighlight": "all",
     "editor.renderIndentGuides": false,
