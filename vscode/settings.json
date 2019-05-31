@@ -1,8 +1,7 @@
 {
 //#region Editor
-    "editor.fontFamily": "Fira Code",
-    "editor.fontSize": 14,
-    "editor.lineHeight": 24,
+    "editor.fontFamily": "FuraCode Nerd Font",
+    "editor.fontSize": 12,
     "editor.folding": false,
     "editor.fontLigatures": true,
 
@@ -17,12 +16,13 @@
     "editor.dragAndDrop": false,
     "editor.scrollBeyondLastLine": false,
     "editor.smoothScrolling": true,
-    "editor.tabCompletion": "on",
+    "editor.tabCompletion": "onlySnippets",
     "editor.parameterHints.cycle": true,
     "editor.wordBasedSuggestions": false,
 //#endregion
 //#region Workbench
     "workbench.editor.enablePreviewFromQuickOpen": false,
+
     "workbench.activityBar.visible": false,
     "workbench.statusBar.feedback.visible": false,
     "workbench.tips.enabled": false,
@@ -33,8 +33,8 @@
     "workbench.settings.openDefaultSettings": false,
     "workbench.settings.openDefaultKeybindings": false,
 
-    "workbench.iconTheme": "ayu",
-    "workbench.colorTheme": "Ayu Mirage",
+    "workbench.colorTheme": "Ayu Mirage Bordered",
+    "workbench.iconTheme": "material-icon-theme",
     "workbench.tree.indent": 16,
 //#endregion
 //#region Window
@@ -64,6 +64,7 @@
         "**/node_modules": true,
         "**/bower_components": true,
         "**/out": true,
+        "**/target": true,
         "Cargo.lock": true,
     },
     "search.smartCase": true,
