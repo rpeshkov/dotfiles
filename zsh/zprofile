@@ -13,6 +13,7 @@ export PAGER="less"
 
 export GOPATH="$HOME"
 export PATH="$GOPATH/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
 
 export PURE_PROMPT_SYMBOL="λ"
 
