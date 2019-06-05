@@ -1,11 +1,11 @@
 {
 //#region Editor
 
-    "editor.fontFamily": "FuraCode Nerd Font",
+    "editor.fontFamily": "BlexMono Nerd Font",
     "editor.fontSize": 12,
+    "editor.lineHeight": 22,
     "editor.folding": false,
     "editor.fontLigatures": true,
-
     "editor.codeLens": true,
     "editor.cursorBlinking": "solid",
     "editor.renderLineHighlight": "all",
@@ -20,6 +20,10 @@
     "editor.tabCompletion": "onlySnippets",
     "editor.parameterHints.cycle": true,
     "editor.wordBasedSuggestions": false,
+    "editor.lineNumbers": "on",
+//#endregion
+//#region Breadcrumbs
+    "breadcrumbs.enabled": false,
 //#endregion
 //#region Workbench
     "workbench.editor.enablePreviewFromQuickOpen": false,
@@ -31,12 +35,11 @@
     "workbench.startupEditor": "newUntitledFile",
 
     "workbench.settings.editor": "json",
-    "workbench.settings.openDefaultSettings": false,
-    "workbench.settings.openDefaultKeybindings": false,
-
-    "workbench.colorTheme": "Ayu Mirage Bordered",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.tree.indent": 16,
+    "workbench.colorTheme": "Dracula",
+    "workbench.editor.showTabs": false,
+    "workbench.statusBar.visible": true,
 //#endregion
 //#region Window
     "window.newWindowDimensions": "maximized",
@@ -53,9 +56,11 @@
         "**/bower_components/**": true,
         "**/out": true
     },
+    "files.simpleDialog.enable": true,
 
 //#endregion
 //#region File explorer
+    "explorer.autoReveal": false,
     "explorer.openEditors.visible": 0,
     "explorer.decorations.badges": true,
     "explorer.decorations.colors": true,
