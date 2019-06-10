@@ -1,6 +1,7 @@
 // Place your key bindings in this file to overwrite the defaults
 [
     { "key": "cmd+k cmd+e", "command": "workbench.view.explorer"},
+    { "key": "cmd+k cmd+l", "command": "revealInExplorer"},
     { "key": "shift+cmd+e", "command": "-workbench.view.explorer" },
     { "key": "cmd+=", "command": "workbench.action.tasks.runTask" },
 

@@ -1,16 +1,11 @@
 {
-//#region Editor
-
+    // Editor
     "editor.fontFamily": "BlexMono Nerd Font",
     "editor.fontSize": 12,
     "editor.lineHeight": 22,
     "editor.folding": false,
-    "editor.fontLigatures": true,
-    "editor.codeLens": true,
     "editor.cursorBlinking": "solid",
-    "editor.renderLineHighlight": "all",
     "editor.renderIndentGuides": false,
-    "editor.renderWhitespace": "none",
     "editor.rulers": [100],
     "editor.minimap.enabled": false,
     "editor.overviewRulerBorder": false,
@@ -20,13 +15,14 @@
     "editor.tabCompletion": "onlySnippets",
     "editor.parameterHints.cycle": true,
     "editor.wordBasedSuggestions": false,
-    "editor.lineNumbers": "on",
-//#endregion
-//#region Breadcrumbs
+    "editor.renderLineHighlight": "all",
+
+    // Breadcrumbs
     "breadcrumbs.enabled": false,
-//#endregion
-//#region Workbench
+
+    // Workbench
     "workbench.editor.enablePreviewFromQuickOpen": false,
+    "workbench.editor.tabSizing": "shrink",
 
     "workbench.activityBar.visible": false,
     "workbench.statusBar.feedback.visible": false,
@@ -35,16 +31,15 @@
     "workbench.startupEditor": "newUntitledFile",
 
     "workbench.settings.editor": "json",
-    "workbench.iconTheme": "material-icon-theme",
-    "workbench.tree.indent": 16,
-    "workbench.colorTheme": "Dracula",
-    "workbench.editor.showTabs": false,
-    "workbench.statusBar.visible": true,
-//#endregion
-//#region Window
+
+    "workbench.colorTheme": "Ayu Mirage Bordered",
+    "workbench.iconTheme": "ayu",
+    "workbench.tree.indent": 24,
+
+    // Window
     "window.newWindowDimensions": "maximized",
-//#endregion
-//#region Files
+
+    // Files
     "files.defaultLanguage": "markdown",
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
@@ -58,14 +53,10 @@
     },
     "files.simpleDialog.enable": true,
 
-//#endregion
-//#region File explorer
+    // File explorer
     "explorer.autoReveal": false,
-    "explorer.openEditors.visible": 0,
-    "explorer.decorations.badges": true,
-    "explorer.decorations.colors": true,
-//#endregion
-//#region Search
+
+    // Search
     "search.exclude": {
         "**/node_modules": true,
         "**/bower_components": true,
@@ -77,27 +68,22 @@
     "search.smartCase": true,
     "search.runInExtensionHost": true,
     "search.showLineNumbers": true,
-//#endregion
-//#region Diff & SCM
+
+    // Diff & SCM
     "git.enableSmartCommit": true,
     "scm.diffDecorations": "none",
     "diffEditor.renderSideBySide": false,
-//#endregion
-//#region Terminal
-    "terminal.integrated.macOptionIsMeta": true,
-    "terminal.integrated.fontSize": 12,
-    "terminal.integrated.showExitAlert": false,
-    "terminal.integrated.fontWeightBold": "500",
-//#endregion
-//#region Problems View
-    "problems.decorations.enabled": false,
-//#endregion
-//#region Debug
-    "debug.toolBarLocation": "docked",
-//#endregion
 
-//#region Language specific
-//#region Markdown
+    // Terminal
+    "terminal.integrated.macOptionIsMeta": true,
+
+    // Problems View
+    "problems.decorations.enabled": true,
+
+    // Debug
+    "debug.toolBarLocation": "docked",
+
+    // Markdown
     "[markdown]": {
         "editor.wordWrap": "bounded",
         "editor.quickSuggestions": false,
@@ -106,23 +92,16 @@
         "editor.rulers": [ 80 ],
         "editor.tabSize": 2
     },
-//#endregion
-//#region TypeScript
+
+    // TypeScript
     "typescript.preferences.quoteStyle": "single",
-//#endregion
 
-//#region Go
+    // Go
     "go.useLanguageServer": true,
-//#endregion
-//#endregion
 
-//#region Plugins
-//#region Text tables
+    // Text tables
     "text-tables.mode": "markdown",
-//#endregion
 
-//#region REST client
+    // REST client
     "rest-client.fontSize": 12
-//#endregion
-//#endregion
 }
