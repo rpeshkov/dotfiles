@@ -103,5 +103,10 @@
     "text-tables.mode": "markdown",
 
     // REST client
-    "rest-client.fontSize": 12
+    "rest-client.fontSize": 12,
+
+    // Ace Jumper
+    "aceJump.placeholder.fontFamily": "IBM Plex Mono",
+    "aceJump.placeholder.fontSize": 11,
+    "aceJump.placeholder.fontWeight": "bold"
 }

@@ -4,6 +4,8 @@
     { "key": "cmd+k cmd+l", "command": "revealInExplorer"},
     { "key": "shift+cmd+e", "command": "-workbench.view.explorer" },
     { "key": "cmd+=", "command": "workbench.action.tasks.runTask" },
+    { "key": "shift+enter", "command": "extension.aceJump" },
+    { "key": "shift+alt+enter", "command": "extension.aceJump.selection" },
 
     //#region Precise page moving
     { "key": "cmd+down", "command": "cursorMove", "args": {"to": "down", "by": "line", "value": 10}, "when": "editorTextFocus" },
