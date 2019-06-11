@@ -15,10 +15,7 @@
 
                  [:##caps_lock ["pok-mode" 1] nil {:afterup ["pok-mode" 0] :alone :escape}]
                  [:r ["chunk-mode" 1] ["pok-mode" 1] {:afterup ["chunk-mode" 0]}]
-                 [:!Oj [:ct "--focus next"] ]
-                 [:!Ok [:ct "--focus prev"] ]
-                 ; [:l [:ct "--focus east"] ["chunk-mode" 1]]
-                 ; [:i [:ct "--focus south"] ["chunk-mode" 1]]
+                 [:spacebar [:ct "--focus next"] [["pok-mode" 1] ["chunk-mode" 0]]]
 
                  [:j [:ct "--use-temporary-ratio 0.1 --adjust-window-edge west"] ["chunk-mode" 1]]
                  [:k [:ct "--use-temporary-ratio 0.1 --adjust-window-edge north"] ["chunk-mode" 1]]
@@ -34,7 +31,6 @@
 
                  [:return_or_enter [:ct "--toggle fullscreen"] ["chunk-mode" 1]]
                  [:spacebar [:cd "--rotate 90"] ["chunk-mode" 1]]
-
 
                  ; Delete
                  [:##delete_or_backspace :##delete_forward ["pok-mode" 1]]
