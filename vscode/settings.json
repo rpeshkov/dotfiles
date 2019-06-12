@@ -95,6 +95,9 @@
 
     // TypeScript
     "typescript.preferences.quoteStyle": "single",
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
 
     // Go
     "go.useLanguageServer": true,
