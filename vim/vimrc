@@ -330,11 +330,8 @@ augroup END
 "}}}
 
 "{{{LightLine
-" let g:lightline = {
-"     \ 'colorscheme': 'palenight'
-"     \ }
 let g:lightline = {
-      \ 'colorscheme': 'onedark',
+      \ 'colorscheme': 'one',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]

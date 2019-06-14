@@ -16,6 +16,7 @@
                  [:##caps_lock ["pok-mode" 1] nil {:afterup ["pok-mode" 0] :alone :escape}]
                  [:r ["chunk-mode" 1] ["pok-mode" 1] {:afterup ["chunk-mode" 0]}]
                  [:spacebar [:ct "--focus next"] [["pok-mode" 1] ["chunk-mode" 0]]]
+                 [:w [:ct "--close"] ["pok-mode" 1]]
 
                  [:j [:ct "--use-temporary-ratio 0.1 --adjust-window-edge west"] ["chunk-mode" 1]]
                  [:k [:ct "--use-temporary-ratio 0.1 --adjust-window-edge north"] ["chunk-mode" 1]]
