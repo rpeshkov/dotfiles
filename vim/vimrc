@@ -19,6 +19,7 @@ Plug 'cespare/vim-toml'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 Plug 'sheerun/vim-polyglot'
 Plug 'mattn/emmet-vim'
+Plug 'rakr/vim-one'
 call plug#end()
 "}}}
 
@@ -27,14 +28,14 @@ call plug#end()
 syntax on
 " TrueColor terminal
 set termguicolors
+" Sweet theme
+colorscheme one
 " Setting background to dark
 set background=dark
-" Sweet theme
-colorscheme palenight
 " Don't ever show tabline
 set showtabline=0
-" Show numbers... relatively
-set number relativenumber
+" Show numbers
+set number
 " Make line numbers space wider
 set numberwidth=6
 " Draw line cursor
@@ -333,7 +334,7 @@ augroup END
 "     \ 'colorscheme': 'palenight'
 "     \ }
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'onedark',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
@@ -343,3 +344,5 @@ let g:lightline = {
       \ },
       \ }
 "}}}
+
+set signcolumn=yes
