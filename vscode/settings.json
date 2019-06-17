@@ -111,5 +111,14 @@
     // Ace Jumper
     "aceJump.placeholder.fontFamily": "IBM Plex Mono",
     "aceJump.placeholder.fontSize": 11,
-    "aceJump.placeholder.fontWeight": "bold"
+    "aceJump.placeholder.fontWeight": "bold",
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }
