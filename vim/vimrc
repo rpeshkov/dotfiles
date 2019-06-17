@@ -3,7 +3,6 @@ set nocompatible
 "{{{ Plugins
 call plug#begin('~/.vim/plugged')
 Plug 'itchyny/lightline.vim'
-Plug 'drewtempelmeyer/palenight.vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -14,11 +13,9 @@ Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-commentary'
 
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'cespare/vim-toml'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 Plug 'sheerun/vim-polyglot'
 Plug 'mattn/emmet-vim'
+Plug 'rakr/vim-one'
 call plug#end()
 "}}}
 
@@ -27,14 +24,14 @@ call plug#end()
 syntax on
 " TrueColor terminal
 set termguicolors
+" Sweet theme
+colorscheme one
 " Setting background to dark
 set background=dark
-" Sweet theme
-colorscheme palenight
 " Don't ever show tabline
 set showtabline=0
-" Show numbers... relatively
-set number relativenumber
+" Show numbers
+set number
 " Make line numbers space wider
 set numberwidth=6
 " Draw line cursor
@@ -330,13 +327,15 @@ augroup END
 
 "{{{LightLine
 let g:lightline = {
-      \ 'colorscheme': 'palenight',
+      \ 'colorscheme': 'one',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status'
-      \ },
+      \             [ 'readonly', 'filename', 'modified' ] ]
+      \ }
       \ }
 "}}}
+
+set signcolumn=yes
+au TermOpen * setlocal nonumber norelativenumber
+autocmd BufWinEnter,WinEnter term://* startinsert
+
