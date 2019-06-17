@@ -198,3 +198,10 @@ function npr() {
     fi
 }
 
+function cratn() {
+    if [ -z "$1" ]; then
+        echo "\nPlease provide name"
+    else
+        create-react-app $1 --use-npm --typescript
+    fi
+}

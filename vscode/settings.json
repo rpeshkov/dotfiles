@@ -6,7 +6,6 @@
     "editor.folding": false,
     "editor.cursorBlinking": "solid",
     "editor.renderIndentGuides": false,
-    "editor.rulers": [100],
     "editor.minimap.enabled": false,
     "editor.overviewRulerBorder": false,
     "editor.dragAndDrop": false,
@@ -16,6 +15,7 @@
     "editor.parameterHints.cycle": true,
     "editor.wordBasedSuggestions": false,
     "editor.renderLineHighlight": "all",
+    "editor.glyphMargin": false,
 
     // Breadcrumbs
     "breadcrumbs.enabled": false,
@@ -31,10 +31,21 @@
     "workbench.startupEditor": "newUntitledFile",
 
     "workbench.settings.editor": "json",
+    "workbench.editor.showIcons": false,
+    "workbench.editor.tabCloseButton": "off",
 
-    "workbench.colorTheme": "Ayu Mirage Bordered",
+    "workbench.colorTheme": "Ayu Mirage",
     "workbench.iconTheme": "ayu",
     "workbench.tree.indent": 24,
+    "workbench.colorCustomizations": {
+        "[Ayu Mirage]": {
+            "scrollbar.shadow": "#2a354600",
+            "sideBar.border": "#2a3546fd",
+            "editorGroup.border": "#2a3546fd",
+            "scrollbarSlider.background": "#232834",
+            "scrollbarSlider.hoverBackground": "#2a3546fd"
+        }
+    },
 
     // Window
     "window.newWindowDimensions": "maximized",
@@ -55,6 +66,7 @@
 
     // File explorer
     "explorer.autoReveal": false,
+    "explorer.decorations.badges": true,
 
     // Search
     "search.exclude": {
@@ -111,5 +123,7 @@
     // Ace Jumper
     "aceJump.placeholder.fontFamily": "IBM Plex Mono",
     "aceJump.placeholder.fontSize": 11,
-    "aceJump.placeholder.fontWeight": "bold"
+    "aceJump.placeholder.fontWeight": "bold",
+    "aceJump.finder.onlyInitialLetter": false,
+    "aceJump.finder.pattern": ""
 }
