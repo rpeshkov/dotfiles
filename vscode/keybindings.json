@@ -8,6 +8,8 @@
     { "key": "shift+enter", "command": "extension.aceJump" },
     { "key": "shift+alt+enter", "command": "extension.aceJump.selection" },
 
+    { "key": "alt+cmd+b", "command": "workbench.action.toggleStatusbarVisibility"},
+
     //#region Precise page moving
     { "key": "cmd+down", "command": "cursorMove", "args": {"to": "down", "by": "line", "value": 10}, "when": "editorTextFocus" },
     { "key": "cmd+up", "command": "cursorMove", "args": {"to": "up", "by": "line", "value": 10}, "when": "editorTextFocus" },

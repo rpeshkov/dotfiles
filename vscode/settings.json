@@ -1,139 +1,149 @@
 {
-    // Editor
-    "editor.fontFamily": "BlexMono Nerd Font",
-    "editor.fontSize": 12,
-    "editor.lineHeight": 22,
-    "editor.folding": false,
-    "editor.cursorBlinking": "solid",
-    "editor.renderIndentGuides": false,
-    "editor.minimap.enabled": false,
-    "editor.overviewRulerBorder": false,
-    "editor.dragAndDrop": false,
-    "editor.scrollBeyondLastLine": false,
-    "editor.smoothScrolling": true,
-    "editor.tabCompletion": "onlySnippets",
-    "editor.parameterHints.cycle": true,
-    "editor.wordBasedSuggestions": false,
-    "editor.renderLineHighlight": "all",
-    "editor.glyphMargin": false,
+  // Editor
+  "editor.fontFamily": "BlexMono Nerd Font",
+  "editor.fontSize": 12,
+  "editor.lineHeight": 22,
+  "editor.folding": false,
+  "editor.cursorBlinking": "solid",
+  "editor.renderIndentGuides": false,
+  "editor.minimap.enabled": false,
+  "editor.overviewRulerBorder": false,
+  "editor.dragAndDrop": false,
+  "editor.scrollBeyondLastLine": false,
+  "editor.smoothScrolling": true,
+  "editor.tabCompletion": "onlySnippets",
+  "editor.parameterHints.cycle": true,
+  "editor.wordBasedSuggestions": false,
+  "editor.renderLineHighlight": "all",
+  "editor.glyphMargin": false,
 
-    // Breadcrumbs
-    "breadcrumbs.enabled": false,
+  // Breadcrumbs
+  "breadcrumbs.enabled": false,
 
-    // Workbench
-    "workbench.editor.enablePreviewFromQuickOpen": false,
-    "workbench.editor.tabSizing": "shrink",
+  // Workbench
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "workbench.editor.tabSizing": "shrink",
 
-    "workbench.activityBar.visible": false,
-    "workbench.statusBar.feedback.visible": false,
-    "workbench.tips.enabled": false,
-    "workbench.commandPalette.history": 5,
-    "workbench.startupEditor": "newUntitledFile",
+  "workbench.activityBar.visible": false,
+  "workbench.statusBar.feedback.visible": false,
+  "workbench.tips.enabled": false,
+  "workbench.commandPalette.history": 5,
+  "workbench.startupEditor": "newUntitledFile",
 
-    "workbench.settings.editor": "json",
-    "workbench.editor.showIcons": false,
-    "workbench.editor.tabCloseButton": "off",
+  "workbench.settings.editor": "json",
+  "workbench.editor.showIcons": true,
+  "workbench.editor.tabCloseButton": "off",
+  "workbench.statusBar.visible": false,
 
-    "workbench.colorTheme": "Ayu Mirage",
-    "workbench.iconTheme": "ayu",
-    "workbench.tree.indent": 24,
-    "workbench.colorCustomizations": {
-        "[Ayu Mirage]": {
-            "scrollbar.shadow": "#2a354600",
-            "sideBar.border": "#2a3546fd",
-            "editorGroup.border": "#2a3546fd",
-            "scrollbarSlider.background": "#232834",
-            "scrollbarSlider.hoverBackground": "#2a3546fd"
-        }
-    },
-
-    // Window
-    "window.newWindowDimensions": "maximized",
-
-    // Files
-    "files.defaultLanguage": "markdown",
-    "files.insertFinalNewline": true,
-    "files.trimFinalNewlines": true,
-    "files.trimTrailingWhitespace": true,
-    "files.watcherExclude": {
-        "**/.git/objects/**": true,
-        "**/.git/subtree-cache/**": true,
-        "**/node_modules/**": true,
-        "**/bower_components/**": true,
-        "**/out": true
-    },
-    "files.simpleDialog.enable": true,
-
-    // File explorer
-    "explorer.autoReveal": false,
-    "explorer.decorations.badges": true,
-
-    // Search
-    "search.exclude": {
-        "**/node_modules": true,
-        "**/bower_components": true,
-        "**/out": true,
-        "**/target": true,
-        "Cargo.lock": true,
-        "package-lock.json": true
-    },
-    "search.smartCase": true,
-    "search.runInExtensionHost": true,
-    "search.showLineNumbers": true,
-
-    // Diff & SCM
-    "git.enableSmartCommit": true,
-    "scm.diffDecorations": "none",
-    "diffEditor.renderSideBySide": false,
-
-    // Terminal
-    "terminal.integrated.macOptionIsMeta": true,
-
-    // Problems View
-    "problems.decorations.enabled": true,
-
-    // Debug
-    "debug.toolBarLocation": "docked",
-
-    // Markdown
-    "[markdown]": {
-        "editor.wordWrap": "bounded",
-        "editor.quickSuggestions": false,
-        "editor.wordBasedSuggestions": true,
-        "editor.wordWrapColumn": 80,
-        "editor.rulers": [ 80 ],
-        "editor.tabSize": 2
-    },
-
-    // TypeScript
-    "typescript.preferences.quoteStyle": "single",
-    "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-
-    // Go
-    "go.useLanguageServer": true,
-
-    // Text tables
-    "text-tables.mode": "markdown",
-
-    // REST client
-    "rest-client.fontSize": 12,
-
-    // Ace Jumper
-    "aceJump.placeholder.fontFamily": "IBM Plex Mono",
-    "aceJump.placeholder.fontSize": 11,
-    "aceJump.placeholder.fontWeight": "bold",
-    "aceJump.finder.onlyInitialLetter": false,
-    "aceJump.finder.pattern": "",
-
-    "[html]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[typescriptreact]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[json]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "workbench.colorTheme": "Ayu Mirage",
+  "workbench.iconTheme": "city-lights-icons-vsc",
+  "city-lights-icons-vsc.hidesExplorerArrows": true,
+  "workbench.tree.indent": 24,
+  "workbench.colorCustomizations": {
+    "[Ayu Mirage]": {
+      "scrollbar.shadow": "#2a354600",
+      "sideBar.border": "#2a3546fd",
+      "editorGroup.border": "#2a3546fd",
+      "scrollbarSlider.background": "#2a354666",
+      "scrollbarSlider.hoverBackground": "#2a354699",
+      "scrollbarSlider.activeBackground": "#2a3546b3"
     }
+  },
+
+  // Window
+  "window.newWindowDimensions": "maximized",
+
+  // Files
+  "files.defaultLanguage": "markdown",
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/**": true,
+    "**/bower_components/**": true,
+    "**/out": true
+  },
+  "files.simpleDialog.enable": true,
+
+  // File explorer
+  "explorer.autoReveal": false,
+  "explorer.decorations.badges": true,
+
+  // Search
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/out": true,
+    "**/target": true,
+    "Cargo.lock": true,
+    "package-lock.json": true
+  },
+  "search.smartCase": true,
+  "search.runInExtensionHost": true,
+  "search.showLineNumbers": true,
+
+  // Diff & SCM
+  "git.enableSmartCommit": true,
+  "scm.diffDecorations": "none",
+  "diffEditor.renderSideBySide": false,
+
+  // Terminal
+  "terminal.integrated.macOptionIsMeta": true,
+
+  // Problems View
+  "problems.decorations.enabled": true,
+
+  // Debug
+  "debug.toolBarLocation": "docked",
+
+  // Markdown
+  "[markdown]": {
+    "editor.wordWrap": "bounded",
+    "editor.quickSuggestions": false,
+    "editor.wordBasedSuggestions": true,
+    "editor.wordWrapColumn": 80,
+    "editor.rulers": [80],
+    "editor.tabSize": 2
+  },
+
+  // TypeScript
+  "typescript.preferences.quoteStyle": "single",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // HTML
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // JSON
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // Go
+  "go.useLanguageServer": true,
+
+  // Text tables
+  "text-tables.mode": "markdown",
+
+  // REST client
+  "rest-client.fontSize": 12,
+
+  // Ace Jumper
+  "aceJump.placeholder.fontFamily": "IBM Plex Mono",
+  "aceJump.placeholder.fontSize": 11,
+  "aceJump.placeholder.fontWeight": "bold",
+  "aceJump.finder.onlyInitialLetter": false,
+  "aceJump.finder.pattern": ""
+
 }
