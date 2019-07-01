@@ -1,3 +1,4 @@
+be5invis.vscode-custom-css
 bungcip.better-toml
 christian-kohler.path-intellisense
 DavidAnson.vscode-markdownlint
@@ -11,7 +12,6 @@ lucax88x.codeacejumper
 ms-vscode.Go
 ms-vscode.vscode-typescript-tslint-plugin
 msjsdiag.debugger-for-chrome
-PeterJausovec.vscode-docker
 RomanPeshkov.vscode-text-tables
 rust-lang.rust
 serayuzgur.crates

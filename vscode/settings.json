@@ -46,7 +46,8 @@
       "editorGroup.border": "#2a3546fd",
       "scrollbarSlider.background": "#2a354666",
       "scrollbarSlider.hoverBackground": "#2a354699",
-      "scrollbarSlider.activeBackground": "#2a3546b3"
+      "scrollbarSlider.activeBackground": "#2a3546b3",
+      "panel.border": "#2a3546fd"
     }
   },
 
@@ -144,6 +145,11 @@
   "aceJump.placeholder.fontSize": 11,
   "aceJump.placeholder.fontWeight": "bold",
   "aceJump.finder.onlyInitialLetter": false,
-  "aceJump.finder.pattern": ""
+  "aceJump.finder.pattern": "",
 
+  // Custom CSS
+  "vscode_custom_css.policy": true,
+  "vscode_custom_css.imports": [
+    "file:///Users/Shared/.vscode.css"
+  ]
 }
