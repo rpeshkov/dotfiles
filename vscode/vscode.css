@@ -1,0 +1,9 @@
+.explorer-action.new-file,
+.explorer-action.new-folder,
+.explorer-action.refresh-explorer,
+.explorer-action.collapse-explorer,
+.editor-actions {
+    display: none !important;
+    visibility: hidden;
+}
+
