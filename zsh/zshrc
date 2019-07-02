@@ -200,5 +200,3 @@ function cratn() {
         create-react-app $1 --use-npm --typescript
     fi
 }
-# fnm
-eval "$(fnm env --multi)"
