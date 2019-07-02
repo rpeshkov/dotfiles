@@ -16,6 +16,8 @@ Plug 'tpope/vim-commentary'
 Plug 'sheerun/vim-polyglot'
 Plug 'mattn/emmet-vim'
 Plug 'rakr/vim-one'
+Plug 'ayu-theme/ayu-vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 "}}}
 
@@ -25,6 +27,7 @@ syntax on
 " TrueColor terminal
 set termguicolors
 " Sweet theme
+let ayucolor='mirage'
 colorscheme one
 " Setting background to dark
 set background=dark
@@ -326,16 +329,23 @@ augroup END
 "}}}
 
 "{{{LightLine
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
+
 let g:lightline = {
-      \ 'colorscheme': 'one',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified' ] ]
-      \ }
+      \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status',
+      \   'currentfunction': 'CocCurrentFunction'
+      \ },
       \ }
 "}}}
 
 set signcolumn=yes
-au TermOpen * setlocal nonumber norelativenumber
+au TermOpen * setlocal nonumber norelativenumber signcolumn=no
 autocmd BufWinEnter,WinEnter term://* startinsert
 
