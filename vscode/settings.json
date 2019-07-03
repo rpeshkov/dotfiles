@@ -25,7 +25,6 @@
   "workbench.editor.tabSizing": "shrink",
 
   "workbench.activityBar.visible": false,
-  "workbench.statusBar.feedback.visible": false,
   "workbench.tips.enabled": false,
   "workbench.commandPalette.history": 5,
   "workbench.startupEditor": "newUntitledFile",
@@ -34,6 +33,7 @@
   "workbench.editor.showIcons": true,
   "workbench.editor.tabCloseButton": "off",
   "workbench.statusBar.visible": false,
+  "workbench.tree.renderIndentGuides": "always",
 
   "workbench.colorTheme": "Ayu Mirage",
   "workbench.iconTheme": "city-lights-icons-vsc",
