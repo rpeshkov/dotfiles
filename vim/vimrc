@@ -10,14 +10,12 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'cohama/lexima.vim'
 Plug 'tpope/vim-surround'
-Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-commentary'
 
 Plug 'sheerun/vim-polyglot'
-Plug 'mattn/emmet-vim'
 Plug 'rakr/vim-one'
-Plug 'ayu-theme/ayu-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'justinmk/vim-sneak'
 call plug#end()
 "}}}
 
@@ -27,7 +25,6 @@ syntax on
 " TrueColor terminal
 set termguicolors
 " Sweet theme
-let ayucolor='mirage'
 colorscheme one
 " Setting background to dark
 set background=dark
@@ -35,8 +32,6 @@ set background=dark
 set showtabline=0
 " Show numbers
 set number
-" Make line numbers space wider
-set numberwidth=6
 " Draw line cursor
 set cursorline
 " Want to see right margin
@@ -61,6 +56,8 @@ set lazyredraw
 let html_no_rendering=1
 " Show additional characters
 set list listchars=tab:‣\ ,trail:·,precedes:«,extends:»,eol:¬
+" Always show signcolumn
+set signcolumn=yes
 "}}}
 
 "{{{ Search
@@ -98,7 +95,7 @@ set timeoutlen=500
 set ttimeoutlen=0
 " Completion window max size
 set pumheight=10
-set textwidth=80
+" set textwidth=80
 " Round indent
 set shiftround
 " Don't insert comment leader when hitting 'o'
@@ -115,6 +112,12 @@ augroup trailing
     au!
     au InsertEnter * :set listchars-=trail:⌴
     au InsertLeave * :set listchars+=trail:⌴
+augroup END
+
+augroup hlsearch
+    au!
+    autocmd InsertEnter * :setlocal nohlsearch
+    autocmd InsertLeave * :setlocal hlsearch
 augroup END
 "}}}
 
@@ -139,9 +142,6 @@ set wildignore+=**/bower_components
 
 "{{{ Bindings
 let mapleader=" "
-
-nmap s <Plug>(easymotion-s2)
-nmap t <Plug>(easymotion-t2)
 
 " Vimrc editing simplification
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
@@ -308,14 +308,14 @@ let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %
 "}}}
 
 "{{{ Vim Help
-augroup vim_help
-    autocmd!
+" augroup vim_help
+"     autocmd!
 
     " Open help always to the right.
     autocmd FileType help
                 \ wincmd L |
                 \ 80 wincmd |
-augroup END
+" augroup END
 "}}}
 
 "{{{ JXA
@@ -345,7 +345,8 @@ let g:lightline = {
       \ }
 "}}}
 
-set signcolumn=yes
+"{{{ Terminal
 au TermOpen * setlocal nonumber norelativenumber signcolumn=no
 autocmd BufWinEnter,WinEnter term://* startinsert
+"}}}
 
