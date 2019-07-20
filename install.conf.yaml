@@ -5,10 +5,6 @@
 - clean: ['~', '~/.config']
 
 - link:
-    ~/.config/alacritty/alacritty.yml:
-      create: true
-      path: alacritty/alacritty.yml
-
     ~/.zshrc: zsh/zshrc
     ~/.zprofile: zsh/zprofile
     ~/.zshenv: zsh/zshenv
