@@ -200,3 +200,5 @@ function cratn() {
         create-react-app $1 --use-npm --typescript
     fi
 }
+
+[ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && source $HOME/.nix-profile/etc/profile.d/nix.sh
