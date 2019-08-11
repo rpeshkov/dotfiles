@@ -14,6 +14,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'rakr/vim-one'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'moll/vim-bbye'
+" Try:
+"https://github.com/mg979/vim-visual-multi
 call plug#end()
 packadd cfilter
 "}}}
@@ -188,7 +190,6 @@ nnoremap <silent> <esc><esc> :nohlsearch<cr>
 nmap <silent> <C-p> :FZF<CR>
 
 nnoremap <C-b>l :Buffers<cr>
-nnoremap <C-b>d :bd<cr>
 nnoremap <leader>d :Bdelete<cr>
 
 " Zooming into specific split.
@@ -339,6 +340,7 @@ endfunction
 :command! RemoveQFItem :call RemoveQFItem()
 " Use map <buffer> to only map dd in the quickfix window. Requires +localmap
 autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
+
 
 "{{{ JXA
 augroup filetype_scpt
