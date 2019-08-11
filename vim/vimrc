@@ -8,17 +8,14 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'cohama/lexima.vim'
 Plug 'tpope/vim-surround'
-Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-commentary'
-
 Plug 'sheerun/vim-polyglot'
-Plug 'mattn/emmet-vim'
 Plug 'rakr/vim-one'
-Plug 'ayu-theme/ayu-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'moll/vim-bbye'
 call plug#end()
+packadd cfilter
 "}}}
 
 "{{{ Visual
@@ -27,20 +24,13 @@ syntax on
 " TrueColor terminal
 set termguicolors
 " Sweet theme
-let ayucolor='mirage'
 colorscheme one
 " Setting background to dark
 set background=dark
-" Don't ever show tabline
-set showtabline=0
 " Show numbers
 set number
-" Make line numbers space wider
-set numberwidth=6
 " Draw line cursor
 set cursorline
-" Want to see right margin
-set colorcolumn=+1
 " Don't need mode to be shown
 set noshowmode
 " Break smart
@@ -60,11 +50,13 @@ set lazyredraw
 " Don't render links, bolds, italics in HTML
 let html_no_rendering=1
 " Show additional characters
-set list listchars=tab:‣\ ,trail:·,precedes:«,extends:»,eol:¬
+set nolist listchars=tab:‣\ ,trail:·,precedes:«,extends:»,eol:¬
+" Always show signcolumn
+set signcolumn=yes
 "}}}
 
 "{{{ Search
-" Highlight search matches
+" Highlight search matchesa
 set hlsearch
 " Incremental search
 set incsearch
@@ -72,7 +64,9 @@ set incsearch
 set ignorecase smartcase
 " Live substitute awesomeness
 set inccommand=nosplit
+" Grepping with ripgrep
 set grepprg=rg\ --vimgrep
+set grepformat=%f:%l:%c:%m,%f:%l:%m
 "}}}
 
 "{{{ Editor
@@ -88,8 +82,6 @@ set softtabstop=4
 set shiftwidth=4
 " We need spaces, not tabs
 set expandtab
-" Backspace behavior I used to
-set backspace=2
 
 set showmatch
 " I don't like swapfiles
@@ -98,7 +90,6 @@ set timeoutlen=500
 set ttimeoutlen=0
 " Completion window max size
 set pumheight=10
-set textwidth=80
 " Round indent
 set shiftround
 " Don't insert comment leader when hitting 'o'
@@ -106,15 +97,20 @@ set formatoptions-=o
 " Enable virtual edit mode in block selection
 set virtualedit=block
 
-" set completeopt-=preview
 set completeopt+=noselect
 set completeopt+=noinsert
 set completeopt+=menuone
 
 augroup trailing
-    au!
-    au InsertEnter * :set listchars-=trail:⌴
-    au InsertLeave * :set listchars+=trail:⌴
+    autocmd!
+    autocmd InsertEnter * :set listchars-=trail:⌴
+    autocmd InsertLeave * :set listchars+=trail:⌴
+augroup END
+
+augroup hlsearch
+    autocmd!
+    autocmd InsertEnter * :setlocal nohlsearch
+    autocmd InsertLeave * :setlocal hlsearch
 augroup END
 "}}}
 
@@ -129,8 +125,8 @@ set scrolljump=8
 set scrolloff=3
 set mouse=a
 set wildmenu
-set wildmode=longest,full
-set wildignorecase
+set wildmode=longest:full,full
+" set wildignorecase
 " ignores node_modules
 set wildignore+=**/node_modules
 " ignores bower_components
@@ -140,12 +136,16 @@ set wildignore+=**/bower_components
 "{{{ Bindings
 let mapleader=" "
 
-nmap s <Plug>(easymotion-s2)
-nmap t <Plug>(easymotion-t2)
+nnoremap <silent> zz :update<cr>
+
+nnoremap <up> :cprevious<cr>
+nnoremap <down> :cnext<cr>
+nnoremap <left> :colder<cr>
+nnoremap <right> :cnewer<cr>
 
 " Vimrc editing simplification
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <silent> <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <silent> <leader>sv :source $MYVIMRC<cr>
 
 " No Ex mode
 nnoremap Q <Nop>
@@ -181,16 +181,15 @@ nnoremap J mzJ`z
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-nnoremap <silent> <leader>d :bp\|bd#<cr>
-nnoremap <silent> <leader>w :write<cr>
-nnoremap <silent> <leader>ww :write!<cr>
-nnoremap <silent> <leader>q :q<cr>
 nnoremap <silent> <leader>n :enew<cr>
 
-nnoremap <silent> <esc><esc> :nohls<cr>
+nnoremap <silent> <esc><esc> :nohlsearch<cr>
 
-map <silent> <C-p> :FZF<CR>
-nmap <leader>b :make!<cr>
+nmap <silent> <C-p> :FZF<CR>
+
+nnoremap <C-b>l :Buffers<cr>
+nnoremap <C-b>d :bd<cr>
+nnoremap <leader>d :Bdelete<cr>
 
 " Zooming into specific split.
 map <silent> zi :tabedit +<C-r>=line(".")<cr> %<cr>zz
@@ -201,9 +200,6 @@ function! ZoomOut()
     exec 'tabclose'
     exec 'normal ' . linenr . 'G'
 endfunction
-
-" Operator-pending bindings
-onoremap p i(
 
 " https://github.com/stoeffel/.dotfiles/blob/master/vim/visual-at.vim
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
@@ -305,18 +301,44 @@ endif
 "{{{ FZF
 let $FZF_DEFAULT_COMMAND = 'fd --type f'
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noruler
+            \| autocmd BufLeave <buffer> set laststatus=2 ruler
 "}}}
 
 "{{{ Vim Help
+function! Help_autocmd()
+    if &l:buftype ==# 'help'
+        wincmd L
+        80 wincmd |
+        setlocal signcolumn=no
+    endif
+endfunction
+
 augroup vim_help
     autocmd!
-
     " Open help always to the right.
-    autocmd FileType help
-                \ wincmd L |
-                \ 80 wincmd |
+    autocmd BufWinEnter * call Help_autocmd()
 augroup END
 "}}}
+
+augroup qf
+    autocmd!
+    autocmd BufWinEnter quickfix wincmd J
+augroup END
+
+" When using `dd` in the quickfix list, remove the item from the quickfix list.
+function! RemoveQFItem()
+  let curqfidx = line('.') - 1
+  let qfall = getqflist()
+  call remove(qfall, curqfidx)
+  call setqflist(qfall, 'r')
+  execute curqfidx + 1 . "cfirst"
+  :copen
+endfunction
+:command! RemoveQFItem :call RemoveQFItem()
+" Use map <buffer> to only map dd in the quickfix window. Requires +localmap
+autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
 
 "{{{ JXA
 augroup filetype_scpt
@@ -329,23 +351,23 @@ augroup END
 "}}}
 
 "{{{LightLine
-function! CocCurrentFunction()
-    return get(b:, 'coc_current_function', '')
-endfunction
-
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
       \ },
       \ 'component_function': {
       \   'cocstatus': 'coc#status',
-      \   'currentfunction': 'CocCurrentFunction'
       \ },
       \ }
+
 "}}}
 
-set signcolumn=yes
-au TermOpen * setlocal nonumber norelativenumber signcolumn=no
-autocmd BufWinEnter,WinEnter term://* startinsert
+"{{{ Terminal
+augroup terminal
+    autocmd!
+    autocmd TermOpen * setlocal nonumber norelativenumber signcolumn=no
+    autocmd BufWinEnter,WinEnter term://* "normal i"
+augroup END
+"}}}
 
