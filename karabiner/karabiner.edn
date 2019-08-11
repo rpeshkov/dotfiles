@@ -1,7 +1,4 @@
-{:templates {
-             :ct "/usr/local/bin/chunkc tiling::window %s"
-             :cd "/usr/local/bin/chunkc tiling::desktop %s"}
- :devices {:red-square [{:vendor_id 1539 :product_id 254}]}
+{:devices {:red-square [{:vendor_id 1539 :product_id 254}]}
  :main [{:des "Red square keyboard overrides"
          :rules [
                  [:##left_option :##left_command [:red-square]]
@@ -14,25 +11,7 @@
                  ; [:caps_lock ["pok-mode" 0] ["pok-mode" 1] ]
 
                  [:##caps_lock ["pok-mode" 1] nil {:afterup ["pok-mode" 0] :alone :escape}]
-                 [:r ["chunk-mode" 1] ["pok-mode" 1] {:afterup ["chunk-mode" 0]}]
-                 [:spacebar [:ct "--focus next"] [["pok-mode" 1] ["chunk-mode" 0]]]
-                 [:w [:ct "--close"] ["pok-mode" 1]]
-
-                 [:j [:ct "--use-temporary-ratio 0.1 --adjust-window-edge west"] ["chunk-mode" 1]]
-                 [:k [:ct "--use-temporary-ratio 0.1 --adjust-window-edge north"] ["chunk-mode" 1]]
-                 [:l [:ct "--use-temporary-ratio 0.1 --adjust-window-edge east"] ["chunk-mode" 1]]
-                 [:i [:ct "--use-temporary-ratio 0.1 --adjust-window-edge south"] ["chunk-mode" 1]]
-
-                 [:!Cj [:ct "--swap west"] ["chunk-mode" 1]]
-                 [:!Ck [:ct "--swap north"] ["chunk-mode" 1]]
-                 [:!Cl [:ct "--swap east"] ["chunk-mode" 1]]
-                 [:!Ci [:ct "--swap south"] ["chunk-mode" 1]]
-
-                 [:o [[:ct "--toggle float"] [:ct "--grid-layout 16:16:1:1:14:14"]] ["chunk-mode" 1]]
-
-                 [:return_or_enter [:ct "--toggle fullscreen"] ["chunk-mode" 1]]
-                 [:spacebar [:cd "--rotate 90"] ["chunk-mode" 1]]
-
+                                  
                  ; Delete
                  [:##delete_or_backspace :##delete_forward ["pok-mode" 1]]
 

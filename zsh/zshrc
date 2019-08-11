@@ -18,7 +18,7 @@ function _tmux_autostart() {
     fi
 }
 
-_tmux_autostart
+# _tmux_autostart
 
 #
 # Modules
@@ -81,7 +81,7 @@ bindkey '^x^e' edit-command-line
 alias d="dirs -v"
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
-alias ls='lsd'
+# alias ls='lsd'
 alias l='ls -l'
 alias lla='ls -la'
 alias lt='ls --tree'
@@ -200,3 +200,5 @@ function cratn() {
         create-react-app $1 --use-npm --typescript
     fi
 }
+# fnm
+eval "$(fnm env --multi)"
