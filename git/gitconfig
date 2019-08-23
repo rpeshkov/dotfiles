@@ -34,6 +34,8 @@
 
 [core]
     editor = nvim
+    excludesfile = "~/.gitignore_global"
+    pager = diff-so-fancy | less
 
 [log]
     date = short
@@ -49,9 +51,6 @@
 
 [blame]
     date = short
-
-[core]
-    pager = diff-so-fancy | less
 
 [url "git@github.com:rpeshkov/"]
     insteadOf = rp:
