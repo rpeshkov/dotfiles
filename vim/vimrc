@@ -2,8 +2,6 @@ set nocompatible
 
 "{{{ Plugins
 call plug#begin('~/.vim/plugged')
-Plug 'itchyny/lightline.vim'
-
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'christoomey/vim-tmux-navigator'
@@ -11,62 +9,38 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'sheerun/vim-polyglot'
-Plug 'rakr/vim-one'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'moll/vim-bbye'
-" Try:
-"https://github.com/mg979/vim-visual-multi
+Plug 'chriskempson/base16-vim'
 call plug#end()
 packadd cfilter
 "}}}
 
 "{{{ Visual
-" Turn on syntax highlight
 syntax on
-" TrueColor terminal
 set termguicolors
-" Sweet theme
-colorscheme one
-" Setting background to dark
-set background=dark
-" Show numbers
+let base16colorspace=256
+colorscheme base16-dracula
+
 set number
-" Draw line cursor
 set cursorline
-" Don't need mode to be shown
-set noshowmode
-" Break smart
 set linebreak
-" Good break marker
 let &showbreak='↪ '
-" Hide '1 match' and other related messages
 set shortmess+=c
-" Horizontal split below, vertical - right
 set splitbelow splitright
-" Don't syntax highlight too long lines
 set synmaxcol=300
-" Change title of terminal
 set title
-" Wait to redraw
 set lazyredraw
-" Don't render links, bolds, italics in HTML
 let html_no_rendering=1
-" Show additional characters
-set nolist listchars=tab:‣\ ,trail:·,precedes:«,extends:»,eol:¬
-" Always show signcolumn
+set nolist
+set listchars=tab:‣\ ,trail:·,precedes:«,extends:»,eol:¬
 set signcolumn=yes
 "}}}
 
 "{{{ Search
-" Highlight search matchesa
 set hlsearch
-" Incremental search
 set incsearch
-" Ignore case, but be smart
 set ignorecase smartcase
-" Live substitute awesomeness
 set inccommand=nosplit
-" Grepping with ripgrep
 set grepprg=rg\ --vimgrep
 set grepformat=%f:%l:%c:%m,%f:%l:%m
 "}}}
@@ -78,22 +52,21 @@ set autowrite
 set clipboard=unnamedplus
 " Allow me to switch to another buffers without saving
 set hidden
-" Treat tab as 4 spaces during editing
+set tabstop=4
 set softtabstop=4
-" Spaces for shifting/indenting
 set shiftwidth=4
-" We need spaces, not tabs
+set shiftround
 set expandtab
 
+
 set showmatch
-" I don't like swapfiles
 set noswapfile
-set timeoutlen=500
-set ttimeoutlen=0
-" Completion window max size
+
+set notimeout
+set ttimeout
+set ttimeoutlen=10
+
 set pumheight=10
-" Round indent
-set shiftround
 " Don't insert comment leader when hitting 'o'
 set formatoptions-=o
 " Enable virtual edit mode in block selection
@@ -102,12 +75,6 @@ set virtualedit=block
 set completeopt+=noselect
 set completeopt+=noinsert
 set completeopt+=menuone
-
-augroup trailing
-    autocmd!
-    autocmd InsertEnter * :set listchars-=trail:⌴
-    autocmd InsertLeave * :set listchars+=trail:⌴
-augroup END
 
 augroup hlsearch
     autocmd!
@@ -126,6 +93,7 @@ set scrolljump=8
 " Don't reach borders when dummy-scrolling
 set scrolloff=3
 set mouse=a
+
 set wildmenu
 set wildmode=longest:full,full
 " set wildignorecase
@@ -137,13 +105,6 @@ set wildignore+=**/bower_components
 
 "{{{ Bindings
 let mapleader=" "
-
-nnoremap <silent> zz :update<cr>
-
-nnoremap <up> :cprevious<cr>
-nnoremap <down> :cnext<cr>
-nnoremap <left> :colder<cr>
-nnoremap <right> :cnewer<cr>
 
 " Vimrc editing simplification
 nnoremap <silent> <leader>ev :vsplit $MYVIMRC<cr>
@@ -215,13 +176,6 @@ endfunction
 augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker formatoptions-=o
-augroup END
-"}}}
-
-"{{{ [Vifm] configuration
-augroup filetype_vifm
-    autocmd!
-    autocmd BufRead,BufNewFile vifmrc set filetype=vim
 augroup END
 "}}}
 
@@ -300,7 +254,7 @@ endif
 " }}}
 
 "{{{ FZF
-let $FZF_DEFAULT_COMMAND = 'fd --type f'
+let $FZF_DEFAULT_COMMAND = 'fd --type f --hidden'
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noruler
@@ -323,48 +277,6 @@ augroup vim_help
 augroup END
 "}}}
 
-augroup qf
-    autocmd!
-    autocmd BufWinEnter quickfix wincmd J
-augroup END
-
-" When using `dd` in the quickfix list, remove the item from the quickfix list.
-function! RemoveQFItem()
-  let curqfidx = line('.') - 1
-  let qfall = getqflist()
-  call remove(qfall, curqfidx)
-  call setqflist(qfall, 'r')
-  execute curqfidx + 1 . "cfirst"
-  :copen
-endfunction
-:command! RemoveQFItem :call RemoveQFItem()
-" Use map <buffer> to only map dd in the quickfix window. Requires +localmap
-autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
-
-
-"{{{ JXA
-augroup filetype_scpt
-    autocmd!
-
-    autocmd BufRead,BufNewFile,BufReadPost *.scpt
-                \ set filetype=javascript |
-                \ setlocal makeprg=osascript\ -l\ JavaScript\ %
-augroup END
-"}}}
-
-"{{{LightLine
-let g:lightline = {
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status',
-      \ },
-      \ }
-
-"}}}
-
 "{{{ Terminal
 augroup terminal
     autocmd!
@@ -372,4 +284,13 @@ augroup terminal
     autocmd BufWinEnter,WinEnter term://* "normal i"
 augroup END
 "}}}
+
+
+nnoremap <leader>w :clo<cr>
+nnoremap <leader>ls :Buffers<cr>
+
+nnoremap <leader>tn :tabnext<cr>
+nnoremap <leader>tp :tabprevious<cr>
+tnoremap <leader><Esc> <C-\><C-n>
+
 

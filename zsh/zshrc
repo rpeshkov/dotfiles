@@ -1,46 +1,18 @@
 #
-# Tmux autoload
-#
-# Tmux starts only if we're not inside VSCode or Vim
-#
-function _tmux_autostart() {
-    if [ ${TERM_PROGRAM:-default} != "vscode" ] && [ -z $VIM ]; then
-        if which tmux 2>&1 >/dev/null; then
-            if [ $TERM != "screen-256color" ] && [ $TERM != "screen" ]; then
-                if tmux has -t tmux 2>&1 >/dev/null; then
-                    tmux attach -t tmux -d
-                else
-                    tmux new -s tmux
-                fi
-                exit
-            fi
-        fi
-    fi
-}
-
-# _tmux_autostart
-
-#
 # Modules
 #
 autoload -U colors && colors
 autoload -U edit-command-line
-
-autoload -U select-word-style
-select-word-style bash
+autoload -U select-word-style && select-word-style bash
 
 #
 # Options
 #
-
-setopt AUTO_PUSHD
-setopt AUTO_CD
-setopt PUSHD_IGNORE_DUPS
-
-setopt AUTO_REMOVE_SLASH
-setopt NO_BEEP
-setopt EXTENDED_GLOB
-
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt auto_remove_slash
+setopt no_beep
+setopt extended_glob
 
 #
 # Bindings
@@ -74,62 +46,8 @@ zle -N edit-command-line
 bindkey '^x^e' edit-command-line
 
 #
-# Aliases
-#
-
-# Directory stack navigation
-alias d="dirs -v"
-for index ({1..9}) alias "$index"="cd +${index}"; unset index
-
-# alias ls='lsd'
-alias l='ls -l'
-alias lla='ls -la'
-alias lt='ls --tree'
-alias vim='nvim'
-alias e='nvim'
-alias fm='vifm'
-alias duh='du -chd1'
-alias serve='http-server'
-alias coder='code -r .'
-alias dev='cd ~dev'
-alias cwd='pwd | pbcopy'
-alias o='open'
-alias weather='curl wttr.in'
-alias ek='$EDITOR ~/.config/karabiner.edn'
-alias bi='brew install'
-alias bu='brew update'
-alias bup='brew upgrade'
-alias bun='brew uninstall'
-
-alias notes='cd ~n && nvim ~n'
-alias dots='cd $HOME/.dotfiles/'
-alias em='/Applications/Emacs.app/Contents/MacOS/Emacs'
-alias grep='rg'
-
-hash -d -- dev=$HOME/Developer
-hash -d -- dropbox=$HOME/Dropbox
-hash -d -- downloads=$HOME/Downloads
-hash -d -- n=$HOME/Documents/Notes
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-export FZF_DEFAULT_COMMAND="fd . $HOME"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd -t d . $HOME"
-
-source "${HOME}/.zgen/zgen.zsh"
-if ! zgen saved; then
-    zgen load mafredri/zsh-async
-    zgen load sindresorhus/pure
-    zgen load eendroroy/zed-zsh
-    zgen load zsh-users/zsh-syntax-highlighting
-    zgen save
-fi
-
-#
 # Completion
 #
-
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
 
@@ -152,6 +70,46 @@ zstyle ':completion:*' menu select=2
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 #
+# Aliases
+#
+
+# Directory stack navigation
+alias d="dirs -v"
+for index ({1..9}) alias "$index"="cd +${index}"; unset index
+
+alias ls='ls -F'
+alias l='ls -l'
+alias lla='ls -la'
+alias vim='nvim'
+alias duh='du -chd1'
+alias serve='http-server'
+alias coder='code -r .'
+alias dev='cd ~dev'
+alias cwd='pwd | pbcopy'
+alias weather='curl wttr.in'
+
+alias dots='cd $HOME/.dotfiles/'
+
+alias k='kubectl'
+compdef k='kubectl'
+
+hash -d -- dev=$HOME/Developer
+hash -d -- n=$HOME/Documents/Notes
+
+export FZF_DEFAULT_COMMAND="fd . $HOME"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd -t d . $HOME"
+
+source "${HOME}/.zgen/zgen.zsh"
+if ! zgen saved; then
+    zgen load mafredri/zsh-async
+    zgen load sindresorhus/pure
+    zgen load eendroroy/zed-zsh
+    zgen load zsh-users/zsh-syntax-highlighting
+    zgen save
+fi
+
+#
 # History
 #
 HISTFILE=~/.zsh_history
@@ -165,42 +123,4 @@ setopt inc_append_history
 setopt share_history
 setopt bang_hist
 
-function denter() {
-    if [ -z "$1" ]; then
-        echo "\nPlease:\n denter [ContainerName]\n\nView:\n docker container ls\n"
-    else
-        docker exec -it "$1" /bin/bash
-    fi
-}
-
-function git-commit-show() {
-  git lg | \
-   fzf --ansi --no-sort --reverse --tiebreak=index --preview \
-   'f() { set -- $(echo -- "$@" | grep -o "[a-f0-9]\{7\}"); [ $# -eq 0 ] || git show --color=always $1 ; }; f {}' \
-   --bind "j:down,k:up,alt-j:preview-down,alt-k:preview-up,ctrl-f:preview-page-down,ctrl-b:preview-page-up,q:abort,ctrl-m:execute:
-                (grep -o '[a-f0-9]\{7\}' | head -1 |
-                xargs -I % sh -c 'git show --color=always %') << 'FZF-EOF'
-                {}
-FZF-EOF" --preview-window=right:60%
-}
-
-function npr() {
-    if [ -z "$1" ]; then
-        jq -r '.scripts | keys[]' ./package.json |\
-            fzf --height 7 --bind "enter:execute(npm run {})"
-    else
-        npm run "$1"
-    fi
-}
-
-function cratn() {
-    if [ -z "$1" ]; then
-        echo "\nPlease provide name"
-    else
-        create-react-app $1 --use-npm --typescript
-    fi
-}
-# fnm
-eval "$(fnm env --multi)"
-
-[ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && source $HOME/.nix-profile/etc/profile.d/nix.sh
+[ -f "$HOME/.zshrc_local" ] && source "$HOME/.zshrc_local"
