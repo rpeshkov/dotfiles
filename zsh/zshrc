@@ -87,6 +87,7 @@ alias coder='code -r .'
 alias dev='cd ~dev'
 alias cwd='pwd | pbcopy'
 alias weather='curl wttr.in'
+alias d='docker'
 
 alias dots='cd $HOME/.dotfiles/'
 
@@ -95,6 +96,8 @@ compdef k='kubectl'
 
 hash -d -- dev=$HOME/Developer
 hash -d -- n=$HOME/Documents/Notes
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export FZF_DEFAULT_COMMAND="fd . $HOME"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
