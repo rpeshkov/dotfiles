@@ -1,4 +1,8 @@
-{:devices {:red-square [{:vendor_id 1539 :product_id 254}]}
+{:profiles {:Goku {:default true :sim 250 :delay 500 :alone 1000 :held 500}}
+ :templates {:mousejump "~/bin/mouse-jump"
+             :activate "osascript -e 'tell application \"%s\" to activate'"}
+ :devices {:red-square [{:vendor_id 1539 :product_id 254}]
+           :anne-pro-2 [{:vendor_id 1241 :product_id 32777}]}
  :main [{:des "Red square keyboard overrides"
          :rules [
                  [:##left_option :##left_command [:red-square]]
@@ -11,9 +15,13 @@
                  ; [:caps_lock ["pok-mode" 0] ["pok-mode" 1] ]
 
                  [:##caps_lock ["pok-mode" 1] nil {:afterup ["pok-mode" 0] :alone :escape}]
-                                  
+
+                 [:!T1 [:mousejump]]
+
                  ; Delete
                  [:##delete_or_backspace :##delete_forward ["pok-mode" 1]]
+                 ; Backspace
+                 [:##o :##delete_or_backspace ["pok-mode" 1]]
 
                  ; Escape
                  ; [:grave_accent_and_tilde :escape ["pok-mode" 0]]
@@ -26,7 +34,7 @@
                  [:##l :##right_arrow ["pok-mode" 1]]
 
                  ; Page Up/Down
-                 [:##o :##page_up ["pok-mode" 1]]
+                 [:##u :##page_up ["pok-mode" 1]]
                  [:##m :##page_down ["pok-mode" 1]]
 
                  ; Home/End
