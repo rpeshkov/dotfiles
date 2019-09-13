@@ -148,7 +148,11 @@ nnoremap <silent> <leader>n :enew<cr>
 
 nnoremap <silent> <esc><esc> :nohlsearch<cr>
 
-nmap <silent> <C-p> :FZF<CR>
+nmap <silent> <C-p> :GFiles<CR>
+nmap <silent> <leader>/ :BLines<cr>
+nmap <silent> <leader>gf :GFiles<cr>
+nmap <silent> <leader>gs :GFiles?<cr>
+nmap <silent> <leader>ff :Files<cr>
 
 nnoremap <C-b>l :Buffers<cr>
 nnoremap <leader>d :Bdelete<cr>
@@ -254,7 +258,6 @@ endif
 " }}}
 
 "{{{ FZF
-let $FZF_DEFAULT_COMMAND = 'fd --type f --hidden'
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noruler
