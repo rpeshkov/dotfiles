@@ -1,3 +1,5 @@
+" vim: set foldmethod=marker:
+
 colorscheme dracula
 
 command open open *.{html} &
