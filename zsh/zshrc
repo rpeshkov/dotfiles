@@ -126,4 +126,10 @@ setopt inc_append_history
 setopt share_history
 setopt bang_hist
 
+function codegrep() {
+    rg --vimgrep --color=always $* | fzf --ansi | cut -d: -f 1-3 | xargs code . -g
+}
+
+alias cj=codegrep
+
 [ -f "$HOME/.zshrc_local" ] && source "$HOME/.zshrc_local"

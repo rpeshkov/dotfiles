@@ -10,16 +10,20 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'sheerun/vim-polyglot'
 Plug 'moll/vim-bbye'
-Plug 'chriskempson/base16-vim'
+" Plug 'chriskempson/base16-vim'
+Plug 'romainl/Apprentice'
 call plug#end()
 packadd cfilter
 "}}}
 
 "{{{ Visual
 syntax on
-set termguicolors
-let base16colorspace=256
-colorscheme base16-dracula
+" set termguicolors
+" let base16colorspace=256
+" colorscheme base16-dracula
+colorscheme apprentice
+
+hi Normal ctermbg=NONE
 
 set number
 set cursorline
@@ -33,7 +37,7 @@ set lazyredraw
 let html_no_rendering=1
 set nolist
 set listchars=tab:‣\ ,trail:·,precedes:«,extends:»,eol:¬
-set signcolumn=yes
+" set signcolumn=yes
 "}}}
 
 "{{{ Search
