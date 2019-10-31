@@ -1,6 +1,8 @@
 set nocompatible
 
-"{{{ Plugins
+"
+" Plugins
+"
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -9,18 +11,15 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'sheerun/vim-polyglot'
-Plug 'moll/vim-bbye'
-" Plug 'chriskempson/base16-vim'
 Plug 'romainl/Apprentice'
+Plug 'jiangmiao/auto-pairs'
 call plug#end()
 packadd cfilter
-"}}}
 
-"{{{ Visual
+"
+" Visual
+"
 syntax on
-" set termguicolors
-" let base16colorspace=256
-" colorscheme base16-dracula
 colorscheme apprentice
 
 hi Normal ctermbg=NONE
@@ -35,79 +34,57 @@ set synmaxcol=300
 set title
 set lazyredraw
 let html_no_rendering=1
-set nolist
 set listchars=tab:‣\ ,trail:·,precedes:«,extends:»,eol:¬
-" set signcolumn=yes
-"}}}
 
-"{{{ Search
+"
+" Search
+"
 set hlsearch
 set incsearch
-set ignorecase smartcase
+set ignorecase
+set smartcase
 set inccommand=nosplit
 set grepprg=rg\ --vimgrep
 set grepformat=%f:%l:%c:%m,%f:%l:%m
-"}}}
 
-"{{{ Editor
-" Write file if jump goes out of this file
+"
+" Editor
+"
 set autowrite
-" Use system clipboard
 set clipboard=unnamedplus
-" Allow me to switch to another buffers without saving
 set hidden
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set shiftround
 set expandtab
-
-
-set showmatch
 set noswapfile
-
 set notimeout
 set ttimeout
 set ttimeoutlen=10
-
 set pumheight=10
-" Don't insert comment leader when hitting 'o'
-set formatoptions-=o
-" Enable virtual edit mode in block selection
 set virtualedit=block
-
-set completeopt+=noselect
-set completeopt+=noinsert
-set completeopt+=menuone
+set completeopt+=noselect,noinsert,menuone
 
 augroup hlsearch
     autocmd!
     autocmd InsertEnter * :setlocal nohlsearch
     autocmd InsertLeave * :setlocal hlsearch
 augroup END
-"}}}
 
-"{{{ UNGROUPED
+"
+" UNGROUPED
+"
 let loaded_matchparen=1
-if !has('nvim')
-    set ttyfast
-endif
-" Scroll 8 lines at a time at bottom/top
-set scrolljump=8
-" Don't reach borders when dummy-scrolling
-set scrolloff=3
+set scrolloff=5
 set mouse=a
-
 set wildmenu
 set wildmode=longest:full,full
-" set wildignorecase
-" ignores node_modules
 set wildignore+=**/node_modules
-" ignores bower_components
-set wildignore+=**/bower_components
-"}}}
 
-"{{{ Bindings
+"
+" Bindings
+"
 let mapleader=" "
 
 " Vimrc editing simplification
@@ -116,8 +93,6 @@ nnoremap <silent> <leader>sv :source $MYVIMRC<cr>
 
 " No Ex mode
 nnoremap Q <Nop>
-command! -nargs=0 -bang Qa qall!
-command! -nargs=0 -bang QA qall!
 
 " Moving through visual line by default
 noremap j gj
@@ -125,6 +100,7 @@ noremap k gk
 noremap gj j
 noremap gk k
 
+" Yank till end of line
 nnoremap Y y$
 
 " Easier jump to begin/end of line
@@ -136,6 +112,7 @@ vnoremap $ g_
 " Select the line
 nnoremap vv ^vg_
 
+" Shifting left/right
 vmap <silent> > >gv
 vmap <silent> < <gv
 
@@ -145,21 +122,20 @@ inoremap <return> <C-g>u<cr>
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
 
+" Open folds when jumping through matches
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-nnoremap <silent> <leader>n :enew<cr>
 
 nnoremap <silent> <esc><esc> :nohlsearch<cr>
 
-nmap <silent> <C-p> :GFiles<CR>
+nmap <silent> <C-p> :FZF<CR>
 nmap <silent> <leader>/ :BLines<cr>
-nmap <silent> <leader>gf :GFiles<cr>
-nmap <silent> <leader>gs :GFiles?<cr>
-nmap <silent> <leader>ff :Files<cr>
 
-nnoremap <C-b>l :Buffers<cr>
-nnoremap <leader>d :Bdelete<cr>
+nnoremap <leader>w :clo<cr>
+
+command! -nargs=0 -bang B Buffers
+command! -nargs=0 -bang F Files
 
 " Zooming into specific split.
 map <silent> zi :tabedit +<C-r>=line(".")<cr> %<cr>zz
@@ -178,97 +154,21 @@ function! ExecuteMacroOverVisualRange()
   echo "@".getcmdline()
   execute ":'<,'>normal @".nr2char(getchar())
 endfunction
-"}}}
 
-"{{{ [Vim] configuration
-augroup filetype_vim
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker formatoptions-=o
-augroup END
-"}}}
-
-"{{{ Karabiner
-augroup filetype_karabiner_edn
-    autocmd!
-    autocmd BufRead,BufNewFile karabiner.edn set makeprg=goku
-augroup END
-"}}}
-
-"{{{ [Yaml] configuration
+" [Yaml] configuration
 augroup filetype_yaml
     autocmd!
     autocmd FileType yaml setlocal ts=2 sts=2 sw=2
 augroup END
-"}}}
 
-"{{{ CScope
-function! Cwindow_no_focus()
-    " Store the original window number
-    let l:winnr = winnr()
-
-    exec 'cwindow'
-
-    " If focus changed, jump to the last window
-    if l:winnr !=# winnr()
-        wincmd p
-    endif
-endfunction
-
-function! CScope_find(cmd, what)
-    exec 'normal mR'
-    exec 'cs find ' . a:cmd . ' ' . expand(a:what)
-    call Cwindow_no_focus()
-endfunction
-set cscopequickfix=s-,c-,d-,i-,t-,e-,a-,g-
-
-" All next keymaps set R mark so you are able to return back
-" Find assignments to this symbol
-nmap <silent> <C-g>a :call CScope_find('a', '<cword>')<cr>
-"Find this C symbol
-nmap <silent> <C-g>s :call CScope_find('s', '<cword>')<cr>
-"Find this definition
-nmap <silent> <C-g>g :call CScope_find('g', '<cword>')<cr>
-"Find functions calling this function
-nmap <silent> <C-g>c :call CScope_find('c', '<cword>')<cr>
-"Find this text string
-nmap <silent> <C-g>t :call CScope_find('t', '<cword>')<cr>
-"Find this egrep pattern
-nmap <silent> <C-g>e :call CScope_find('e', '<cword>')<cr>
-"Find this file
-nmap <silent> <C-g>f :call CScope_find('f', '<cfile>')<cr>
-"Find files #including this file
-nmap <silent> <C-g>i :call CScope_find('i', '^<cfile>$')<cr>
-"Find functions called by this function
-nmap <silent> <C-g>d :call CScope_find('d', '<cword>')<cr>
-
-nmap <silent> <C-g>q :cexpr []<cr>:cclose<cr>
-
-command! Cqf cexpr []
-
-if has("cscope")
-    set cscopetag
-    set cscopeprg='gtags-cscope'
-    " Search for GTAGS upwards until it's found
-    let db = findfile("GTAGS", ".;")
-    " add any database in current directory
-    if filereadable(db) && !executable(db) && !cscope_connection(0, db)
-        exec "cs add " . db
-    " else add database pointed to by environment
-    elseif $CSCOPE_DB != ""
-        cs add $CSCOPE_DB
-    endif
-endif
-
-" }}}
-
-"{{{ FZF
-let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noruler
+" FZF
+augroup fzf
+    autocmd!
+    autocmd  FileType fzf set laststatus=0 noruler
             \| autocmd BufLeave <buffer> set laststatus=2 ruler
-"}}}
+augroup END
 
-"{{{ Vim Help
+" Vim Help
 function! Help_autocmd()
     if &l:buftype ==# 'help'
         wincmd L
@@ -282,22 +182,4 @@ augroup vim_help
     " Open help always to the right.
     autocmd BufWinEnter * call Help_autocmd()
 augroup END
-"}}}
-
-"{{{ Terminal
-augroup terminal
-    autocmd!
-    autocmd TermOpen * setlocal nonumber norelativenumber signcolumn=no
-    autocmd BufWinEnter,WinEnter term://* "normal i"
-augroup END
-"}}}
-
-
-nnoremap <leader>w :clo<cr>
-nnoremap <leader>ls :Buffers<cr>
-
-nnoremap <leader>tn :tabnext<cr>
-nnoremap <leader>tp :tabprevious<cr>
-tnoremap <leader><Esc> <C-\><C-n>
-
 
