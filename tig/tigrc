@@ -2,7 +2,13 @@
 bind generic S :source ~/.tigrc
 bind main I :toggle id
 
+# bind status x @code -r %(file)
+bind status x >git difftool -t vscode-this -- %(file)
+
+bind refs B ?git checkout -b %(prompt)
+
 set line-graphics = utf-8
+set tab-size = 4
 
 # Colors
 color cursor    black green bold
