@@ -125,7 +125,6 @@ nnoremap J mzJ`z
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-
 nnoremap <silent> <esc><esc> :nohlsearch<cr>
 
 nmap <silent> <C-p> :FZF<CR>
@@ -135,9 +134,6 @@ nnoremap <leader>w :clo<cr>
 
 command! -nargs=0 -bang B Buffers
 command! -nargs=0 -bang F Files
-
-nnoremap <C-p> :FZF<cr>
-command! -nargs=0 -bang B Buffers
 
 " Zooming into specific split.
 map <silent> zi :tabedit +<C-r>=line(".")<cr> %<cr>zz
