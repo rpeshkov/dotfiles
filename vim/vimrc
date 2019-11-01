@@ -21,7 +21,6 @@ packadd cfilter
 "
 syntax on
 colorscheme apprentice
-
 hi Normal ctermbg=NONE
 
 set number
@@ -137,6 +136,9 @@ nnoremap <leader>w :clo<cr>
 command! -nargs=0 -bang B Buffers
 command! -nargs=0 -bang F Files
 
+nnoremap <C-p> :FZF<cr>
+command! -nargs=0 -bang B Buffers
+
 " Zooming into specific split.
 map <silent> zi :tabedit +<C-r>=line(".")<cr> %<cr>zz
 map <silent> Zi :only<cr>
@@ -179,7 +181,5 @@ endfunction
 
 augroup vim_help
     autocmd!
-    " Open help always to the right.
     autocmd BufWinEnter * call Help_autocmd()
 augroup END
-
