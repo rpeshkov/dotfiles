@@ -126,7 +126,7 @@ setopt bang_hist
 #
 # FNM
 #
-if [ command -v fnm > /dev/null 2>&1 ]; then
+if [ `command -v fnm` > /dev/null 2>&1 ]; then
     eval "$(fnm env --multi)"
 fi
 
