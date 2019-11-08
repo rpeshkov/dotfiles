@@ -1,8 +1,5 @@
 ;;; init.el --- user-init-file                    -*- lexical-binding: t -*-
 
-(add-to-list 'load-path "~/.emacs.d/vterm/")
-(require 'vterm)
-
 ;; Beautify on macos
 (when (equal system-type 'darwin)
   (setq ns-alternate-modifier 'meta
@@ -253,7 +250,7 @@
         projectile-indexing-method 'alien)
   :config
   (setq projectile-project-search-path
-        '("~/Developer/ard/" "~/Developer/" "~/Developer/blaze/"))
+        '("~/Developer/"))
   (setq projectile-completion-system 'ivy)
   (setq projectile-indexing-method 'alien)
   (projectile-register-project-type 'npm '("package.json")
