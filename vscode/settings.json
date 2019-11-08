@@ -1,8 +1,7 @@
 {
   // Editor
-  "editor.fontFamily": "BlexMono Nerd Font",
+  "editor.fontFamily": "Fira Code",
   "editor.fontSize": 12,
-  "editor.lineHeight": 22,
   "editor.folding": false,
   "editor.cursorBlinking": "solid",
   "editor.renderIndentGuides": false,
@@ -138,18 +137,5 @@
   "text-tables.mode": "markdown",
 
   // REST client
-  "rest-client.fontSize": 12,
-
-  // Ace Jumper
-  "aceJump.placeholder.fontFamily": "IBM Plex Mono",
-  "aceJump.placeholder.fontSize": 11,
-  "aceJump.placeholder.fontWeight": "bold",
-  "aceJump.finder.onlyInitialLetter": false,
-  "aceJump.finder.pattern": "",
-
-  // Custom CSS
-  "vscode_custom_css.policy": true,
-  "vscode_custom_css.imports": [
-    "file:///Users/Shared/.vscode.css"
-  ]
+  "rest-client.fontSize": 12
 }
