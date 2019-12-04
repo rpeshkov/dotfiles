@@ -3,3 +3,6 @@ vifm/vifminfo
 vifm/scripts/README
 .DS_Store
 *.orig
+emacs
+!emacs/init.el
+!emacs/custom.el

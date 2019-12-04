@@ -1,7 +1,6 @@
 ;;; init.el --- user-init-file                    -*- lexical-binding: t -*-
 
-(add-to-list 'load-path "~/.emacs.d/vterm/")
-(require 'vterm)
+(setq gc-cons-threshold (* 50 1000 1000))
 
 ;; Beautify on macos
 (when (equal system-type 'darwin)
@@ -34,7 +33,8 @@
 (eval-when-compile
   (require 'use-package)
   (require 'use-package-ensure)
-  (setq use-package-always-ensure t))
+  (setq use-package-always-ensure t)
+ )
 
 (use-package custom
   :ensure nil
@@ -47,6 +47,7 @@
   :if
   (memq window-system '(mac ns))
   :config
+  (setq exec-path-from-shell-check-startup-files nil)
   (exec-path-from-shell-initialize))
 
 (use-package diminish)
@@ -54,15 +55,15 @@
 (use-package hl-line
   :ensure nil
   :hook
-  ((prog-mode yaml-mode gitignore-mode conf-mode) . hl-line-mode))
+  ((prog-mode yaml-mode markdown-mode gitignore-mode conf-mode) . hl-line-mode))
 
 (use-package display-line-numbers
   :ensure nil
   :hook
-  ((prog-mode yaml-mode gitignore-mode conf-mode) . display-line-numbers-mode))
+  ((prog-mode yaml-mode markdown-mode gitignore-mode conf-mode) . display-line-numbers-mode))
 
 (use-package recentf
-  :defer 5
+  :defer 2
   :ensure nil
   :config
   (recentf-mode 1))
@@ -74,16 +75,19 @@
   :config (which-key-mode))
 
 (use-package editorconfig
+  :defer 2
   :config
   (editorconfig-mode 1))
 
 (use-package doom-themes
   :init
-  (setq doom-dracula-brighter-modeline t
+  (setq doom-one-brighter-modeline t
+        doom-one-padded-modeline t
+   doom-dracula-brighter-modeline t
 	doom-dracula-padded-modeline t
 	doom-dracula-colorful-headers t)
   :config
-  (load-theme 'doom-dracula t))
+  (load-theme 'doom-one t))
   
 
 (use-package multiple-cursors
@@ -210,15 +214,15 @@
 	company-tooltip-align-annotations t
 	company-selection-wrap-around t
 	company-dabbrev-downcase nil
-	company-require-match nil)
-  :hook (after-init . global-company-mode))
+	company-require-match nil))
+  ;; :hook (after-init . global-company-mode))
 
-(use-package shell-pop
-  :bind (("s-t" . shell-pop))
-  :config
-  (setq shell-pop-shell-type (quote ("vterm" "*vterm*" (lambda nil (vterm shell-pop-term-shell)))))
-  (setq shell-pop-term-shell "/usr/local/bin/zsh")
-  (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type))
+;; (use-package shell-pop
+;;   :bind (("s-t" . shell-pop))
+;;   :config
+;;   (setq shell-pop-shell-type (quote ("vterm" "*vterm*" (lambda nil (vterm shell-pop-term-shell)))))
+;;   (setq shell-pop-term-shell "/usr/local/bin/zsh")
+;;   (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type))
 
 (use-package elisp
   :ensure nil
@@ -231,6 +235,7 @@
 
 
 (use-package smartparens
+  :defer 1
   :diminish
   :config
   (defun sp-newline (&rest _ignored)
@@ -246,7 +251,7 @@
   (smartparens-global-mode))
 
 (use-package projectile
-  :defer 5
+  :defer 2
   :bind-keymap ("C-c p" . projectile-command-map)
   :init
   (setq projectile-completion-system 'ivy
@@ -275,12 +280,12 @@
   (setq jsons-path-printer 'jsons-print-path-jq))
 
 (use-package gitignore-mode
-  :defer 5
+  :defer 2
   :config
   (add-to-list 'auto-mode-alist
              (cons "/.dockerignore\\'" 'gitignore-mode)))
-(use-package groovy-mode :defer 5 :mode "Jenkinsfile")
-(use-package yaml-mode :defer 5 :mode "\\.ya?ml\\'")
+(use-package groovy-mode :defer 2 :mode "Jenkinsfile")
+(use-package yaml-mode :defer 2 :mode "\\.ya?ml\\'")
 
 (setq-default kill-whole-line t)
 (global-set-key (kbd "C-c a") 'org-agenda)
@@ -298,11 +303,13 @@
 (global-set-key (kbd "<home>") 'back-to-indentation-or-beginning)
 
 (use-package paren
+  :defer 1
   :ensure nil
   :init (setq show-paren-delay 0)
   :config (show-paren-mode 1))
 
 (use-package dired
+  :defer 1
   :ensure nil
   :bind ("C-x C-d" . dired))
 
@@ -310,17 +317,17 @@
   :ensure nil
   :after dired)
 
-(use-package kubernetes
-  :ensure t
-  :commands (kubernetes-overview))
-
 (use-package dockerfile-mode :defer 5 :mode "Dockerfile[a-zA-Z.-]*\\'")
 
 (use-package docker
   :bind ("C-c d" . docker))
 
+(setq initial-major-mode 'fundamental-mode)
+(setq initial-scratch-message nil)
+
 ;; Font
-(setq default-font-family "Fira Code")
+(setq-default line-spacing .2)
+(setq default-font-family "JetBrains Mono")
 (set-face-attribute 'default nil
                     :family default-font-family
                     :weight 'normal
@@ -368,6 +375,7 @@
 
 
 (use-package helpful
+  :defer 2
   :init
   (setq counsel-describe-function-function #'helpful-callable
         counsel-describe-variable-function #'helpful-variable))
@@ -385,22 +393,13 @@
   :defer t
   :hook ((sgml-mode css-mode) . emmet-mode))
 
-(use-package eyebrowse
-  :bind-keymap ("C-<return>" . eyebrowse-mode-map)
-  :bind (:map eyebrowse-mode-map
-              ("M-1" . eyebrowse-switch-to-window-config-1)
-              ("M-2" . eyebrowse-switch-to-window-config-2)
-              ("M-3" . eyebrowse-switch-to-window-config-3)
-              ("M-4" . eyebrowse-switch-to-window-config-4))
-  :config (eyebrowse-mode 1))
-
 (use-package avy
   :init
   (setq avy-keys '(?f ?j ?d ?k ?s ?l ?g ?h))
   :bind
-  ("C-." . avy-goto-char-timer)
+  ("M-<next>" . avy-goto-char-timer)
   ;; ("C-l" . avy-goto-line)
-  ("C-;" . avy-goto-word-1))
+  )
 
 (use-package ispell
   :init (setq ispell-program-name "hunspell"
@@ -428,6 +427,7 @@
   :hook (rust-mode . cargo-minor-mode))
 
 (use-package lsp-mode
+  :defer t
   :commands lsp)
 
 (use-package rust-mode
@@ -435,13 +435,14 @@
   :hook (rust-mode . lsp))
 
 (use-package company-lsp
+  :defer t
   :after lsp-mode
   :config
   (require 'lsp-clients)
   (push 'company-lsp company-backends))
 
-(use-package jq-mode)
-(use-package ibuffer-vc)
+(use-package jq-mode :defer t)
+(use-package ibuffer-vc :defer t)
 
 (use-package visual-fill-column
   :init (setq visual-fill-column-width 100)
@@ -488,3 +489,6 @@
   (treemacs-load-theme "City")
   (treemacs-fringe-indicator-mode nil)
   (treemacs-resize-icons 16))
+
+
+(setq gc-cons-threshold (* 2 1000 1000))
