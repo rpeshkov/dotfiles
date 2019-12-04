@@ -1,10 +1,10 @@
 {
   // Editor
-  "editor.fontFamily": "BlexMono Nerd Font",
+  "editor.fontFamily": "JetBrains Mono",
   "editor.fontSize": 12,
-  "editor.lineHeight": 22,
   "editor.folding": false,
   "editor.cursorBlinking": "solid",
+  "editor.cursorSurroundingLines": 5,
   "editor.renderIndentGuides": false,
   "editor.minimap.enabled": false,
   "editor.overviewRulerBorder": false,
@@ -15,7 +15,7 @@
   "editor.parameterHints.cycle": true,
   "editor.wordBasedSuggestions": false,
   "editor.renderLineHighlight": "all",
-  "editor.glyphMargin": false,
+  "editor.glyphMargin": true,
 
   // Breadcrumbs
   "breadcrumbs.enabled": false,
@@ -23,33 +23,16 @@
   // Workbench
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.editor.tabSizing": "shrink",
-
   "workbench.activityBar.visible": false,
   "workbench.tips.enabled": false,
   "workbench.commandPalette.history": 5,
   "workbench.startupEditor": "newUntitledFile",
-
   "workbench.settings.editor": "json",
-  "workbench.editor.showIcons": true,
   "workbench.editor.tabCloseButton": "off",
-  "workbench.statusBar.visible": false,
   "workbench.tree.renderIndentGuides": "always",
-
-  "workbench.colorTheme": "Ayu Mirage",
-  "workbench.iconTheme": "city-lights-icons-vsc",
-  "city-lights-icons-vsc.hidesExplorerArrows": true,
-  "workbench.tree.indent": 24,
-  "workbench.colorCustomizations": {
-    "[Ayu Mirage]": {
-      "scrollbar.shadow": "#2a354600",
-      "sideBar.border": "#2a3546fd",
-      "editorGroup.border": "#2a3546fd",
-      "scrollbarSlider.background": "#2a354666",
-      "scrollbarSlider.hoverBackground": "#2a354699",
-      "scrollbarSlider.activeBackground": "#2a3546b3",
-      "panel.border": "#2a3546fd"
-    }
-  },
+  "workbench.iconTheme": "vscode-great-icons",
+  "workbench.tree.indent": 16,
+  "workbench.colorTheme": "One Dark Pro",
 
   // Window
   "window.newWindowDimensions": "maximized",
@@ -82,7 +65,6 @@
     "package-lock.json": true
   },
   "search.smartCase": true,
-  "search.runInExtensionHost": true,
   "search.showLineNumbers": true,
 
   // Diff & SCM
@@ -118,6 +100,11 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
+  // JavaScript
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
   // HTML
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -140,16 +127,7 @@
   // REST client
   "rest-client.fontSize": 12,
 
-  // Ace Jumper
-  "aceJump.placeholder.fontFamily": "IBM Plex Mono",
-  "aceJump.placeholder.fontSize": 11,
-  "aceJump.placeholder.fontWeight": "bold",
-  "aceJump.finder.onlyInitialLetter": false,
-  "aceJump.finder.pattern": "",
+  // Incremental search
+  "incrementalSearch.inputMode": "inline",
 
-  // Custom CSS
-  "vscode_custom_css.policy": true,
-  "vscode_custom_css.imports": [
-    "file:///Users/Shared/.vscode.css"
-  ]
 }

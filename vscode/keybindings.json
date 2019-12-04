@@ -5,8 +5,6 @@
     { "key": "cmd+k cmd+d", "command": "git.openChange"},
     { "key": "shift+cmd+e", "command": "-workbench.view.explorer" },
     { "key": "cmd+=", "command": "workbench.action.tasks.runTask" },
-    { "key": "shift+enter", "command": "extension.aceJump" },
-    { "key": "shift+alt+enter", "command": "extension.aceJump.selection" },
 
     { "key": "alt+cmd+b", "command": "workbench.action.toggleStatusbarVisibility"},
 
