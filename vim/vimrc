@@ -22,6 +22,7 @@ packadd cfilter
 syntax on
 colorscheme apprentice
 hi Normal ctermbg=NONE
+hi LineNr ctermbg=NONE guibg=NONE
 
 set number
 set cursorline
@@ -127,7 +128,7 @@ nnoremap N Nzzzv
 
 nnoremap <silent> <esc><esc> :nohlsearch<cr>
 
-nmap <silent> <C-p> :FZF<CR>
+nmap <silent> <leader><space> :FZF<CR>
 nmap <silent> <leader>/ :BLines<cr>
 
 nnoremap <leader>w :clo<cr>
