@@ -88,7 +88,7 @@
 	doom-dracula-colorful-headers t)
   :config
   (load-theme 'doom-one t))
-  
+
 
 (use-package multiple-cursors
   :bind
@@ -110,7 +110,7 @@
   :config
   (use-package ob-applescript)
   (use-package ob-shell :ensure nil)
-  
+
   )
 
 (use-package magit
@@ -258,7 +258,7 @@
         projectile-indexing-method 'alien)
   :config
   (setq projectile-project-search-path
-        '("~/Developer/ard/" "~/Developer/" "~/Developer/blaze/"))
+        '("~/Developer/"))
   (setq projectile-completion-system 'ivy)
   (setq projectile-indexing-method 'alien)
   (projectile-register-project-type 'npm '("package.json")

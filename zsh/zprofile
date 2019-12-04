@@ -29,7 +29,7 @@ if [ `command -v fnm` > /dev/null 2>&1 ]; then
     eval "$(fnm env --multi)"
 fi
 
-
+export NIX_IGNORE_SYMLINK_STORE=1
 [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && source $HOME/.nix-profile/etc/profile.d/nix.sh
 
 [ -f "$HOME/.zprofile_local" ] && source "$HOME/.zprofile_local"
