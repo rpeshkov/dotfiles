@@ -22,6 +22,14 @@ export LS_COLORS="di=1;34:ln=1;35:so=1;31:pi=1;33:ex=1;32:bd=34;46:cd=34;43:su=3
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
+#
+# FNM
+#
+if [ `command -v fnm` > /dev/null 2>&1 ]; then
+    eval "$(fnm env --multi)"
+fi
+
+
 [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && source $HOME/.nix-profile/etc/profile.d/nix.sh
 
 [ -f "$HOME/.zprofile_local" ] && source "$HOME/.zprofile_local"
