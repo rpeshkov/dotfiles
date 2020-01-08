@@ -8,6 +8,8 @@
     aa = add .
     ci = commit
     b = branch -vv
+    bd = branch -d
+    bdd = branch -D
     d = diff
     dt = difftool
     dw = diff --word-diff=color
@@ -28,6 +30,7 @@
     stat = !git diff --stat $(git merge-base HEAD $REVIEW_BASE)
     files = !git diff --name-only $(git merge-base HEAD $REVIEW_BASE)
     out = log --pretty=oneline --abbrev-commit --graph @{u}..
+    skipwt = update-index --skip-worktree
 
 [status]
     showUntrackedFiles = all
