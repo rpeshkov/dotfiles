@@ -30,7 +30,7 @@ set linebreak
 let &showbreak='↪ '
 set shortmess+=c
 set splitbelow splitright
-set synmaxcol=300
+set synmaxcol=512
 set title
 set lazyredraw
 let html_no_rendering=1
