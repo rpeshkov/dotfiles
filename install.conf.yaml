@@ -15,7 +15,6 @@
     ~/.config/nvim/init.vim:
       create: true
       path: vim/vimrc
-    ~/.vifm: vifm
     ~/.emacs.d: emacs
 
     ~/.gitconfig: git/gitconfig
