@@ -68,6 +68,7 @@ alias ls='ls -F'
 alias l='ls -l'
 alias lla='ls -la'
 alias vim='nvim'
+alias ww='nvim -c VimwikiIndex'
 alias duh='du -chd1'
 alias serve='http-server'
 alias coder='code -r .'
@@ -94,6 +95,8 @@ if [ -f "${HOME}/.zgen/zgen.zsh" ]; then
         zgen load sindresorhus/pure
         zgen load eendroroy/zed-zsh
         zgen load zsh-users/zsh-syntax-highlighting
+        zgen load wfxr/forgit
+        zgen load wfxr/formarks
         zgen save
     fi
 fi
@@ -113,3 +116,4 @@ setopt share_history
 setopt bang_hist
 
 [ -f "$HOME/.zshrc_local" ] && source "$HOME/.zshrc_local"
+
