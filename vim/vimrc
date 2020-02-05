@@ -4,15 +4,24 @@ set nocompatible
 " Plugins
 "
 call plug#begin('~/.vim/plugged')
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+Plug 'RRethy/vim-illuminate'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'itchyny/lightline.vim'
+Plug 'joshdick/onedark.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'sheerun/vim-polyglot'
-Plug 'romainl/Apprentice'
 Plug 'jiangmiao/auto-pairs'
+Plug 'machakann/vim-swap'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-repeat'
+Plug 'ervandew/supertab'
+Plug 'romainl/vim-cool'
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
+Plug 'rust-lang/rust.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 call plug#end()
 packadd cfilter
 
@@ -20,21 +29,28 @@ packadd cfilter
 " Visual
 "
 syntax on
-colorscheme apprentice
-hi Normal ctermbg=NONE
-hi LineNr ctermbg=NONE guibg=NONE
+colorscheme onedark
+hi illuminatedWord ctermbg=238 guibg=#555555
+set termguicolors
 
-set number
+filetype plugin indent on
+filetype plugin on
+
+set number relativenumber
 set cursorline
+set synmaxcol=512
+set title
+set lazyredraw
+set listchars=tab:‣\ ,trail:·,precedes:«,extends:»,eol:¬
+set signcolumn=yes
+
 set linebreak
 let &showbreak='↪ '
 set shortmess+=c
 set splitbelow splitright
-set synmaxcol=512
-set title
-set lazyredraw
-let html_no_rendering=1
-set listchars=tab:‣\ ,trail:·,precedes:«,extends:»,eol:¬
+set noshowmode
+
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
 
 "
 " Search
@@ -91,6 +107,9 @@ let mapleader=" "
 nnoremap <silent> <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <silent> <leader>sv :source $MYVIMRC<cr>
 
+nnoremap <silent> <leader>w :clo<cr>
+nnoremap <silent> <leader>d :bd<cr>
+
 " No Ex mode
 nnoremap Q <Nop>
 
@@ -126,25 +145,10 @@ nnoremap J mzJ`z
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-nnoremap <silent> <esc><esc> :nohlsearch<cr>
-
-nmap <silent> <leader><space> :FZF<CR>
-nmap <silent> <leader>/ :BLines<cr>
-
-nnoremap <leader>w :clo<cr>
-
-command! -nargs=0 -bang B Buffers
-command! -nargs=0 -bang F Files
-
-" Zooming into specific split.
-map <silent> zi :tabedit +<C-r>=line(".")<cr> %<cr>zz
-map <silent> Zi :only<cr>
-map <silent> zo :call ZoomOut()<cr>
-function! ZoomOut()
-    let linenr = line(".")
-    exec 'tabclose'
-    exec 'normal ' . linenr . 'G'
-endfunction
+nmap <silent> <leader><space> :Clap files<CR>
+nmap <silent> <leader>/ :Clap lines<cr>
+nmap <silent> <leader>g :Clap grep<cr>
+nmap <silent> <leader>l :Clap buffers<cr>
 
 " https://github.com/stoeffel/.dotfiles/blob/master/vim/visual-at.vim
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
@@ -180,3 +184,15 @@ augroup vim_help
     autocmd!
     autocmd BufWinEnter * call Help_autocmd()
 augroup END
+
+noremap <silent> <leader>m :call OpenMarkdownPreview()<cr>
+
+function! OpenMarkdownPreview() abort
+  if exists('s:markdown_job_id') && s:markdown_job_id > 0
+    call jobstop(s:markdown_job_id)
+    unlet s:markdown_job_id
+  endif
+  let s:markdown_job_id = jobstart('grip ' . shellescape(expand('%:p')))
+  if s:markdown_job_id <= 0 | return | endif
+  call system('open http://localhost:6419')
+endfunction
