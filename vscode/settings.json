@@ -16,6 +16,8 @@
   "editor.wordBasedSuggestions": false,
   "editor.renderLineHighlight": "all",
   "editor.glyphMargin": true,
+  "editor.semanticHighlighting.enabled": true,
+  "editor.matchBrackets": "near",
 
   // Breadcrumbs
   "breadcrumbs.enabled": false,
@@ -30,9 +32,8 @@
   "workbench.settings.editor": "json",
   "workbench.editor.tabCloseButton": "off",
   "workbench.tree.renderIndentGuides": "always",
-  "workbench.iconTheme": "vscode-great-icons",
+  "workbench.iconTheme": "material-icon-theme",
   "workbench.tree.indent": 16,
-  "workbench.colorTheme": "One Dark Pro",
 
   // Window
   "window.newWindowDimensions": "maximized",
@@ -66,6 +67,7 @@
   },
   "search.smartCase": true,
   "search.showLineNumbers": true,
+  "search.enableSearchEditorPreview": true,
 
   // Diff & SCM
   "git.enableSmartCommit": true,
@@ -125,9 +127,5 @@
   "text-tables.mode": "markdown",
 
   // REST client
-  "rest-client.fontSize": 12,
-
-  // Incremental search
-  "incrementalSearch.inputMode": "inline",
-
+  "rest-client.fontSize": 12
 }
