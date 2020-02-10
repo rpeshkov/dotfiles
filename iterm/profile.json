@@ -179,7 +179,7 @@
             "Sync Title": false,
             "Prompt Before Closing 2": false,
             "BM Growl": true,
-            "Command" : "~\/.nix-profile\/bin\/tmux",
+            "Command" : "/usr/local/bin/tmux new-session -A -s tmux",
             "Description": "Default",
             "Smart Cursor Color" : true,
             "Mouse Reporting": true,
