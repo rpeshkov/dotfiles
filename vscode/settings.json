@@ -127,5 +127,7 @@
   "text-tables.mode": "markdown",
 
   // REST client
-  "rest-client.fontSize": 12
+  "rest-client.fontSize": 12,
+  "terminal.integrated.shell.osx": "/usr/local/bin/tmux",
+  "terminal.integrated.shellArgs.osx": []
 }
