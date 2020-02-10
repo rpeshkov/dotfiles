@@ -1,6 +1,4 @@
 {:profiles {:Goku {:default true :sim 250 :delay 500 :alone 1000 :held 500}}
- :templates {:mousejump "~/bin/mouse-jump"
-             :activate "osascript -e 'tell application \"%s\" to activate'"}
  :devices {:red-square [{:vendor_id 1539 :product_id 254}]
            :anne-pro-2 [{:vendor_id 1241 :product_id 32777}]}
  :main [{:des "Red square keyboard overrides"
@@ -15,8 +13,6 @@
                  ; [:caps_lock ["pok-mode" 0] ["pok-mode" 1] ]
 
                  [:##caps_lock ["pok-mode" 1] nil {:afterup ["pok-mode" 0] :alone :escape}]
-
-                 [:!T1 [:mousejump]]
 
                  ; Delete
                  [:##delete_or_backspace :##delete_forward ["pok-mode" 1]]
