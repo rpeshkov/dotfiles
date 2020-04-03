@@ -32,6 +32,7 @@
     out = log --pretty=oneline --abbrev-commit --graph @{u}..
     wt = worktree
     skipwt = update-index --skip-worktree
+    hres = reset --hard HEAD
 
 [status]
     showUntrackedFiles = all
