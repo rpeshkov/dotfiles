@@ -33,6 +33,7 @@
     wt = worktree
     skipwt = update-index --skip-worktree
     hres = reset --hard HEAD
+    pr = !gh pr create -w
 
 [status]
     showUntrackedFiles = all
