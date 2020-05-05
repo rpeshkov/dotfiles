@@ -32,7 +32,6 @@
   "workbench.settings.editor": "json",
   "workbench.editor.tabCloseButton": "off",
   "workbench.tree.renderIndentGuides": "always",
-  "workbench.iconTheme": "material-icon-theme",
   "workbench.tree.indent": 16,
 
   // Window
@@ -67,7 +66,6 @@
   },
   "search.smartCase": true,
   "search.showLineNumbers": true,
-  "search.enableSearchEditorPreview": true,
 
   // Diff & SCM
   "git.enableSmartCommit": true,
@@ -128,6 +126,5 @@
 
   // REST client
   "rest-client.fontSize": 12,
-  "terminal.integrated.shell.osx": "/usr/local/bin/tmux",
-  "terminal.integrated.shellArgs.osx": []
+  "workbench.colorTheme": "Ayu Mirage"
 }
