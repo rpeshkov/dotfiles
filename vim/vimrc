@@ -12,16 +12,11 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'jiangmiao/auto-pairs'
-Plug 'machakann/vim-swap'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
-Plug 'ervandew/supertab'
 Plug 'romainl/vim-cool'
-Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
-Plug 'rust-lang/rust.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 call plug#end()
 packadd cfilter
 
@@ -36,21 +31,19 @@ set termguicolors
 filetype plugin indent on
 filetype plugin on
 
-set number relativenumber
+set number norelativenumber
 set cursorline
 set synmaxcol=512
 set title
 set lazyredraw
 set listchars=tab:‣\ ,trail:·,precedes:«,extends:»,eol:¬
-set signcolumn=yes
+set signcolumn=no
 
 set linebreak
 let &showbreak='↪ '
 set shortmess+=c
 set splitbelow splitright
 set noshowmode
-
-autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
 
 "
 " Search
@@ -145,10 +138,9 @@ nnoremap J mzJ`z
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-nmap <silent> <leader><space> :Clap files<CR>
-nmap <silent> <leader>/ :Clap lines<cr>
-nmap <silent> <leader>g :Clap grep<cr>
-nmap <silent> <leader>l :Clap buffers<cr>
+nmap <silent> <leader><space> :Files<CR>
+nmap <silent> <leader>/ :BLines<cr>
+nmap <silent> <leader>l :Buffers<cr>
 
 " https://github.com/stoeffel/.dotfiles/blob/master/vim/visual-at.vim
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
@@ -185,14 +177,3 @@ augroup vim_help
     autocmd BufWinEnter * call Help_autocmd()
 augroup END
 
-noremap <silent> <leader>m :call OpenMarkdownPreview()<cr>
-
-function! OpenMarkdownPreview() abort
-  if exists('s:markdown_job_id') && s:markdown_job_id > 0
-    call jobstop(s:markdown_job_id)
-    unlet s:markdown_job_id
-  endif
-  let s:markdown_job_id = jobstart('grip ' . shellescape(expand('%:p')))
-  if s:markdown_job_id <= 0 | return | endif
-  call system('open http://localhost:6419')
-endfunction
