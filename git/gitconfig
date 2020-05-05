@@ -1,3 +1,9 @@
+# vim:ft=gitconfig
+
+[user]
+    name = Roman Peshkov
+    email = peshkovroman@gmail.com
+
 [include]
     path = .gitconfig_local
 
