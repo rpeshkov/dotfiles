@@ -53,6 +53,10 @@
 [log]
     date = short
 
+[pull]
+    rebase = false
+
+
 [color]
     ui = auto
 
