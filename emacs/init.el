@@ -1,494 +1,298 @@
-;;; init.el --- user-init-file                    -*- lexical-binding: t -*-
-
-(setq gc-cons-threshold (* 50 1000 1000))
+;;; init.el --- user-init-file                    -*- lexical-binding: t; -*-
 
 ;; Beautify on macos
 (when (equal system-type 'darwin)
   (setq ns-alternate-modifier 'meta
-        ns-command-modifier 'super
-        ns-use-proxy-icon nil
-        initial-frame-alist
-	(append
-	 '((ns-transparent-titlebar . nil)
-	   (ns-appearance . dark)
-	   (vertical-scroll-bars . nil)
-	   (internal-border-width . 0)))))
+        ns-command-modifier 'super))
 
-(unless (eq window-system 'ns)
-  (menu-bar-mode -1))
-(when (fboundp 'tool-bar-mode)
-  (tool-bar-mode -1))
-(when (boundp 'scroll-bar-mode)
-  (scroll-bar-mode -1))
+(add-to-list 'default-frame-alist '(width . 101))
+(add-to-list 'default-frame-alist '(height . 100))
+(add-to-list 'default-frame-alist '(internal-border-width . 15))
 
-;; Package manager initialization
-(require 'package)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")
-                         ("org" . "https://orgmode.org/elpa/")))
-(package-initialize)
+(fringe-mode '(15 . 15))
+
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el"
+                         user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+;;;;  Effectively replace use-package with straight-use-package
+;;; https://github.com/raxod502/straight.el/blob/develop/README.md#integration-with-use-package
+(straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
+
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
-(eval-when-compile
-  (require 'use-package)
-  (require 'use-package-ensure)
-  (setq use-package-always-ensure t)
- )
-
-(use-package custom
-  :ensure nil
-  :config
-  (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-  (when (file-exists-p custom-file)
-    (load custom-file)))
 
 (use-package exec-path-from-shell
-  :if
-  (memq window-system '(mac ns))
-  :config
-  (setq exec-path-from-shell-check-startup-files nil)
-  (exec-path-from-shell-initialize))
-
-(use-package diminish)
-
-(use-package hl-line
-  :ensure nil
-  :hook
-  ((prog-mode yaml-mode markdown-mode gitignore-mode conf-mode) . hl-line-mode))
-
-(use-package display-line-numbers
-  :ensure nil
-  :hook
-  ((prog-mode yaml-mode markdown-mode gitignore-mode conf-mode) . display-line-numbers-mode))
-
-(use-package recentf
-  :defer 2
-  :ensure nil
-  :config
-  (recentf-mode 1))
-
-(use-package which-key
-  :defer 2
-  :diminish
-  :commands which-key-mode
-  :config (which-key-mode))
-
-(use-package editorconfig
-  :defer 2
-  :config
-  (editorconfig-mode 1))
-
-(use-package doom-themes
-  :init
-  (setq doom-one-brighter-modeline t
-        doom-one-padded-modeline t
-   doom-dracula-brighter-modeline t
-	doom-dracula-padded-modeline t
-	doom-dracula-colorful-headers t)
-  :config
-  (load-theme 'doom-one t))
-
-
-(use-package multiple-cursors
-  :bind
-  (("C->" . mc/mark-next-like-this)
-   ("M-I" . mc/edit-lines)))
-
-(use-package org
-  :defer t
-  :init
-  (setq org-agenda-files '("~/Documents/Notes")
-	org-directory "~/Documents/Notes/"
-	org-default-notes-file "~/Documents/Notes/tracker.org"
-	org-fontify-whole-heading-line t
-	org-pretty-entities t
-        org-tags-column -97
-        org-agenda-tags-column -100
-        ;; org-startup-indented t
-        )
-  :config
-  (use-package ob-applescript)
-  (use-package ob-shell :ensure nil)
-
-  )
-
-(use-package magit
-  :bind ("C-x g" . magit-status))
-
-(use-package ivy
-  :demand t
-  :diminish
-  :bind (("C-c C-p" . ivy-resume)
-         ("C-x b" . ivy-switch-buffer))
-  :config
-  (define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
-  (setq ivy-re-builders-alist
-      '((swiper . ivy--regex-plus)
-	(t      . ivy--regex-plus)))
-  (setq ivy-use-virtual-buffers t)
-  (ivy-mode 1))
-
-(use-package ivy-rich
-  :after ivy
-  :demand t
-  :config
-  (ivy-rich-mode 1)
-  (setq ivy-virtual-abbreviate 'full
-        ivy-rich-switch-buffer-align-virtual-buffer t
-        ivy-rich-path-style 'abbrev
-        ivy-rich-parse-remote-file-path nil
-        ivy-rich-parse-remote-buffer nil))
-
-(use-package hydra
-  :defer t)
-
-(use-package ivy-hydra
-  :after (ivy hydra)
-  :defer t)
-
-(use-package counsel
-  :demand t
-  :after ivy
-  :bind (("M-x" . counsel-M-x)
-	 ("C-\\" . counsel-org-agenda-headlines)
-	 ("C-x C-f" . counsel-find-file)
-	 ("C-x r b" . counsel-bookmark)
-         ("C-x B" . counsel-switch-buffer-other-window)
-	 ("C-h f" . counsel-describe-function)))
-
-
-(use-package counsel-projectile
-  :after (counsel projectile)
-  :config
-  (defun counsel-open-in-idea (name)
-    (shell-command (format "idea %s" name)))
-
-  (counsel-projectile-modify-action
-   'counsel-projectile-switch-project-action
-   '((add ("Oi" counsel-open-in-idea "open project in idea"))))
-  (counsel-projectile-mode 1))
-
-
-(use-package swiper
-  :after ivy
-  :bind (("C-c C-s" . swiper-thing-at-point)
-         ("C-*" . swiper-thing-at-point))
-  :bind (:map isearch-mode-map
-              ("C-o" . swiper-from-isearch)))
-
-(use-package deft
-  :bind ("C-, C-," . deft)
-  :config (setq deft-directory "~/Documents/Notes/"
-                deft-extensions '("md" "org")
-                deft-default-extension "org"
-                deft-use-filter-string-for-filename t
-		deft-file-naming-rules '((noslash . "-")
-					 (nospace . "-")
-					 (case-fn . downcase))
-		deft-org-mode-title-prefix t))
-
-(use-package ediff
-  :ensure nil
-  :init (setq ediff-window-setup-function 'ediff-setup-windows-plain
-	      ediff-split-window-function 'split-window-horizontally))
-
-(use-package markdown-mode
-  :defer t
-  :commands (markdown-mode gfm-mode)
-  :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "pandoc"))
-
-(use-package ace-window
-  :bind ("M-o" . ace-window))
-
-(use-package company
-  :defer 1
-  :bind ("<help>" . company-complete)
-  :config
-  (setq company-idle-delay .3
-	company-minimum-prefix-length 1
-	company-tooltip-limit 10
-	company-tooltip-align-annotations t
-	company-selection-wrap-around t
-	company-dabbrev-downcase nil
-	company-require-match nil))
-  ;; :hook (after-init . global-company-mode))
-
-;; (use-package shell-pop
-;;   :bind (("s-t" . shell-pop))
-;;   :config
-;;   (setq shell-pop-shell-type (quote ("vterm" "*vterm*" (lambda nil (vterm shell-pop-term-shell)))))
-;;   (setq shell-pop-term-shell "/usr/local/bin/zsh")
-;;   (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type))
-
-(use-package elisp
-  :ensure nil
-  :bind ("s-r" . eval-buffer))
-
-(use-package company
-  :hook
-  (emacs-lisp-mode
-   . (lambda () (add-to-list (make-local-variable 'company-backends) '(company-elisp)))))
-
-
-(use-package smartparens
-  :defer 1
-  :diminish
-  :config
-  (defun sp-newline (&rest _ignored)
-    "Open a new brace or bracket expression, with relevant newlines and indent. "
-    (newline)
-    (indent-according-to-mode)
-    (forward-line -1)
-    (indent-according-to-mode))
-
-  (let ((brackets (list "[" "(" "{"))
-        (handlers '((sp-newline "RET") ("| " "SPC"))))
-    (dolist (b brackets) (sp-pair b nil :post-handlers handlers)))
-  (smartparens-global-mode))
-
-(use-package projectile
-  :defer 2
-  :bind-keymap ("C-c p" . projectile-command-map)
-  :init
-  (setq projectile-completion-system 'ivy
-        projectile-indexing-method 'alien)
-  :config
-  (setq projectile-project-search-path
-        '("~/Developer/"))
-  (setq projectile-completion-system 'ivy)
-  (setq projectile-indexing-method 'alien)
-  (projectile-register-project-type 'npm '("package.json")
-                  :compile "npm install"
-                  :test "npm test"
-                  :run "npm start"
-                  :test-suffix ".spec")
-  (projectile-global-mode))
-
-
-(use-package expand-region
-  :bind
-  ("M-<up>" . er/expand-region)
-  ("M-<down>" . er/contract-region))
+  :init (setq exec-path-from-shell-check-startup-files nil)
+  :config (when (memq window-system '(mac ns x))
+            (exec-path-from-shell-initialize)))
 
 (use-package json-mode
-  :mode "\\.json"
-  :init
-  (setq jsons-path-printer 'jsons-print-path-jq))
+  :mode "\\.json\\'")
 
-(use-package gitignore-mode
-  :defer 2
+(use-package org
+  :hook (org-mode . visual-line-mode)
   :config
-  (add-to-list 'auto-mode-alist
-             (cons "/.dockerignore\\'" 'gitignore-mode)))
-(use-package groovy-mode :defer 2 :mode "Jenkinsfile")
-(use-package yaml-mode :defer 2 :mode "\\.ya?ml\\'")
+  (org-link-set-parameters "message" :follow 'org-open-mail-message)
+  (defun org-open-mail-message (path arg)
+    (shell-command (concat "open message:" path))))
 
-(setq-default kill-whole-line t)
-(global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "s-K") 'kill-whole-line)
-(global-set-key (kbd "s-/") 'comment-line)
-(global-set-key (kbd "s-,")
-                (lambda()
-                  (interactive)
-                  (find-file-other-frame "~/.emacs.d/init.el")))
+(use-package epa-file
+  :straight nil
+  :config (epa-file-enable))
 
-(global-set-key (kbd "<end>") 'move-end-of-line)
-(defun back-to-indentation-or-beginning () (interactive)
-       (if (= (point) (progn (back-to-indentation) (point)))
-           (beginning-of-line)))
-(global-set-key (kbd "<home>") 'back-to-indentation-or-beginning)
+(use-package magit
+  :bind (("C-x g" . magit-status)))
 
-(use-package paren
-  :defer 1
-  :ensure nil
-  :init (setq show-paren-delay 0)
-  :config (show-paren-mode 1))
+(use-package ctrlf
+  :config (ctrlf-mode +1))
+
+(use-package minions
+  :config (minions-mode 1))
+
+(use-package org-superstar
+  :init
+  (setq org-superstar-remove-leading-stars nil)
+  (setq org-superstar-leading-bullet ?\s)
+  (setq org-superstar-headline-bullets-list '("⁖")) ;; '("⁖" "◉" "○" "▷")
+  (setq org-superstar-item-bullet-alist
+        '((?+ . ?•)
+          (?* . ?•)
+          (?- . ?•)))
+  :hook (org-mode . org-superstar-mode))
+
+(use-package modus-operandi-theme
+  :init (setq modus-operandi-theme-bold-constructs t
+              modus-operandi-theme-slanted-constructs t
+              modus-operandi-theme-rainbow-headings t
+              modus-operandi-theme-scale-headings nil
+              modus-operandi-theme-faint-syntax nil)
+  :config (load-theme 'modus-operandi t))
+
+;; Taken from http://www.howardism.org/Technical/Emacs/orgmode-wordprocessor.html
+;; (font-lock-add-keywords 'org-mode
+;;                         '(("^ *\\(-\\) "
+;;                            (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+;; (font-lock-add-keywords 'org-mode
+;;   '(("^\\*+ "
+;;      ":" nil nil
+;;      (0 (put-text-property (match-beginning 0) (match-end 0) 'display " ")))))
+
+;; (use-package org-protocol
+;;   :ensure nil
+;;   :after org)
+
+(use-package beacon
+  :init
+  (setq beacon-color "light green"
+        beacon-blink-delay 0.1
+        beacon-blink-when-window-scrolls nil
+        beacon-blink-duration 0.1)
+  :config
+  (beacon-mode)
+  (global-hl-line-mode 1))
+
+;; (set-fontset-font
+;;  t 'symbol (font-spec :family "Apple Color Emoji") nil 'prepend)
+
+(use-package ace-window
+  :bind ("M-o" . ace-window)
+  :init (ace-window-display-mode 1))
 
 (use-package dired
-  :defer 1
+  :straight nil
+  :hook (dired-mode . dired-hide-details-mode)
   :ensure nil
-  :bind ("C-x C-d" . dired))
-
-(use-package dired-x
-  :ensure nil
-  :after dired)
-
-(use-package dockerfile-mode :defer 5 :mode "Dockerfile[a-zA-Z.-]*\\'")
-
-(use-package docker
-  :bind ("C-c d" . docker))
-
-(setq initial-major-mode 'fundamental-mode)
-(setq initial-scratch-message nil)
-
-;; Font
-(setq-default line-spacing .2)
-(setq default-font-family "JetBrains Mono")
-(set-face-attribute 'default nil
-                    :family default-font-family
-                    :weight 'normal
-                    :width 'normal
-                    :height 120)
-
-
-(global-set-key (kbd "C-c c") 'org-capture)
-(global-set-key (kbd "s-d") 'split-window-right)
-(global-set-key (kbd "s-D") 'split-window-below)
-(global-set-key (kbd "s-w") 'delete-window)
-(global-set-key (kbd "s-W") 'delete-frame)
-(global-set-key (kbd "C-s-w") 'delete-other-windows)
-
-(setq eldoc-idle-delay 0.2)
-
-(setq inhibit-startup-echo-area-message t
-      inhibit-startup-screen t
-      ring-bell-function 'ignore
-      scroll-margin 3)
-
-(defalias 'yes-or-no-p 'y-or-n-p)
-
-(setq-default indicate-empty-lines t)
-
-(setq scroll-error-top-bottom t
-      scroll-preserve-screen-position t
-      cursor-in-non-selected-windows nil)
-
-(setq backup-by-copying t
-      backup-directory-alist '(("." . "~/.saves/"))
-      delete-old-versions t
-      kept-new-versions 6
-      kept-old-versions 2
-      version-control t)
-
-(setq sentence-end-double-space nil)
-(setq delete-by-moving-to-trash t)
-
-(setq-default indent-tabs-mode nil)     ; Indent with spaces
-(setq help-window-select t)             ; Automatically select help window
-
-(setq column-number-mode t)             ; Show column number
-(save-place-mode 1)                     ; Restore position when reopen file
-
-
-(use-package helpful
-  :defer 2
-  :init
-  (setq counsel-describe-function-function #'helpful-callable
-        counsel-describe-variable-function #'helpful-variable))
-
-(use-package restclient
-  :defer t
-  :mode ("\\.http\\'" . restclient-mode))
-
-(use-package clojure-mode
-  :ensure t
-  :defer t
-  :mode ("\\.edn\\'" . clojure-mode))
-
-(use-package emmet-mode
-  :defer t
-  :hook ((sgml-mode css-mode) . emmet-mode))
-
-(use-package avy
-  :init
-  (setq avy-keys '(?f ?j ?d ?k ?s ?l ?g ?h))
-  :bind
-  ("M-<next>" . avy-goto-char-timer)
-  ;; ("C-l" . avy-goto-line)
-  )
-
-(use-package ispell
-  :init (setq ispell-program-name "hunspell"
-              ispell-dictionary "en_US"))
-
-
-(defun mailit ()
-  "Send org subtree through Apple Mail"
-  (interactive)
-  (kill-new (org-export-as 'html t nil t))
-  (do-applescript
-   (concat
-    "set rawHtml to the clipboard\n"
-    "set htmlData to do shell script \"echo \" & (quoted form of rawHTML) as «class HTML»\n"
-    "set the clipboard to htmlData")
-   )
-  )
-
-(global-set-key (kbd "C-c l") #'mailit)
-
-(use-package ibuffer
-  :bind ("C-x C-b" . ibuffer))
-
-(use-package cargo
-  :hook (rust-mode . cargo-minor-mode))
-
-(use-package lsp-mode
-  :defer t
-  :commands lsp)
-
-(use-package rust-mode
-  :mode "\\.rs\\'"
-  :hook (rust-mode . lsp))
-
-(use-package company-lsp
-  :defer t
-  :after lsp-mode
   :config
-  (require 'lsp-clients)
-  (push 'company-lsp company-backends))
+  (use-package dired-git-info
+    :bind (:map dired-mode-map (")" . dired-git-info-mode)))
+  (use-package diredfl
+    :config (diredfl-global-mode 1)))
 
-(use-package jq-mode :defer t)
-(use-package ibuffer-vc :defer t)
+(use-package paredit
+  :hook ((lisp-mode emacs-lisp-mode) . paredit-mode))
 
-(use-package visual-fill-column
-  :init (setq visual-fill-column-width 100)
-  :config (setq split-window-preferred-function 'visual-fill-column-split-window-sensibly)
-  :hook
-  (org-mode . visual-fill-column-mode)
-  (visual-fill-column-mode . visual-line-mode)
+(use-package ivy
+  :init (setq ivy-use-virtual-buffers t)
+  :config (ivy-mode 1))
+
+(use-package counsel
+  :after ivy
+  :config (counsel-mode))
+
+(use-package ivy-bibtex
+  :after ivy
+  :commands ivy-bibtex
+  :bind ("C-c n b" . ivy-bibtex))
+
+(use-package org-journal
+  :bind ("C-c n j" . org-journal-new-entry)
+  :init (setq org-journal-date-prefix "#+title: "
+              org-journal-time-prefix "* "
+              org-journal-file-format "%Y-%m-%d.org"
+              org-journal-dir "~/Sync/Notes"
+              org-journal-date-format "%A, %d %B %Y")
   )
 
-(use-package typescript-mode)
+(defun org-journal-find-location ()
+  ;; Open today's journal, but specify a non-nil prefix argument in order to
+  ;; inhibit inserting the heading; org-capture will insert the heading.
+  (org-journal-new-entry t)
+  ;; Position point on the journal's top-level heading so that org-capture
+  ;; will add the new entry as a child entry.
+  (goto-char (point-min)))
 
-(use-package web-mode
-  :ensure t
-  :mode (("\\.html?\\'" . web-mode)
-         ("\\.tsx\\'" . web-mode)
-         ("\\.jsx\\'" . web-mode))
-  :config
-  (setq web-mode-markup-indent-offset 2
-        web-mode-css-indent-offset 2
-        web-mode-code-indent-offset 2
-        web-mode-block-padding 2
-        web-mode-comment-style 2
-
-        web-mode-enable-css-colorization t
-        web-mode-enable-auto-pairing t
-        web-mode-enable-comment-keywords t
-        web-mode-enable-current-element-highlight t
+(setq org-capture-templates
+      '(
+        ("j" "Journal entry" entry (function org-journal-find-location)
+         "** %(format-time-string org-journal-time-format)%?")
+        ("t" "Task" entry (file+headline "~/Sync/Notes/tracker.org" "Inbox")
+         "* TODO %?" :prepend t)
+        ("v" "Vocabulary" entry (file+headline "~/Sync/Notes/vocabulary.org" "Vocabulary")
+         "* %^{The word}\n %?")
         ))
 
-(use-package treemacs
-  :ensure t
-  :defer t
-  :bind (:map global-map
-              ("s-1" . treemacs-select-window))
-  :config
-  (treemacs-create-theme "City"
-    :icon-directory (concat user-emacs-directory "/icons")
-    :config
-    (progn
-      (treemacs-create-icon :file "dir-closed.png" :extensions (root))
-      (treemacs-create-icon :file "dir-closed.png" :extensions (dir-closed))
-      (treemacs-create-icon :file "dir-open.png" :extensions (dir-open))
-      (treemacs-create-icon :file "txt.png" :extensions (fallback))))
-  (treemacs-load-theme "City")
-  (treemacs-fringe-indicator-mode nil)
-  (treemacs-resize-icons 16))
+(use-package org-roam
+  :init (setq org-roam-directory "~/Sync/Notes"
+              org-roam-index-file "~/Sync/Notes/index.org")
+  :bind (:map org-roam-mode-map
+              (("C-c n l" . org-roam)
+               ("C-c n f" . org-roam-find-file)
+               ("C-c n n" . org-roam-find-ref)
+               ("C-c n g" . org-roam-graph))
+              :map org-mode-map
+              (("C-c n i" . org-roam-insert))))
 
+(use-package org-ref
+  :after org-roam
+  :init (setq org-ref-default-bibliography "~/Sync/Notes/library.bib"))
 
-(setq gc-cons-threshold (* 2 1000 1000))
+(defcustom orb-title-format "${author-or-editor-abbrev} (${date}).  ${title}."
+  "Format of the title to use for `orb-templates'.")
+
+(use-package org-roam-bibtex
+  :after org-ref
+  :hook (org-roam-mode . org-roam-bibtex-mode)
+  :bind (:map org-mode-map
+              (("C-c n a" . orb-note-actions)))
+  :init
+  (setq orb-templates
+   `(("r" "ref" plain
+      (function org-roam-capture--get-point)
+      ""
+      :file-name "refs/${citekey}"
+      :head ,(s-join "\n"
+                     (list
+                      (concat "#+title: " orb-title-format)
+                      "#+roam_key: ${ref}"
+                      "#+created: %U\n\n"))
+      :unnarrowed t)
+     ))
+  )
+
+(use-package deft
+  :init (setq deft-default-extension "org"
+              deft-directory "~/Sync/Notes"
+              deft-file-naming-rules '((noslash . "-") (nospace . "-") (case-fn . downcase))
+              deft-recursive t
+              deft-use-filter-string-for-filename t)
+  :bind ("C-c n d" . deft))
+
+(setq default-directory "~/")
+
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
+(global-set-key (kbd "C-c n c") 'calendar)
+(global-set-key (kbd "s-K") 'kill-buffer-and-window)
+(global-set-key (kbd "s-o") 'find-file-existing)
+(global-set-key (kbd "s-1") 'delete-other-windows)
+(global-set-key (kbd "s-0") 'delete-window)
+(global-set-key (kbd "s-b") 'list-buffers)
+(global-set-key (kbd "s-Z") 'redo)
+;; Kill current buffer without asking for name
+(global-set-key [remap kill-buffer] #'kill-this-buffer)
+;; (global-set-key (kbd "C-x C-c") #'delete-frame)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(auto-save-default nil)
+ '(bibtex-completion-bibliography "~/Sync/Notes/library.bib")
+ '(bibtex-completion-library-path "~/Sync/Notes")
+ '(bibtex-completion-pdf-open-function 'helm-open-file-with-default-tool)
+ '(bibtex-dialect 'biblatex)
+ '(calendar-week-start-day 1)
+ '(column-number-mode t)
+ '(compilation-message-face 'default)
+ '(css-fontify-colors nil)
+ '(cursor-type 'bar)
+ '(delete-by-moving-to-trash t)
+ '(delete-selection-mode t)
+ '(dired-use-ls-dired nil)
+ '(fill-column 100)
+ '(frame-resize-pixelwise t)
+ '(help-window-select t)
+ '(indent-tabs-mode nil)
+ '(indicate-empty-lines t)
+ '(inhibit-startup-screen t)
+ '(kill-whole-line t)
+ '(line-spacing 0.25)
+ '(make-backup-files nil)
+ '(mouse-wheel-tilt-scroll t)
+ '(org-agenda-files '("~/Sync/Notes/tracker.org"))
+ '(org-agenda-tags-column 'auto)
+ '(org-babel-load-languages '((emacs-lisp . t) (shell . t) (python . t) (js . t)))
+ '(org-confirm-babel-evaluate nil)
+ '(org-default-notes-file "~/Sync/Notes/tracker.org")
+ '(org-directory "~/Sync/Notes/")
+ '(org-ellipsis " ▼ ")
+ '(org-fontify-quote-and-verse-blocks t)
+ '(org-fontify-whole-heading-line t)
+ '(org-hide-emphasis-markers t)
+ '(org-html-validation-link nil)
+ '(org-id-link-to-org-use-id 'create-if-interactive)
+ '(org-log-note-clock-out t)
+ '(org-modules
+   '(ol-bbdb ol-bibtex org-crypt ol-docview ol-eww org-habit ol-info ol-irc ol-mhe ol-rmail ol-w3m))
+ '(org-special-ctrl-a/e t)
+ '(org-startup-folded t)
+ '(org-superstar-todo-bullet-alist '(("TODO" . 9744) ("DONE" . 9745)))
+ '(org-tags-column 0)
+ '(scroll-bar-mode nil)
+ '(scroll-error-top-bottom t)
+ '(user-mail-address "peshkovroman@gmail.com")
+ '(vc-follow-symlinks t))
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:height 140 :family "Roboto Mono"))))
+ '(aw-leading-char-face ((t (:foreground "red" :weight ultra-bold :height 2.0))))
+ '(fixed-pitch ((t (:height 140 :family "Roboto Mono"))))
+ '(fringe ((t (:foreground "white"))))
+ '(mode-line ((t (:background "white" :foreground "#191919" :box nil :overline t))))
+ '(org-document-title ((t (:inherit (bold default) :foreground "#093060" :height 1.5))))
+ '(org-done ((t (:foreground "#005e00" :strike-through t))))
+ '(org-ellipsis ((t (:background "white" :height 1))))
+ '(org-headline-done ((t (:foreground "#004000" :strike-through t :overline nil))))
+ '(org-tag ((t (:inherit bold :extend t :foreground "#541f4f" :weight normal :height 0.8))))
+ '(org-todo ((t (:foreground "#a60000" :underline t))))
+ '(variable-pitch ((t (:weight normal :height 150 :family "Roboto Slab")))))
