@@ -30,10 +30,6 @@
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
 (use-package exec-path-from-shell
   :init (setq exec-path-from-shell-check-startup-files nil)
   :config (when (memq window-system '(mac ns x))
