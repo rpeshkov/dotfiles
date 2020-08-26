@@ -126,5 +126,6 @@
 
   // REST client
   "rest-client.fontSize": 12,
-  "workbench.colorTheme": "Ayu Mirage"
+  "workbench.colorTheme": "GitHub Light",
+  "workbench.iconTheme": "eq-material-theme-icons-light"
 }
