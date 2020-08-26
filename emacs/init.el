@@ -38,6 +38,13 @@
 (use-package json-mode
   :mode "\\.json\\'")
 
+(use-package flycheck
+  :bind (("M-n" . flycheck-next-error)
+         ("M-p" . flycheck-previous-error)))
+
+(use-package flycheck-vale
+  :config (flycheck-vale-setup))
+
 (use-package org
   :hook (org-mode . visual-line-mode)
   :config
@@ -76,20 +83,6 @@
               modus-operandi-theme-scale-headings nil
               modus-operandi-theme-faint-syntax nil)
   :config (load-theme 'modus-operandi t))
-
-;; Taken from http://www.howardism.org/Technical/Emacs/orgmode-wordprocessor.html
-;; (font-lock-add-keywords 'org-mode
-;;                         '(("^ *\\(-\\) "
-;;                            (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
-
-;; (font-lock-add-keywords 'org-mode
-;;   '(("^\\*+ "
-;;      ":" nil nil
-;;      (0 (put-text-property (match-beginning 0) (match-end 0) 'display " ")))))
-
-;; (use-package org-protocol
-;;   :ensure nil
-;;   :after org)
 
 (use-package beacon
   :init
@@ -291,4 +284,6 @@
  '(org-headline-done ((t (:foreground "#004000" :strike-through t :overline nil))))
  '(org-tag ((t (:inherit bold :extend t :foreground "#541f4f" :weight normal :height 0.8))))
  '(org-todo ((t (:foreground "#a60000" :underline t))))
- '(variable-pitch ((t (:weight normal :height 150 :family "Roboto Slab")))))
+ '(variable-pitch ((t (:weight normal :height 150 :family "Roboto Slab"))))
+ '(writegood-passive-voice-face ((t (:foreground "#3f3000" :underline (:color "#604f0f" :style wave)))))
+ '(writegood-weasels-face ((t (:foreground "#5f0000" :underline (:color "#9f004f" :style wave))))))
