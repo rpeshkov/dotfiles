@@ -77,13 +77,10 @@ alias ls='ls -F'
 alias l='ls -l'
 alias lla='ls -la'
 alias vim='nvim'
-alias ww='nvim -c VimwikiIndex'
 alias duh='du -chd1'
 alias serve='http-server'
 alias coder='code -r .'
-alias dev='cd ~dev'
 alias cwd='pwd | pbcopy'
-alias weather='curl wttr.in'
 alias dots='cd $HOME/.dotfiles/'
 
 #
