@@ -1,5 +1,10 @@
 ;;; init.el --- user-init-file                    -*- lexical-binding: t; -*-
 
+(setq gc-cons-threshold (* 256 1024 1024))
+
+(setq frame-inhibit-implied-resize t)
+(setq package-enable-at-startup nil)
+
 ;; Beautify on macos
 (when (equal system-type 'darwin)
   (setq ns-alternate-modifier 'meta
@@ -7,9 +12,11 @@
 
 (add-to-list 'default-frame-alist '(width . 101))
 (add-to-list 'default-frame-alist '(height . 100))
-(add-to-list 'default-frame-alist '(internal-border-width . 15))
+(add-to-list 'default-frame-alist '(ns-appearance . dark))
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 
-(fringe-mode '(15 . 15))
+;; (add-to-list 'default-frame-alist '(internal-border-width . 15))
+;; (fringe-mode '(15 . 15))
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -25,15 +32,31 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+;; (straight-use-package '(org :local-repo nil))
+
+;; (straight-override-recipe
+;;    '(org :type git :host github :repo "emacsmirror/org" :no-build t))
+
 ;;;;  Effectively replace use-package with straight-use-package
 ;;; https://github.com/raxod502/straight.el/blob/develop/README.md#integration-with-use-package
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
 
-(use-package exec-path-from-shell
-  :init (setq exec-path-from-shell-check-startup-files nil)
-  :config (when (memq window-system '(mac ns x))
-            (exec-path-from-shell-initialize)))
+;; (use-package exec-path-from-shell
+;;   :init (setq exec-path-from-shell-check-startup-files t)
+;;   :config (when (memq window-system '(mac ns x))
+;;             (exec-path-from-shell-initialize)))
+
+;; (use-package pass)
+
+(use-package projectile
+  :config
+  (setq projectile-completion-system 'ivy)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode +1))
+
+(use-package yaml-mode
+  :mode "\\.ya?ml\\'")
 
 (use-package json-mode
   :mode "\\.json\\'")
@@ -48,6 +71,7 @@
 (use-package org
   :hook (org-mode . visual-line-mode)
   :config
+  (org-crypt-use-before-save-magic)
   (org-link-set-parameters "message" :follow 'org-open-mail-message)
   (defun org-open-mail-message (path arg)
     (shell-command (concat "open message:" path))))
@@ -76,13 +100,13 @@
           (?- . ?•)))
   :hook (org-mode . org-superstar-mode))
 
-(use-package modus-operandi-theme
-  :init (setq modus-operandi-theme-bold-constructs t
-              modus-operandi-theme-slanted-constructs t
-              modus-operandi-theme-rainbow-headings t
-              modus-operandi-theme-scale-headings nil
-              modus-operandi-theme-faint-syntax nil)
-  :config (load-theme 'modus-operandi t))
+(use-package doom-themes
+  :config
+  (setq doom-themes-enable-bold t)
+  (load-theme 'doom-one t)
+  (doom-themes-org-config))
+
+(use-package vterm)
 
 (use-package beacon
   :init
@@ -92,7 +116,7 @@
         beacon-blink-duration 0.1)
   :config
   (beacon-mode)
-  (global-hl-line-mode 1))
+  (global-hl-line-mode 0))
 
 ;; (set-fontset-font
 ;;  t 'symbol (font-spec :family "Apple Color Emoji") nil 'prepend)
@@ -144,14 +168,20 @@
   ;; will add the new entry as a child entry.
   (goto-char (point-min)))
 
+(setq org-directory "~/Sync/Notes/")
+
 (setq org-capture-templates
-      '(
+      `(
         ("j" "Journal entry" entry (function org-journal-find-location)
          "** %(format-time-string org-journal-time-format)%?")
-        ("t" "Task" entry (file+headline "~/Sync/Notes/tracker.org" "Inbox")
+        ("t" "Task" entry (file+headline ,(concat org-directory "tracker.org") "Inbox")
          "* TODO %?" :prepend t)
-        ("v" "Vocabulary" entry (file+headline "~/Sync/Notes/vocabulary.org" "Vocabulary")
+        ("v" "Vocabulary" entry (file+headline ,(concat org-directory "vocabulary.org") "Vocabulary")
          "* %^{The word}\n %?")
+        ("p" "Protocol" entry (file+headline ,(concat org-directory "tracker.org") "Inbox")
+        "* %^{Title}\nSource: %u, %c\n #+begin_quote\n%i\n#+end_quote\n\n\n%?")
+	("L" "Protocol Link" entry (file+headline ,(concat org-directory "tracker.org") "Inbox")
+        "* %? [[%:link][%:description]] \nCaptured On: %U")
         ))
 
 (use-package org-roam
@@ -197,8 +227,14 @@
               deft-directory "~/Sync/Notes"
               deft-file-naming-rules '((noslash . "-") (nospace . "-") (case-fn . downcase))
               deft-recursive t
+              deft-auto-save-interval nil
               deft-use-filter-string-for-filename t)
   :bind ("C-c n d" . deft))
+
+(use-package calfw
+  :preface
+  (defalias 'cal 'cfw:open-calendar-buffer)
+  :commands (cfw:open-calendar-buffer))
 
 (setq default-directory "~/")
 
@@ -214,7 +250,11 @@
 (global-set-key (kbd "s-Z") 'redo)
 ;; Kill current buffer without asking for name
 (global-set-key [remap kill-buffer] #'kill-this-buffer)
-;; (global-set-key (kbd "C-x C-c") #'delete-frame)
+(global-set-key (kbd "<home>") 'beginning-of-line)
+(global-set-key (kbd "<end>") 'end-of-line)
+
+(setq gc-cons-threshold (* 32 1024 1024))
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -231,6 +271,7 @@
  '(compilation-message-face 'default)
  '(css-fontify-colors nil)
  '(cursor-type 'bar)
+ '(deft-auto-save-interval 0.0)
  '(delete-by-moving-to-trash t)
  '(delete-selection-mode t)
  '(dired-use-ls-dired nil)
@@ -241,7 +282,7 @@
  '(indicate-empty-lines t)
  '(inhibit-startup-screen t)
  '(kill-whole-line t)
- '(line-spacing 0.25)
+ '(line-spacing 0.15)
  '(make-backup-files nil)
  '(mouse-wheel-tilt-scroll t)
  '(org-agenda-files '("~/Sync/Notes/tracker.org"))
@@ -273,17 +314,19 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 140 :family "Roboto Mono"))))
- '(aw-leading-char-face ((t (:foreground "red" :weight ultra-bold :height 2.0))))
- '(fixed-pitch ((t (:height 140 :family "Roboto Mono"))))
- '(fringe ((t (:foreground "white"))))
- '(mode-line ((t (:background "white" :foreground "#191919" :box nil :overline t))))
- '(org-document-title ((t (:inherit (bold default) :foreground "#093060" :height 1.5))))
- '(org-done ((t (:foreground "#005e00" :strike-through t))))
- '(org-ellipsis ((t (:background "white" :height 1))))
- '(org-headline-done ((t (:foreground "#004000" :strike-through t :overline nil))))
- '(org-tag ((t (:inherit bold :extend t :foreground "#541f4f" :weight normal :height 0.8))))
- '(org-todo ((t (:foreground "#a60000" :underline t))))
- '(variable-pitch ((t (:weight normal :height 150 :family "Roboto Slab"))))
- '(writegood-passive-voice-face ((t (:foreground "#3f3000" :underline (:color "#604f0f" :style wave)))))
- '(writegood-weasels-face ((t (:foreground "#5f0000" :underline (:color "#9f004f" :style wave))))))
+ '(default ((t (:height 120 :family "JetBrains Mono"))))
+ '(aw-leading-char-face ((t (:foreground "light green" :weight ultra-bold :height 2.0))))
+ '(fixed-pitch ((t (:height 120 :family "JetBrains Mono"))))
+ ;; '(fringe ((t (:foreground "white"))))
+ ;; '(mode-line ((t (:background "white" :foreground "#191919" :box nil :overline t))))
+ ;; '(org-code ((t (:inherit fixed-pitch :extend t :background "#f0f0f0" :foreground "#721045"))))
+ ;; '(org-document-title ((t (:inherit (bold default) :foreground "#093060" :height 1.5))))
+ ;; '(org-done ((t (:foreground "#005e00" :strike-through t))))
+ ;; '(org-ellipsis ((t (:background "white" :height 1))))
+ ;; '(org-headline-done ((t (:foreground "#004000" :strike-through t :overline nil))))
+ ;; '(org-quote ((t (:extend t :background "#f0f0f0" :foreground "#61284f" :slant italic))))
+ ;; '(org-tag ((t (:inherit bold :extend t :foreground "#541f4f" :weight normal :height 0.8))))
+ ;; '(org-todo ((t (:foreground "#a60000" :underline t))))
+ '(variable-pitch ((t (:weight normal :height 130 :family "Roboto Slab"))))
+ )
+
