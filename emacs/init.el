@@ -8,12 +8,11 @@
 ;; Beautify on macos
 (when (equal system-type 'darwin)
   (setq ns-alternate-modifier 'meta
-        ns-command-modifier 'super))
-
-(add-to-list 'default-frame-alist '(width . 101))
-(add-to-list 'default-frame-alist '(height . 100))
-(add-to-list 'default-frame-alist '(ns-appearance . dark))
-(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+        ns-command-modifier 'super
+        default-frame-alist '((width . 101)
+                              (height . 100)
+                              (ns-appearance . dark)
+                              (ns-transparent-titlebar . t))))
 
 ;; (add-to-list 'default-frame-alist '(internal-border-width . 15))
 ;; (fringe-mode '(15 . 15))
@@ -304,6 +303,7 @@
  '(org-startup-folded t)
  '(org-superstar-todo-bullet-alist '(("TODO" . 9744) ("DONE" . 9745)))
  '(org-tags-column 0)
+ '(ring-bell-function 'ignore)
  '(scroll-bar-mode nil)
  '(scroll-error-top-bottom t)
  '(user-mail-address "peshkovroman@gmail.com")
@@ -317,16 +317,5 @@
  '(default ((t (:height 120 :family "JetBrains Mono"))))
  '(aw-leading-char-face ((t (:foreground "light green" :weight ultra-bold :height 2.0))))
  '(fixed-pitch ((t (:height 120 :family "JetBrains Mono"))))
- ;; '(fringe ((t (:foreground "white"))))
- ;; '(mode-line ((t (:background "white" :foreground "#191919" :box nil :overline t))))
- ;; '(org-code ((t (:inherit fixed-pitch :extend t :background "#f0f0f0" :foreground "#721045"))))
- ;; '(org-document-title ((t (:inherit (bold default) :foreground "#093060" :height 1.5))))
- ;; '(org-done ((t (:foreground "#005e00" :strike-through t))))
- ;; '(org-ellipsis ((t (:background "white" :height 1))))
- ;; '(org-headline-done ((t (:foreground "#004000" :strike-through t :overline nil))))
- ;; '(org-quote ((t (:extend t :background "#f0f0f0" :foreground "#61284f" :slant italic))))
- ;; '(org-tag ((t (:inherit bold :extend t :foreground "#541f4f" :weight normal :height 0.8))))
- ;; '(org-todo ((t (:foreground "#a60000" :underline t))))
- '(variable-pitch ((t (:weight normal :height 130 :family "Roboto Slab"))))
- )
+ '(variable-pitch ((t (:weight normal :height 130 :family "Roboto Slab")))))
 
