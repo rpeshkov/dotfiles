@@ -14,8 +14,8 @@
                               (ns-appearance . dark)
                               (ns-transparent-titlebar . t))))
 
-;; (add-to-list 'default-frame-alist '(internal-border-width . 15))
-;; (fringe-mode '(15 . 15))
+(unless (display-graphic-p)
+  (menu-bar-mode -1))
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -31,22 +31,17 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-;; (straight-use-package '(org :local-repo nil))
-
-;; (straight-override-recipe
-;;    '(org :type git :host github :repo "emacsmirror/org" :no-build t))
-
 ;;;;  Effectively replace use-package with straight-use-package
 ;;; https://github.com/raxod502/straight.el/blob/develop/README.md#integration-with-use-package
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
 
-;; (use-package exec-path-from-shell
-;;   :init (setq exec-path-from-shell-check-startup-files t)
-;;   :config (when (memq window-system '(mac ns x))
-;;             (exec-path-from-shell-initialize)))
+(use-package exec-path-from-shell
+  :init (setq exec-path-from-shell-check-startup-files t)
+  :config (when (memq window-system '(mac ns x))
+            (exec-path-from-shell-initialize)))
 
-;; (use-package pass)
+(use-package pass)
 
 (use-package projectile
   :config
@@ -113,9 +108,7 @@
         beacon-blink-delay 0.1
         beacon-blink-when-window-scrolls nil
         beacon-blink-duration 0.1)
-  :config
-  (beacon-mode)
-  (global-hl-line-mode 0))
+  :config (beacon-mode))
 
 ;; (set-fontset-font
 ;;  t 'symbol (font-spec :family "Apple Color Emoji") nil 'prepend)
@@ -227,7 +220,11 @@
               deft-file-naming-rules '((noslash . "-") (nospace . "-") (case-fn . downcase))
               deft-recursive t
               deft-auto-save-interval nil
-              deft-use-filter-string-for-filename t)
+              deft-use-filter-string-for-filename t
+              deft-strip-summary-regexp (concat "\\("
+                                                "[\n\t]" ;; blank
+                                                "\\|^#\\+[[:lower:]_]+:.*$" ;; org-mode metadata
+                                                "\\)"))
   :bind ("C-c n d" . deft))
 
 (use-package calfw
@@ -253,7 +250,6 @@
 (global-set-key (kbd "<end>") 'end-of-line)
 
 (setq gc-cons-threshold (* 32 1024 1024))
-
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -306,6 +302,7 @@
  '(ring-bell-function 'ignore)
  '(scroll-bar-mode nil)
  '(scroll-error-top-bottom t)
+ '(tab-always-indent 'complete)
  '(user-mail-address "peshkovroman@gmail.com")
  '(vc-follow-symlinks t))
 
