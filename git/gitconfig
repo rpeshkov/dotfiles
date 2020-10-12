@@ -3,6 +3,7 @@
 [user]
     name = Roman Peshkov
     email = peshkovroman@gmail.com
+    signingkey = 63DCF7430BB94CA4 
 
 [include]
     path = .gitconfig_local
@@ -13,6 +14,7 @@
 [alias]
     aa = add .
     ci = commit
+    cim = commit -m
     b = branch -vv
     bd = branch -d
     bdd = branch -D
@@ -33,6 +35,7 @@
     remotes = remote -v
     patch = !git --no-pager diff --no-color
     feature = "!git checkout -b $1 develop #"
+    review = !git diff $(git merge-base HEAD $REVIEW_BASE)
     stat = !git diff --stat $(git merge-base HEAD $REVIEW_BASE)
     files = !git diff --name-only $(git merge-base HEAD $REVIEW_BASE)
     out = log --pretty=oneline --abbrev-commit --graph @{u}..
@@ -40,10 +43,14 @@
     skipwt = update-index --skip-worktree
     hres = reset --hard HEAD
     pr = !gh pr create -w
+    q = !sh -c 'git aa && git cim Changes && git poh'
 
 [status]
     showUntrackedFiles = all
     short = true
+
+[commit]
+    gpgSign = true
 
 [core]
     editor = nvim
