@@ -1,6 +1,7 @@
 {:profiles {:Goku {:default true :sim 250 :delay 500 :alone 1000 :held 500}}
  :devices {:red-square [{:vendor_id 1539 :product_id 254}]
-           :anne-pro-2 [{:vendor_id 1241 :product_id 32777}]}
+           ; :anne-pro-2 [{:vendor_id 1241 :product_id 32777}]
+           }
  :main [{:des "Red square keyboard overrides"
          :rules [
                  [:##left_option :##left_command [:red-square]]
@@ -42,21 +43,35 @@
                  [:##s :##left_command ["pok-mode" 1]]
                  [:##f :##left_option ["pok-mode" 1]]
                  [:##d :##left_shift ["pok-mode" 1]]
-                 [:##tab :##fn ["pok-mode" 1]]
+                 ; [:##tab :##fn ["pok-mode" 1]]
+                 [:##tab [:##fn ["fn-mode" 1]] ["pok-mode" 1] {:afterup ["fn-mode" 0]}]
 
                  ; F keys
-                 [:##1 :##f1 ["pok-mode" 1]]
-                 [:##2 :##f2 ["pok-mode" 1]]
-                 [:##3 :##f3 ["pok-mode" 1]]
-                 [:##4 :##f4 ["pok-mode" 1]]
-                 [:##5 :##f5 ["pok-mode" 1]]
-                 [:##6 :##f6 ["pok-mode" 1]]
-                 [:##7 :##f7 ["pok-mode" 1]]
-                 [:##8 :##f8 ["pok-mode" 1]]
-                 [:##9 :##f9 ["pok-mode" 1]]
-                 [:##0 :##f10 ["pok-mode" 1]]
-                 [:##hyphen :##f11 ["pok-mode" 1]]
-                 [:##equal_sign :##f12 ["pok-mode" 1]]
+                 [:##1 :##f1 [["pok-mode" 1], ["fn-mode" 0]]]
+                 [:##2 :##f2 [["pok-mode" 1], ["fn-mode" 0]]]
+                 [:##3 :##f3 [["pok-mode" 1], ["fn-mode" 0]]]
+                 [:##4 :##f4 [["pok-mode" 1], ["fn-mode" 0]]]
+                 [:##5 :##f5 [["pok-mode" 1], ["fn-mode" 0]]]
+                 [:##6 :##f6 [["pok-mode" 1], ["fn-mode" 0]]]
+                 [:##7 :##f7 [["pok-mode" 1], ["fn-mode" 0]]]
+                 [:##8 :##f8 [["pok-mode" 1], ["fn-mode" 0]]]
+                 [:##9 :##f9 [["pok-mode" 1], ["fn-mode" 0]]]
+                 [:##0 :##f10 [["pok-mode" 1], ["fn-mode" 0]]]
+                 [:##hyphen :##f11 [["pok-mode" 1], ["fn-mode" 0]]]
+                 [:##equal_sign :##f12 [["pok-mode" 1], ["fn-mode" 0]]]
+
+                 [:##1 :display_brightness_decrement [["pok-mode" 1], ["fn-mode" 1]]]
+                 [:##2 :display_brightness_increment [["pok-mode" 1], ["fn-mode" 1]]]
+                 [:##3 :mission_control [["pok-mode" 1], ["fn-mode" 1]]]
+                 [:##4 :launchpad [["pok-mode" 1], ["fn-mode" 1]]]
+                 [:##5 :illumination_decrement [["pok-mode" 1], ["fn-mode" 1]]]
+                 [:##6 :illumination_increment [["pok-mode" 1], ["fn-mode" 1]]]
+                 [:##7 :rewind [["pok-mode" 1], ["fn-mode" 1]]]
+                 [:##8 :play_or_pause [["pok-mode" 1], ["fn-mode" 1]]]
+                 [:##9 :fastforward [["pok-mode" 1], ["fn-mode" 1]]]
+                 [:##0 :mute [["pok-mode" 1], ["fn-mode" 1]]]
+                 [:##hyphen :volume_decrement [["pok-mode" 1], ["fn-mode" 1]]]
+                 [:##equal_sign :volume_increment [["pok-mode" 1], ["fn-mode" 1]]]
                  ]
          }
         ]}
