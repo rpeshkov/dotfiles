@@ -82,6 +82,7 @@ alias serve='http-server'
 alias coder='code -r .'
 alias cwd='pwd | pbcopy'
 alias dots='cd $HOME/.dotfiles/'
+alias wat='watson'
 
 #
 # FZF
