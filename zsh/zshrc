@@ -83,6 +83,7 @@ alias coder='code -r .'
 alias cwd='pwd | pbcopy'
 alias dots='cd $HOME/.dotfiles/'
 alias wat='watson'
+alias v='qlmanage -p'
 
 #
 # FZF
