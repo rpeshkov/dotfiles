@@ -33,6 +33,10 @@
   "workbench.editor.tabCloseButton": "off",
   "workbench.tree.renderIndentGuides": "always",
   "workbench.tree.indent": 16,
+  "workbench.editor.showTabs": false,
+  "workbench.panel.opensMaximized": "preserve",
+  "workbench.colorTheme": "One Dark Pro",
+  "workbench.iconTheme": "ayu",
 
   // Window
   "window.newWindowDimensions": "maximized",
@@ -66,6 +70,7 @@
   },
   "search.smartCase": true,
   "search.showLineNumbers": true,
+  "search.searchEditor.doubleClickBehaviour": "openLocationToSide",
 
   // Diff & SCM
   "git.enableSmartCommit": true,
@@ -86,8 +91,7 @@
     "editor.wordWrap": "bounded",
     "editor.quickSuggestions": false,
     "editor.wordBasedSuggestions": true,
-    "editor.wordWrapColumn": 80,
-    "editor.rulers": [80],
+    "editor.wordWrapColumn": 100,
     "editor.tabSize": 2
   },
 
@@ -126,6 +130,20 @@
 
   // REST client
   "rest-client.fontSize": 12,
-  "workbench.colorTheme": "GitHub Light",
-  "workbench.iconTheme": "eq-material-theme-icons-light"
+
+  // Spellright
+  "spellright.ignoreRegExps": [
+    "/BEGIN PGP[^]*?END PGP/gm"
+  ],
+  "spellright.language": [
+    "en"
+  ],
+  "spellright.documentTypes": [
+    "markdown",
+    "latex"
+  ],
+
+  // Theme tweaks
+  "oneDarkPro.markdownStyle": true,
+  "oneDarkPro.vivid": true
 }
