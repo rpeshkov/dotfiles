@@ -1,7 +1,7 @@
 {
   // Editor
   "editor.fontFamily": "JetBrains Mono",
-  "editor.fontSize": 12,
+  "editor.fontSize": 15,
   "editor.folding": false,
   "editor.cursorBlinking": "solid",
   "editor.cursorSurroundingLines": 5,
@@ -35,7 +35,7 @@
   "workbench.tree.indent": 16,
   "workbench.editor.showTabs": false,
   "workbench.panel.opensMaximized": "preserve",
-  "workbench.colorTheme": "One Dark Pro",
+  "workbench.colorTheme": "GitHub Dark",
   "workbench.iconTheme": "ayu",
 
   // Window
@@ -91,7 +91,7 @@
     "editor.wordWrap": "bounded",
     "editor.quickSuggestions": false,
     "editor.wordBasedSuggestions": true,
-    "editor.wordWrapColumn": 100,
+    "editor.wordWrapColumn": 120,
     "editor.tabSize": 2
   },
 
@@ -142,6 +142,9 @@
     "markdown",
     "latex"
   ],
+
+  // Insert Date String
+  "insertDateString.format": "YYYYMMDDhhmmss",
 
   // Theme tweaks
   "oneDarkPro.markdownStyle": true,
