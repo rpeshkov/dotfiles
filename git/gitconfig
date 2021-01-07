@@ -90,3 +90,8 @@
     prompt = false
 [difftool "vscode"]
     cmd = "code -n -w -d $LOCAL $REMOTE"
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
