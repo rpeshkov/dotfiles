@@ -34,12 +34,5 @@ if [ `command -v fnm` > /dev/null 2>&1 ]; then
     eval "$(fnm env)"
 fi
 
-export NIX_IGNORE_SYMLINK_STORE=1
-[ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && source $HOME/.nix-profile/etc/profile.d/nix.sh
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
 [ -f "$HOME/.zprofile_local" ] && source "$HOME/.zprofile_local"
 

@@ -101,7 +101,6 @@ if [ -f "${HOME}/.zgen/zgen.zsh" ]; then
     if ! zgen saved; then
         zgen load mafredri/zsh-async
         zgen load sindresorhus/pure
-        zgen load eendroroy/zed-zsh
         zgen load zsh-users/zsh-syntax-highlighting
         zgen save
     fi
@@ -124,6 +123,8 @@ setopt bang_hist
 function tm() {
     tmux move-window -t 0:$(tmux list-windows -t 0 | wc -l | awk '{print $1+1}')
 }
+
+eval "$(zoxide init zsh)"
 
 [ -f "$HOME/.zshrc_local" ] && source "$HOME/.zshrc_local"
 
