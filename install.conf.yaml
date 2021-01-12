@@ -16,6 +16,7 @@
       create: true
       path: vim/vimrc
     ~/.config/emacs/init.el: emacs/init.el
+    ~/.config/emacs/early-init.el: emacs/early-init.el
 
     ~/.gitconfig: git/gitconfig
     ~/.tigrc: tig/tigrc
