@@ -19,7 +19,6 @@
     ~/.config/emacs/early-init.el: emacs/early-init.el
 
     ~/.gitconfig: git/gitconfig
-    ~/.tigrc: tig/tigrc
 
     ~/.config/karabiner.edn: karabiner/karabiner.edn
 
