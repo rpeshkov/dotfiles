@@ -47,6 +47,8 @@ bindkey '^x^x' copy-kill-whole-line
 zle -N edit-command-line
 bindkey '^x^e' edit-command-line
 
+bindkey -s '^x^f' 'nnn^M'
+
 #
 # Completion
 #
