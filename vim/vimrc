@@ -17,6 +17,9 @@ Plug 'tpope/vim-repeat'
 Plug 'romainl/vim-cool'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'junegunn/goyo.vim'
+Plug 'voldikss/vim-floaterm'
 call plug#end()
 packadd cfilter
 
@@ -40,7 +43,8 @@ set listchars=tab:‣\ ,trail:·,precedes:«,extends:»,eol:¬
 set signcolumn=no
 
 set linebreak
-let &showbreak='↪ '
+let &showbreak='  ↪ '
+set cpoptions+=n
 set shortmess+=c
 set splitbelow splitright
 set noshowmode
@@ -139,8 +143,10 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 
 nmap <silent> <leader><space> :Files<CR>
+nmap <silent> <leader>f :FloatermNew nnn<CR>
 nmap <silent> <leader>/ :BLines<cr>
 nmap <silent> <leader>l :Buffers<cr>
+
 
 " https://github.com/stoeffel/.dotfiles/blob/master/vim/visual-at.vim
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
@@ -177,3 +183,25 @@ augroup vim_help
     autocmd BufWinEnter * call Help_autocmd()
 augroup END
 
+" Goyo
+nmap <f12> :Goyo<cr>
+let g:goyo_width=120
+
+" nvim-treesitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "typescript",     -- one of "all", "language", or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+}
+EOF
