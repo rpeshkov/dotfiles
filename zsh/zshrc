@@ -18,6 +18,9 @@ setopt auto_remove_slash
 setopt no_beep
 setopt extended_glob
 
+autoload -U promptinit; promptinit
+prompt pure
+
 #
 # Bindings
 #
@@ -102,7 +105,6 @@ if [ -f "${HOME}/.zgen/zgen.zsh" ]; then
     source "${HOME}/.zgen/zgen.zsh"
     if ! zgen saved; then
         zgen load mafredri/zsh-async
-        zgen load sindresorhus/pure
         zgen load zsh-users/zsh-syntax-highlighting
         zgen save
     fi
