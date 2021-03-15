@@ -2,7 +2,7 @@
   // Editor
   "editor.fontFamily": "JetBrains Mono",
   "editor.fontSize": 12,
-  "editor.folding": false,
+  "editor.folding": true,
   "editor.cursorBlinking": "solid",
   "editor.cursorSurroundingLines": 5,
   "editor.renderIndentGuides": false,
@@ -35,7 +35,7 @@
   "workbench.tree.indent": 16,
   "workbench.editor.showTabs": false,
   "workbench.panel.opensMaximized": "preserve",
-  "workbench.colorTheme": "GitHub Dark",
+  "workbench.colorTheme": "GitHub Light",
   "workbench.iconTheme": "ayu",
 
   // Window
@@ -136,7 +136,8 @@
     "/BEGIN PGP[^]*?END PGP/gm"
   ],
   "spellright.language": [
-    "en"
+    "en",
+    "ru"
   ],
   "spellright.documentTypes": [
     "markdown",
@@ -145,8 +146,4 @@
 
   // Insert Date String
   "insertDateString.format": "YYYYMMDDhhmmss",
-
-  // Theme tweaks
-  "oneDarkPro.markdownStyle": true,
-  "oneDarkPro.vivid": true
 }
