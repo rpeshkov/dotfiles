@@ -20,6 +20,7 @@
     bdd = branch -D
     d = diff
     dt = difftool
+    dvi = difftool -t nvd
     dw = diff --word-diff=color
     co = checkout
     col = checkout
@@ -63,7 +64,6 @@
 [pull]
     rebase = false
 
-
 [color]
     ui = auto
 
@@ -81,8 +81,11 @@
 
 [merge]
     tool = vscode
+    conflictStyle = diff3
 [mergetool "vscode"]
     cmd = "code -n -w $MERGED"
+[mergetool "nvd"]
+	cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
 [diff]
     tool = vscode
@@ -90,6 +93,9 @@
     prompt = false
 [difftool "vscode"]
     cmd = "code -n -w -d $LOCAL $REMOTE"
+[difftool "nvd"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
