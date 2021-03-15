@@ -23,6 +23,8 @@ Plug 'voldikss/vim-floaterm'
 call plug#end()
 packadd cfilter
 
+
+nmap gx :silent execute "!open " . shellescape("<cWORD>")<CR>
 "
 " Visual
 "
