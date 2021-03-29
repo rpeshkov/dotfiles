@@ -46,6 +46,9 @@
     pr = !gh pr create -w
     q = !sh -c 'git aa && git cim Changes && git poh'
 
+[init]
+	defaultBranch = main
+
 [status]
     showUntrackedFiles = all
     short = true
@@ -62,7 +65,7 @@
     diffFilter = delta --color-only
 
 [delta]
-    features = line-numbers navigate
+    features = line-numbers
     whitespace-error-style = 22 reverse
     syntax-theme = OneHalfDark
 
@@ -89,7 +92,6 @@
 
 [merge]
     tool = vscode
-    conflictStyle = diff3
 [mergetool "vscode"]
     cmd = "code -n -w $MERGED"
 [mergetool "nvd"]
