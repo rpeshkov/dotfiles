@@ -1,7 +1,8 @@
 {
   // Editor
-  "editor.fontFamily": "JetBrains Mono",
+  "editor.fontFamily": "Rec Mono Linear, JetBrains Mono",
   "editor.fontSize": 12,
+  "editor.lineHeight": 16,
   "editor.folding": true,
   "editor.cursorBlinking": "solid",
   "editor.cursorSurroundingLines": 5,
