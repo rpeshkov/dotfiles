@@ -6,3 +6,4 @@ vifm/scripts/README
 emacs/*
 !emacs/init.el
 !emacs/custom.el
+!emacs/early-init.el
