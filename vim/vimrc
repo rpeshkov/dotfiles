@@ -20,11 +20,16 @@ Plug 'junegunn/fzf.vim'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'junegunn/goyo.vim'
 Plug 'voldikss/vim-floaterm'
+Plug 'ferrine/md-img-paste.vim'
 call plug#end()
 packadd cfilter
 
 
 nmap gx :silent execute "!open " . shellescape("<cWORD>")<CR>
+
+autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+
+let g:mdip_imgdir = 'i'
 "
 " Visual
 "
