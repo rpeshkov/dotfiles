@@ -20,11 +20,26 @@ Plug 'junegunn/fzf.vim'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'junegunn/goyo.vim'
 Plug 'voldikss/vim-floaterm'
+Plug 'nvim-lua/completion-nvim'
+Plug 'mattn/emmet-vim'
+Plug 'dense-analysis/ale'
+Plug 'neovim/nvim-lspconfig'
+Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
+Plug 'tversteeg/registers.nvim'
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'kyazdani42/nvim-web-devicons'
 call plug#end()
 packadd cfilter
 
+nnoremap <C-n> :NvimTreeToggle<CR>
+nnoremap <leader>r :NvimTreeRefresh<CR>
+nnoremap <leader>n :NvimTreeFindFile<CR>
+let g:nvim_tree_show_icons = {
+    \ 'git': 1,
+    \ 'folders': 0,
+    \ 'files': 0,
+    \ }
 
-nmap gx :silent execute "!open " . shellescape("<cWORD>")<CR>
 "
 " Visual
 "
@@ -35,6 +50,18 @@ set termguicolors
 
 filetype plugin indent on
 filetype plugin on
+
+let g:ale_linters_explicit = 1
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+            \   'html': ['prettier'],
+            \   'javascript': ['prettier'],
+            \   'css': ['prettier'],
+            \}
+let g:ale_linters = {
+            \   'sh': ['shellcheck']
+            \}
+
 
 set number norelativenumber
 set cursorline
@@ -101,6 +128,10 @@ set wildignore+=**/node_modules
 " Bindings
 "
 let mapleader=" "
+imap <silent> <c-p> <Plug>(completion_trigger)
+" Completion
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Vimrc editing simplification
 nnoremap <silent> <leader>ev :vsplit $MYVIMRC<cr>
@@ -149,6 +180,9 @@ nmap <silent> <leader>f :FloatermNew nnn<CR>
 nmap <silent> <leader>/ :BLines<cr>
 nmap <silent> <leader>l :Buffers<cr>
 
+" Fix gx
+nmap gx :silent execute "!open " . shellescape("<cWORD>")<CR>
+
 
 " https://github.com/stoeffel/.dotfiles/blob/master/vim/visual-at.vim
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
@@ -186,7 +220,7 @@ augroup vim_help
 augroup END
 
 " Goyo
-nmap <f12> :Goyo<cr>
+" nmap <f12> :Goyo<cr>
 let g:goyo_width=120
 
 " nvim-treesitter
@@ -207,3 +241,28 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
+
+lua <<EOF
+local nvim_lsp = require('lspconfig')
+local on_attach = function(client, bufnr)
+    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+
+    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    local opts = { noremap=true, silent=true }
+    buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+end
+
+local servers = {"bashls", "tsserver"}
+for _, lsp in ipairs(servers) do
+    nvim_lsp[lsp].setup { on_attach = on_attach }
+end
+
+EOF
+
+autocmd BufEnter * lua require'completion'.on_attach()
+
+let g:shfmt_fmt_on_save = 1
+
