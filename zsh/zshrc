@@ -89,6 +89,7 @@ alias cwd='pwd | pbcopy'
 alias dots='cd $HOME/.dotfiles/'
 alias wat='watson'
 alias v='qlmanage -p'
+alias cdr='cd $(git rev-parse --show-toplevel)'
 
 #
 # FZF
