@@ -20,13 +20,24 @@
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
+(use-package flymake-shellcheck
+  :ensure t
+  :commands flymake-shellcheck-load
+  :hook (sh-mode . flymake-shellcheck-load))
+
+(use-package shfmt
+  :ensure t
+  :bind (("C-c C-f" . shfmt))
+  :hook (sh-mode . shfmt-on-save-mode))
+
 (use-package tree-sitter
   :ensure t
   :init (global-tree-sitter-mode)
   :hook ((ruby-mode . tree-sitter-hl-mode)
          (js-mode . tree-sitter-hl-mode)
          (typescript-mode . tree-sitter-hl-mode)
-         (go-mode . tree-sitter-hl-mode)))
+         (go-mode . tree-sitter-hl-mode)
+         (sh-mode . tree-sitter-hl-mode)))
 
 (use-package tree-sitter-langs
   :ensure t)
@@ -36,6 +47,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(ansi-color-names-vector
+   ["black" "red3" "ForestGreen" "yellow3" "blue" "magenta3" "DeepSkyBlue" "gray50"])
  '(auto-save-default nil)
  '(calendar-week-start-day 1)
  '(column-number-mode t)
@@ -46,10 +61,11 @@
  '(ledger-default-date-format "%Y-%m-%d")
  '(make-backup-files nil)
  '(package-selected-packages
-   '(expand-region markdown-mode tree-sitter-langs tree-sitter ledger-mode use-package))
+   '(shfmt flymake-shellcheck expand-region markdown-mode tree-sitter-langs tree-sitter ledger-mode use-package))
  '(ring-bell-function 'ignore)
  '(scroll-bar-mode nil)
  '(scroll-error-top-bottom t)
+ '(tab-width 4)
  '(vc-follow-symlinks t))
 
 
