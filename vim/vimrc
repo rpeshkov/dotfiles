@@ -28,6 +28,7 @@ Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
 Plug 'tversteeg/registers.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'ferrine/md-img-paste.vim'
 call plug#end()
 packadd cfilter
 
@@ -40,6 +41,11 @@ let g:nvim_tree_show_icons = {
     \ 'files': 0,
     \ }
 
+nmap gx :silent execute "!open " . shellescape("<cWORD>")<CR>
+
+autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+
+let g:mdip_imgdir = 'i'
 "
 " Visual
 "
@@ -265,4 +271,3 @@ EOF
 autocmd BufEnter * lua require'completion'.on_attach()
 
 let g:shfmt_fmt_on_save = 1
-
