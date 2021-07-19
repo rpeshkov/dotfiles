@@ -11,7 +11,6 @@ Plug 'joshdick/onedark.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'romainl/vim-cool'
@@ -27,11 +26,27 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
 Plug 'tversteeg/registers.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
-Plug 'kyazdani42/nvim-web-devicons'
 Plug 'ferrine/md-img-paste.vim'
+Plug 'steelsojka/pears.nvim'
+Plug 'folke/zen-mode.nvim'
+Plug 'folke/twilight.nvim'
 call plug#end()
 packadd cfilter
 
+lua << EOF
+  require("twilight").setup {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  }
+EOF
+lua << EOF
+  require("zen-mode").setup {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  }
+EOF
 nnoremap <C-n> :NvimTreeToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
 nnoremap <leader>n :NvimTreeFindFile<CR>
@@ -247,6 +262,11 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
+
+lua <<EOF
+require "pears".setup()
+EOF
+
 
 lua <<EOF
 local nvim_lsp = require('lspconfig')
