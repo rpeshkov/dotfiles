@@ -37,7 +37,7 @@
   "workbench.editor.showTabs": false,
   "workbench.panel.opensMaximized": "preserve",
   "workbench.colorTheme": "GitHub Light",
-  "workbench.iconTheme": "ayu",
+  "workbench.iconTheme": "vs-minimal",
 
   // Window
   "window.newWindowDimensions": "maximized",
@@ -147,4 +147,5 @@
 
   // Insert Date String
   "insertDateString.format": "YYYYMMDDhhmmss",
+  "workbench.editor.untitled.hint": "hidden",
 }
