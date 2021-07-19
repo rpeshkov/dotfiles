@@ -32,6 +32,7 @@
     lg = log --graph --color=always --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit
     amend = commit --amend
     poh = push -u origin HEAD
+    please = push -u origin HEAD --force-with-lease
     tags = tag -l -n2
     remotes = remote -v
     patch = !git --no-pager diff --no-color
