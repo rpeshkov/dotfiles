@@ -179,7 +179,7 @@
             "Sync Title": false,
             "Prompt Before Closing 2": false,
             "BM Growl": true,
-            "Command" : "/usr/local/bin/tmux new-session -A -s tmux",
+            "Command": "/usr/local/bin/tmux new-session -A -s tmux",
             "Description": "Default",
             "Smart Cursor Color" : true,
             "Mouse Reporting": true,
@@ -430,7 +430,7 @@
             "Horizontal Spacing": 1,
             "Transparency": 0,
             "Use Non-ASCII Font": false,
-            "Normal Font" : "RecMonoLinear-Regular 12",
+            "Normal Font": "RecMonoLinear-Regular 12",
             "Custom Directory": "No",
             "Right Option Key Sends": 0
         }

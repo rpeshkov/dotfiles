@@ -4,6 +4,11 @@
   :config (when (memq window-system '(mac ns x))
             (exec-path-from-shell-initialize)))
 
+(use-package leuven-theme
+  :ensure t
+  :config
+  (load-theme 'leuven t))
+
 (use-package expand-region
   :ensure t
   :bind (("M-<up>" . er/expand-region)
@@ -60,8 +65,10 @@
  '(inhibit-startup-screen t)
  '(ledger-default-date-format "%Y-%m-%d")
  '(make-backup-files nil)
+ '(markdown-wiki-link-search-type '(sub-directories parent-directories))
+ '(org-fontify-whole-heading-line t)
  '(package-selected-packages
-   '(shfmt flymake-shellcheck expand-region markdown-mode tree-sitter-langs tree-sitter ledger-mode use-package))
+   '(leuven-theme shfmt flymake-shellcheck expand-region markdown-mode tree-sitter-langs tree-sitter ledger-mode use-package))
  '(ring-bell-function 'ignore)
  '(scroll-bar-mode nil)
  '(scroll-error-top-bottom t)
