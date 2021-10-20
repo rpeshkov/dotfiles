@@ -1,0 +1,3 @@
+--pedantic
+--no-rounding
+--date-format '%Y-%m-%d'

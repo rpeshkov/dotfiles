@@ -9,6 +9,8 @@
     ~/.zprofile: zsh/zprofile
     ~/.zshenv: zsh/zshenv
 
+    ~/.ledgerrc: ledgerrc
+
     ~/.tmux.conf: tmux/tmux.conf
     ~/.tmux-status.conf: tmux/tmux-status.conf
 
