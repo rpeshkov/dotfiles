@@ -1,12 +1,12 @@
 {
   // Editor
-  "editor.fontFamily": "Rec Mono Linear, JetBrains Mono",
+  "editor.fontFamily": "Cascadia Code",
   "editor.fontSize": 12,
-  "editor.lineHeight": 16,
+  "editor.lineHeight": 17,
   "editor.folding": true,
   "editor.cursorBlinking": "solid",
   "editor.cursorSurroundingLines": 5,
-  "editor.renderIndentGuides": false,
+  "editor.guides.indentation": false,
   "editor.minimap.enabled": false,
   "editor.overviewRulerBorder": false,
   "editor.dragAndDrop": false,
@@ -123,9 +123,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
-  // Go
-  "go.useLanguageServer": true,
-
   // Text tables
   "text-tables.mode": "markdown",
 
@@ -147,5 +144,5 @@
 
   // Insert Date String
   "insertDateString.format": "YYYYMMDDhhmmss",
-  "workbench.editor.untitled.hint": "hidden",
+  "workbench.editor.untitled.hint": "hidden"
 }
