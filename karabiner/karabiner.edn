@@ -2,11 +2,30 @@
  :devices {:red-square [{:vendor_id 1539 :product_id 254}]
            ; :anne-pro-2 [{:vendor_id 1241 :product_id 32777}]
            }
+ :input-sources {
+                 :us {:language "en"}
+                 :cz {:input_source_id "com.apple.keylayout.Czech"}
+                 :ru {:language "ru"}
+                 :hex {:input_source_id "com.apple.keylayout.UnicodeHexInput"}
+                 }
+ :tos {
+       :us {:input :us}
+       :cz {:input :cz}
+       :ru {:input :ru}
+       :hex {:input :hex}
+       }
  :main [{:des "Red square keyboard overrides"
          :rules [
                  [:##left_option :##left_command [:red-square]]
                  [:##left_command :##left_option [:red-square]]
                  [:##application :##fn [:red-square]]
+                 ]}
+        {:des "Layouts switching"
+         :rules [
+                 [:!Q1 :us]
+                 [:!Q2 :cz]
+                 [:!Q3 :ru]
+                 [:!Q4 :hex]
                  ]}
         {:des "Poker"
          :rules [
