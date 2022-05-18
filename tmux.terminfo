@@ -18,4 +18,7 @@ tmux|tmux terminal multiplexer,
 
 # add italics for tmux (based on xterm-256color)
 tmux-256color|tmux with 256 colors,
+  smul=\E[4m,
+  Smulx=\E[4\:%p1%dm,
+  Setulc=\E[58\:2\:%p1%{65536}%/%d\:%p1%{256}%/%{255}%&%d\:%p1%{255}%&%d%;m,
   use=xterm-256color, use=tmux,
