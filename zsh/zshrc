@@ -112,6 +112,22 @@ if [ -f "${HOME}/.zgen/zgen.zsh" ]; then
 fi
 
 #
+# Autocompletion
+#
+
+_git_bd () {
+    __gitcomp_direct "$(__git_heads "" "$cur" " ")"
+}
+_git_bdd () {
+    __gitcomp_direct "$(__git_heads "" "$cur" " ")"
+}
+
+__git_rally () {
+    git symbolic-ref --short HEAD | sed -e 's:^\([^-]*\)-.*:\1:' | xargs -I {} open 'https://rally1.rallydev.com/#/search?keywords='{}
+}
+
+
+#
 # History
 #
 HISTFILE=~/.zsh_history
