@@ -6,6 +6,7 @@
             (setq gc-cons-threshold 800000
                   gc-cons-percentage 0.1)
             (garbage-collect)) t)
+
 (setq frame-inhibit-implied-resize t)
 (setq default-directory "~/")
 (setq command-line-default-directory "~/")

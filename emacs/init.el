@@ -4,10 +4,10 @@
   :config (when (memq window-system '(mac ns x))
             (exec-path-from-shell-initialize)))
 
-(use-package leuven-theme
-  :ensure t
-  :config
-  (load-theme 'leuven t))
+;(use-package leuven-theme
+;  :ensure t
+;  :config
+;  (load-theme 'leuven t))
 
 (use-package expand-region
   :ensure t
@@ -52,10 +52,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(ansi-color-names-vector
-   ["black" "red3" "ForestGreen" "yellow3" "blue" "magenta3" "DeepSkyBlue" "gray50"])
  '(auto-save-default nil)
  '(calendar-week-start-day 1)
  '(column-number-mode t)
@@ -64,8 +60,10 @@
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(ledger-default-date-format "%Y-%m-%d")
+ '(line-spacing 0.2)
  '(make-backup-files nil)
  '(markdown-wiki-link-search-type '(sub-directories parent-directories))
+ '(org-agenda-files '("~/life/time/tracker.org"))
  '(org-fontify-whole-heading-line t)
  '(package-selected-packages
    '(leuven-theme shfmt flymake-shellcheck expand-region markdown-mode tree-sitter-langs tree-sitter ledger-mode use-package))
@@ -81,5 +79,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 120 :family "Rec Mono Linear"))))
- '(fringe ((t (:background nil)))))
+ '(default ((t (:height 120 :family "Cascadia Code"))))
+ '(fringe ((t (:background nil))))
+ '(mode-line ((t (:box nil))))
+ '(mode-line-inactive ((t (:box nil)))))
