@@ -4,11 +4,6 @@
   :config (when (memq window-system '(mac ns x))
             (exec-path-from-shell-initialize)))
 
-;(use-package leuven-theme
-;  :ensure t
-;  :config
-;  (load-theme 'leuven t))
-
 (use-package expand-region
   :ensure t
   :bind (("M-<up>" . er/expand-region)
@@ -56,6 +51,8 @@
  '(calendar-week-start-day 1)
  '(column-number-mode t)
  '(frame-resize-pixelwise t)
+ '(fringe-mode 0 nil (fringe))
+ '(global-display-line-numbers-mode t)
  '(help-window-select t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
@@ -63,10 +60,13 @@
  '(line-spacing 0.2)
  '(make-backup-files nil)
  '(markdown-wiki-link-search-type '(sub-directories parent-directories))
- '(org-agenda-files '("~/life/time/tracker.org"))
+ '(org-agenda-files
+   '("~/life/habits.org" "~/life/time/tracker.org"))
  '(org-fontify-whole-heading-line t)
+ '(org-habit-show-all-today t)
+ '(org-modules '(org-habit))
  '(package-selected-packages
-   '(leuven-theme shfmt flymake-shellcheck expand-region markdown-mode tree-sitter-langs tree-sitter ledger-mode use-package))
+   '(shfmt flymake-shellcheck expand-region markdown-mode tree-sitter-langs tree-sitter ledger-mode use-package))
  '(ring-bell-function 'ignore)
  '(scroll-bar-mode nil)
  '(scroll-error-top-bottom t)
@@ -80,6 +80,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:height 120 :family "Cascadia Code"))))
+ '(fixed-pitch ((t (:family "Cascadia Code"))))
  '(fringe ((t (:background nil))))
  '(mode-line ((t (:box nil))))
  '(mode-line-inactive ((t (:box nil)))))
