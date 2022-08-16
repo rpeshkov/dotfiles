@@ -3,6 +3,7 @@
   :init (setq exec-path-from-shell-check-startup-files t)
   :config (when (memq window-system '(mac ns x))
             (exec-path-from-shell-initialize)))
+(load-theme 'modus-operandi t)
 
 (use-package expand-region
   :ensure t
@@ -13,34 +14,11 @@
   :ensure t
   :mode "\\.ledger\\'")
 
-(use-package markdown-mode
-  :ensure t
-  :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "multimarkdown"))
-
-(use-package flymake-shellcheck
-  :ensure t
-  :commands flymake-shellcheck-load
-  :hook (sh-mode . flymake-shellcheck-load))
-
-(use-package shfmt
-  :ensure t
-  :bind (("C-c C-f" . shfmt))
-  :hook (sh-mode . shfmt-on-save-mode))
-
-(use-package tree-sitter
-  :ensure t
-  :init (global-tree-sitter-mode)
-  :hook ((ruby-mode . tree-sitter-hl-mode)
-         (js-mode . tree-sitter-hl-mode)
-         (typescript-mode . tree-sitter-hl-mode)
-         (go-mode . tree-sitter-hl-mode)
-         (sh-mode . tree-sitter-hl-mode)))
-
-(use-package tree-sitter-langs
-  :ensure t)
+;(use-package org-modern
+;  :ensure t
+;  :hook
+;  (org-mode . org-modern-mode)
+;  (org-agenda-finalize . org-modern-agenda))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -61,26 +39,21 @@
  '(make-backup-files nil)
  '(markdown-wiki-link-search-type '(sub-directories parent-directories))
  '(org-agenda-files
-   '("~/life/habits.org" "~/life/time/tracker.org"))
+   '("~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/habits.org" "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/tracker.org"))
  '(org-fontify-whole-heading-line t)
  '(org-habit-show-all-today t)
  '(org-modules '(org-habit))
- '(package-selected-packages
-   '(shfmt flymake-shellcheck expand-region markdown-mode tree-sitter-langs tree-sitter ledger-mode use-package))
+ '(package-selected-packages '(org-modern expand-region ledger-mode use-package))
  '(ring-bell-function 'ignore)
  '(scroll-bar-mode nil)
  '(scroll-error-top-bottom t)
  '(tab-width 4)
  '(vc-follow-symlinks t))
 
-
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 120 :family "Cascadia Code"))))
- '(fixed-pitch ((t (:family "Cascadia Code"))))
- '(fringe ((t (:background nil))))
- '(mode-line ((t (:box nil))))
- '(mode-line-inactive ((t (:box nil)))))
+ '(default ((t (:weight medium :height 120 :family "Cascadia Code"))))
+ '(fixed-pitch ((t (:height 120 :family "Cascadia Code")))))

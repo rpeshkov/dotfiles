@@ -149,3 +149,8 @@ eval "$(zoxide init zsh)"
 
 [ -f "$HOME/.zshrc_local" ] && source "$HOME/.zshrc_local"
 
+function ylinks() {
+    fd . -t l node_modules | sed 's/^node_modules\///'
+}
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

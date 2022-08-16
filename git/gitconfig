@@ -96,7 +96,8 @@
 [merge]
     tool = vscode
 [mergetool "vscode"]
-    cmd = "code -n -w $MERGED"
+    #cmd = "code -n -w $MERGED"
+    cmd = "code --wait --merge $REMOTE $LOCAL $BASE $MERGED"
 [mergetool "nvd"]
 	cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
