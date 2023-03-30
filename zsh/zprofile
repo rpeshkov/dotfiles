@@ -30,12 +30,17 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 export REVIEW_BASE="develop"
 
+# Homebrew
+
+[ -f "/opt/homebrew/bin/brew" ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+
 #
 # FNM
 #
 if [ `command -v fnm` > /dev/null 2>&1 ]; then
     eval "$(fnm env)"
 fi
+
 
 [ -f "$HOME/.zprofile_local" ] && source "$HOME/.zprofile_local"
 
