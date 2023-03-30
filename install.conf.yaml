@@ -21,6 +21,9 @@
     ~/.config/emacs/early-init.el: emacs/early-init.el
 
     ~/.gitconfig: git/gitconfig
+    ~/.config/gh/config.yml:
+      create: true
+      path: gh/config.yml
 
     ~/.config/karabiner.edn: karabiner/karabiner.edn
 
