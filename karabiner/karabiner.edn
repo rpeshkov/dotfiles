@@ -43,8 +43,8 @@
                  [:##n :##end [:pok-mode]]
 
                  ; Modifiers
-                 [:##a :##left_control [:pok-mode]]
-                 [:##s :##left_command [:pok-mode]]
+                 [:##s :##left_control [:pok-mode]]
+                 ; [:##s :##left_command [:pok-mode]]
                  [:##f :##left_option [:pok-mode]]
                  [:##d :##left_shift [:pok-mode]]
                  ;[:##tab :##fn [:pok-mode]]
@@ -67,8 +67,7 @@
                  [:##1 :display_brightness_decrement [:pok-mode, :fn-mode]]
                  [:##2 :display_brightness_increment [:pok-mode, :fn-mode]]
                  [:##3 :mission_control [:pok-mode, :fn-mode]]
-                 ; [:##4 :launchpad [:pok-mode, :fn-mode]]
-                 [:##4 "open -a 'Alfred 5.app'" [:pok-mode, :fn-mode]]
+                 [:##4 :launchpad [:pok-mode, :fn-mode]]
                  [:##5 :illumination_decrement [:pok-mode, :fn-mode]]
                  [:##6 "shortcuts run 'Toggle dnd'" [:pok-mode, :fn-mode]]
                  [:##7 :rewind [:pok-mode, :fn-mode]]
