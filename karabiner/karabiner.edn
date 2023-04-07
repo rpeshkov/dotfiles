@@ -1,7 +1,4 @@
 {:profiles {:Goku {:default true :sim 250 :delay 500 :alone 1000 :held 500}}
- :devices {:red-square [{:vendor_id 1539 :product_id 254}]
-           ; :anne-pro-2 [{:vendor_id 1241 :product_id 32777}]
-           }
  :input-sources {
                  :us {:language "en"}
                  :cz {:input_source_id "com.apple.keylayout.Czech"}
@@ -14,13 +11,7 @@
        :ru {:input :ru}
        :hex {:input :hex}
        }
- :main [{:des "Red square keyboard overrides"
-         :rules [
-                 [:##left_option :##left_command [:red-square]]
-                 [:##left_command :##left_option [:red-square]]
-                 [:##application :##fn [:red-square]]
-                 ]}
-        {:des "Layouts switching"
+ :main [{:des "Layouts switching"
          :rules [
                  [:!Q1 :us]
                  [:!Q2 :cz]
@@ -29,68 +20,62 @@
                  ]}
         {:des "Poker"
          :rules [
-                 ; [:caps_lock ["pok-mode" 1] ["pok-mode" 0] ]
-                 ; [:caps_lock ["pok-mode" 0] ["pok-mode" 1] ]
-
-                 [:##caps_lock ["pok-mode" 1] nil {:afterup ["pok-mode" 0] :alone :escape}]
+                 [:caps_lock ["pok-mode" 1] nil {:afterup ["pok-mode" 0] :alone :escape}]
 
                  ; Delete
-                 [:##delete_or_backspace :##delete_forward ["pok-mode" 1]]
-                 ; Backspace
-                 [:##o :##delete_or_backspace ["pok-mode" 1]]
+                 [:##delete_or_backspace :##delete_forward [:pok-mode]]
 
-                 ; Escape
-                 ; [:grave_accent_and_tilde :escape ["pok-mode" 0]]
-                 ; [:escape :grave_accent_and_tilde ["pok-mode" 1]]
+                 ; Backspace
+                 [:##o :##delete_or_backspace [:pok-mode]]
 
                  ; Arrow keys
-                 [:##i :##up_arrow ["pok-mode" 1]]
-                 [:##k :##down_arrow ["pok-mode" 1]]
-                 [:##j :##left_arrow ["pok-mode" 1]]
-                 [:##l :##right_arrow ["pok-mode" 1]]
+                 [:##i :##up_arrow [:pok-mode]]
+                 [:##k :##down_arrow [:pok-mode]]
+                 [:##j :##left_arrow [:pok-mode]]
+                 [:##l :##right_arrow [:pok-mode]]
 
                  ; Page Up/Down
-                 [:##u :##page_up ["pok-mode" 1]]
-                 [:##m :##page_down ["pok-mode" 1]]
+                 [:##u :##page_up [:pok-mode]]
+                 [:##m :##page_down [:pok-mode]]
 
                  ; Home/End
-                 [:##h :##home ["pok-mode" 1]]
-                 [:##n :##end ["pok-mode" 1]]
+                 [:##h :##home [:pok-mode]]
+                 [:##n :##end [:pok-mode]]
 
                  ; Modifiers
-                 [:##a :##left_control ["pok-mode" 1]]
-                 [:##s :##left_command ["pok-mode" 1]]
-                 [:##f :##left_option ["pok-mode" 1]]
-                 [:##d :##left_shift ["pok-mode" 1]]
-                 ; [:##tab :##fn ["pok-mode" 1]]
+                 [:##s :##left_control [:pok-mode]]
+                 ; [:##s :##left_command [:pok-mode]]
+                 [:##f :##left_option [:pok-mode]]
+                 [:##d :##left_shift [:pok-mode]]
+                 ;[:##tab :##fn [:pok-mode]]
                  [:##tab [:##fn ["fn-mode" 1]] ["pok-mode" 1] {:afterup ["fn-mode" 0]}]
 
                  ; F keys
-                 [:##1 :##f1 [["pok-mode" 1], ["fn-mode" 0]]]
-                 [:##2 :##f2 [["pok-mode" 1], ["fn-mode" 0]]]
-                 [:##3 :##f3 [["pok-mode" 1], ["fn-mode" 0]]]
-                 [:##4 :##f4 [["pok-mode" 1], ["fn-mode" 0]]]
-                 [:##5 :##f5 [["pok-mode" 1], ["fn-mode" 0]]]
-                 [:##6 :##f6 [["pok-mode" 1], ["fn-mode" 0]]]
-                 [:##7 :##f7 [["pok-mode" 1], ["fn-mode" 0]]]
-                 [:##8 :##f8 [["pok-mode" 1], ["fn-mode" 0]]]
-                 [:##9 :##f9 [["pok-mode" 1], ["fn-mode" 0]]]
-                 [:##0 :##f10 [["pok-mode" 1], ["fn-mode" 0]]]
-                 [:##hyphen :##f11 [["pok-mode" 1], ["fn-mode" 0]]]
-                 [:##equal_sign :##f12 [["pok-mode" 1], ["fn-mode" 0]]]
+                 [:##1 :##f1 [:pok-mode, :!fn-mode]]
+                 [:##2 :##f2 [:pok-mode, :!fn-mode]]
+                 [:##3 :##f3 [:pok-mode, :!fn-mode]]
+                 [:##4 :##f4 [:pok-mode, :!fn-mode]]
+                 [:##5 :##f5 [:pok-mode, :!fn-mode]]
+                 [:##6 :##f6 [:pok-mode, :!fn-mode]]
+                 [:##7 :##f7 [:pok-mode, :!fn-mode]]
+                 [:##8 :##f8 [:pok-mode, :!fn-mode]]
+                 [:##9 :##f9 [:pok-mode, :!fn-mode]]
+                 [:##0 :##f10 [:pok-mode, :!fn-mode]]
+                 [:##hyphen :##f11 [:pok-mode, :!fn-mode]]
+                 [:##equal_sign :##f12 [:pok-mode, :!fn-mode]]
 
-                 [:##1 :display_brightness_decrement [["pok-mode" 1], ["fn-mode" 1]]]
-                 [:##2 :display_brightness_increment [["pok-mode" 1], ["fn-mode" 1]]]
-                 [:##3 :mission_control [["pok-mode" 1], ["fn-mode" 1]]]
-                 [:##4 :launchpad [["pok-mode" 1], ["fn-mode" 1]]]
-                 [:##5 :illumination_decrement [["pok-mode" 1], ["fn-mode" 1]]]
-                 [:##6 :illumination_increment [["pok-mode" 1], ["fn-mode" 1]]]
-                 [:##7 :rewind [["pok-mode" 1], ["fn-mode" 1]]]
-                 [:##8 :play_or_pause [["pok-mode" 1], ["fn-mode" 1]]]
-                 [:##9 :fastforward [["pok-mode" 1], ["fn-mode" 1]]]
-                 [:##0 :mute [["pok-mode" 1], ["fn-mode" 1]]]
-                 [:##hyphen :volume_decrement [["pok-mode" 1], ["fn-mode" 1]]]
-                 [:##equal_sign :volume_increment [["pok-mode" 1], ["fn-mode" 1]]]
+                 [:##1 :display_brightness_decrement [:pok-mode, :fn-mode]]
+                 [:##2 :display_brightness_increment [:pok-mode, :fn-mode]]
+                 [:##3 :mission_control [:pok-mode, :fn-mode]]
+                 [:##4 :launchpad [:pok-mode, :fn-mode]]
+                 [:##5 :illumination_decrement [:pok-mode, :fn-mode]]
+                 [:##6 "shortcuts run 'Toggle dnd'" [:pok-mode, :fn-mode]]
+                 [:##7 :rewind [:pok-mode, :fn-mode]]
+                 [:##8 :play_or_pause [:pok-mode, :fn-mode]]
+                 [:##9 :fastforward [:pok-mode, :fn-mode]]
+                 [:##0 :mute [:pok-mode, :fn-mode]]
+                 [:##hyphen :volume_decrement [:pok-mode, :fn-mode]]
+                 [:##equal_sign :volume_increment [:pok-mode, :fn-mode]]
                  ]
          }
         ]}

@@ -179,7 +179,7 @@
             "Sync Title": false,
             "Prompt Before Closing 2": false,
             "BM Growl": true,
-            "Command": "/usr/local/bin/tmux new-session -A -s tmux",
+            "Command": "/opt/homebrew/bin/tmux new-session -A -s tmux",
             "Description": "Default",
             "Smart Cursor Color" : true,
             "Mouse Reporting": true,

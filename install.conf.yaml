@@ -17,10 +17,17 @@
     ~/.config/nvim/init.lua:
       create: true
       path: vim/init.lua
-    ~/.config/emacs/init.el: emacs/init.el
-    ~/.config/emacs/early-init.el: emacs/early-init.el
+    ~/.config/emacs/init.el:
+      create: true
+      path: emacs/init.el
+    ~/.config/emacs/early-init.el:
+      create: true
+      path: emacs/early-init.el
 
     ~/.gitconfig: git/gitconfig
+    ~/.config/gh/config.yml:
+      create: true
+      path: gh/config.yml
 
     ~/.config/karabiner.edn: karabiner/karabiner.edn
 
@@ -36,8 +43,8 @@
       path: vscode/keybindings.json
 
 - shell:
-  - command: curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    description: Install vim-plug
+  - command: git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+    description: Install packer.nvim
 
 - vscodefile:
     file: vscode/extensions
