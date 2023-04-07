@@ -38,6 +38,7 @@
   "workbench.panel.opensMaximized": "preserve",
   "workbench.colorTheme": "GitHub Light",
   "workbench.iconTheme": "vs-minimal",
+  "workbench.layoutControl.enabled": false,
 
   // Window
   "window.newWindowDimensions": "maximized",
