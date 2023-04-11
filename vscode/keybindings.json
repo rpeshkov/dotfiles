@@ -107,6 +107,6 @@
     //#endregion
 
     //#region Settings
-    { "key": "shift+cmd+[Comma]", "command": "workbench.action.openGlobalKeybindingsFile" },
+    { "key": "shift+cmd+,", "command": "workbench.action.openGlobalKeybindingsFile" },
     //#endregion
 ]
