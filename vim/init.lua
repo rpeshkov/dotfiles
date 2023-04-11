@@ -69,4 +69,6 @@ require('packer').startup(function()
         }
         onedark.load()
     end}
+
+    use {"ellisonleao/glow.nvim", config = function() require("glow").setup() end}
 end)

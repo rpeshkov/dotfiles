@@ -36,8 +36,9 @@
   "workbench.tree.indent": 16,
   "workbench.editor.showTabs": false,
   "workbench.panel.opensMaximized": "preserve",
-  "workbench.colorTheme": "GitHub Light",
-  "workbench.iconTheme": "vs-minimal",
+  "workbench.colorTheme": "Xcode Default (Light)",
+  "workbench.iconTheme": "macos-classic-icons",
+  "workbench.layoutControl.enabled": false,
 
   // Window
   "window.newWindowDimensions": "maximized",
@@ -90,7 +91,11 @@
   // Markdown
   "[markdown]": {
     "editor.wordWrap": "bounded",
-    "editor.quickSuggestions": false,
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    },
     "editor.wordBasedSuggestions": true,
     "editor.wordWrapColumn": 120,
     "editor.tabSize": 2
