@@ -52,6 +52,7 @@
  '(scroll-bar-mode nil)
  '(scroll-error-top-bottom t)
  '(tab-width 4)
+ '(tool-bar-mode nil)
  '(vc-follow-symlinks t))
 
 (custom-set-faces
