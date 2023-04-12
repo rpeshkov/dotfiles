@@ -149,5 +149,6 @@
 
   // Insert Date String
   "insertDateString.format": "YYYYMMDDhhmmss",
-  "workbench.editor.untitled.hint": "hidden"
+  "workbench.editor.untitled.hint": "hidden",
+  "security.workspace.trust.untrustedFiles": "open"
 }
