@@ -10,16 +10,6 @@
   :bind (("M-<up>" . er/expand-region)
          ("M-<down>" . er/contract-region)))
 
-(use-package corfu
-  :ensure t
-  :custom
-  (corfu-cycle t)
-  (corfu-auto t)
-  (corfu-auto-delay 0)
-  (corfu-auto-prefix 0)
-  :init
-  (global-corfu-mode))
-
 (use-package ledger-mode
   :ensure t
   :mode "\\.ledger\\'")
@@ -47,7 +37,7 @@
  '(org-fontify-whole-heading-line t)
  '(org-habit-show-all-today t)
  '(org-modules '(org-habit))
- '(package-selected-packages '(corfu expand-region ledger-mode use-package))
+ '(package-selected-packages '(expand-region ledger-mode use-package))
  '(ring-bell-function 'ignore)
  '(scroll-bar-mode nil)
  '(scroll-error-top-bottom t)
