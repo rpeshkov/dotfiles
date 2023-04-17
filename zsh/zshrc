@@ -91,6 +91,14 @@ alias wat='watson'
 alias v='qlmanage -p'
 alias cdr='cd $(git rev-parse --show-toplevel)'
 
+# Global aliases
+
+# Pretty print JSON logs. Anything that starts with { is treated as JSON and formatted using jq.
+# Everything else is printed as is
+#
+# Sample usage: kubectl logs mypod PRETTY
+alias -g PRETTY="| tee >(grep -v \"^{\") | grep \"^{\" | jq -r '[.level, .timestamp, .message] | join(\" | \")'"
+
 #
 # FZF
 #
