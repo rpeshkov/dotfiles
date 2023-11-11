@@ -33,6 +33,8 @@
 
     ~/Library/Application Support/iTerm2/DynamicProfiles/profile.json: iterm/profile.json
 
+    ~/Library/KeyBindings/DefaultKeyBinding.dict: keybindings/DefaultKeyBinding.dict
+
     /Users/Shared/.vscode.css: vscode/vscode.css
 
     ~/Library/Application Support/Code/User/settings.json:
