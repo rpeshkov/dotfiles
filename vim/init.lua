@@ -5,6 +5,9 @@ vim.o.number = true
 vim.o.splitbelow = true
 vim.o.splitright = true
 
+-- Show cursor line
+vim.o.cursorline = true
+
 -- Use spaces instead of tabs with 4 spaces indent
 vim.o.expandtab = true
 vim.o.tabstop = 4
@@ -41,6 +44,8 @@ vim.api.nvim_set_keymap('n', 'N', 'Nzzzv', { noremap = true })
 
 vim.api.nvim_set_keymap('c', '%%', 'expand("%:h")."/"', { noremap = true, expr = true })
 
+vim.keymap.set("n", "<leader><space>", "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
+
 -- Add package manager
 vim.cmd [[packadd packer.nvim]]
 
@@ -48,6 +53,8 @@ vim.cmd [[packadd packer.nvim]]
 require('packer').startup(function() 
     -- Package manager updates itself
     use 'wbthomason/packer.nvim'
+
+    use 'ibhagwan/fzf-lua'
 
     -- Seamless integration with tmux splits
     use { 'alexghergh/nvim-tmux-navigation', config = function()
@@ -69,6 +76,5 @@ require('packer').startup(function()
         }
         onedark.load()
     end}
-
-    use {"ellisonleao/glow.nvim", config = function() require("glow").setup() end}
 end)
+

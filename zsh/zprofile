@@ -19,6 +19,7 @@ export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 export GOPATH="$HOME"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 export PURE_PROMPT_SYMBOL="λ"
 
