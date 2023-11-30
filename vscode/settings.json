@@ -1,13 +1,12 @@
 {
   // Editor
-  "editor.fontFamily": "Cascadia Code",
+  "editor.fontFamily": "Jetbrains Mono",
+  "editor.fontWeight": 500,
   "editor.fontSize": 12,
-  "editor.lineHeight": 17,
-  "editor.folding": true,
+  "editor.folding": false,
   "editor.cursorBlinking": "solid",
   "editor.cursorSurroundingLines": 5,
   "editor.guides.indentation": false,
-  "editor.minimap.enabled": false,
   "editor.overviewRulerBorder": false,
   "editor.dragAndDrop": false,
   "editor.scrollBeyondLastLine": false,
@@ -26,7 +25,6 @@
   // Workbench
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.editor.tabSizing": "shrink",
-  "workbench.activityBar.visible": false,
   "workbench.tips.enabled": false,
   "workbench.commandPalette.history": 5,
   "workbench.startupEditor": "newUntitledFile",
@@ -34,14 +32,14 @@
   "workbench.editor.tabCloseButton": "off",
   "workbench.tree.renderIndentGuides": "always",
   "workbench.tree.indent": 16,
-  "workbench.editor.showTabs": false,
+  "workbench.editor.showTabs": "none",
   "workbench.panel.opensMaximized": "preserve",
-  "workbench.colorTheme": "Xcode Default (Light)",
-  "workbench.iconTheme": "macos-classic-icons",
   "workbench.layoutControl.enabled": false,
 
   // Window
   "window.newWindowDimensions": "maximized",
+  "window.commandCenter": false,
+  "window.nativeTabs": true,
 
   // Files
   "files.defaultLanguage": "markdown",
@@ -77,7 +75,6 @@
   // Diff & SCM
   "git.enableSmartCommit": true,
   "scm.diffDecorations": "none",
-  "diffEditor.renderSideBySide": false,
 
   // Terminal
   "terminal.integrated.macOptionIsMeta": true,
@@ -149,6 +146,13 @@
 
   // Insert Date String
   "insertDateString.format": "YYYYMMDDhhmmss",
-  "workbench.editor.untitled.hint": "hidden",
-  "security.workspace.trust.untrustedFiles": "open"
+  "security.workspace.trust.untrustedFiles": "open",
+  "workbench.colorTheme": "Xcode14-Default-Light",
+  "workbench.iconTheme": "ayu",
+  "workbench.editor.empty.hint": "hidden",
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.minimap.enabled": false,
+  "workbench.activityBar.location": "hidden"
 }
