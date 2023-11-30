@@ -50,5 +50,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:weight medium :height 120 :family "Cascadia Code"))))
- '(fixed-pitch ((t (:height 120 :family "Cascadia Code")))))
+ '(default ((t (:weight medium :height 120 :family "JetBrainsMono NF"))))
+ '(fixed-pitch ((t (:height 120 :family "JetBrainsMono NF")))))

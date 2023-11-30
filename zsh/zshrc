@@ -78,7 +78,7 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 alias d="dirs -v"
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
-alias ls='ls -F'
+alias ls='eza'
 alias l='ls -l'
 alias lla='ls -la'
 alias vim='nvim'

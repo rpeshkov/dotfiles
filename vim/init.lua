@@ -1,6 +1,13 @@
 -- Display numbers
 vim.o.number = true
 
+-- vim.o.background = 'light'
+--
+
+if vim.g.neovide then
+    vim.o.guifont="JetBrainsMono NF:h12"
+end
+
 -- New splits below and at the right
 vim.o.splitbelow = true
 vim.o.splitright = true
@@ -46,35 +53,49 @@ vim.api.nvim_set_keymap('c', '%%', 'expand("%:h")."/"', { noremap = true, expr =
 
 vim.keymap.set("n", "<leader><space>", "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
 
--- Add package manager
-vim.cmd [[packadd packer.nvim]]
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
--- Packages
-require('packer').startup(function() 
-    -- Package manager updates itself
-    use 'wbthomason/packer.nvim'
-
-    use 'ibhagwan/fzf-lua'
-
-    -- Seamless integration with tmux splits
-    use { 'alexghergh/nvim-tmux-navigation', config = function()
-        local ntn = require('nvim-tmux-navigation')
-        vim.keymap.set('n', "<C-k>", ntn.NvimTmuxNavigateUp)
-        vim.keymap.set('n', "<C-j>", ntn.NvimTmuxNavigateDown)
-        vim.keymap.set('n', "<C-h>", ntn.NvimTmuxNavigateLeft)
-        vim.keymap.set('n', "<C-l>", ntn.NvimTmuxNavigateRight)
-    end}
-
-    -- Better syntax highlighting
-    use 'nvim-treesitter/nvim-treesitter'
-
-    -- Onedark colorscheme
-    use { 'navarasu/onedark.nvim', config = function()
-        local onedark = require('onedark')
-        onedark.setup {
-            transparent = true
-        }
-        onedark.load()
-    end}
-end)
+require("lazy").setup({
+    {
+        'stevearc/oil.nvim',
+        opts = {},
+        -- Optional dependencies
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
+    {
+        'navarasu/onedark.nvim',
+        lazy = false,
+        priority = 1000,
+        config = function()
+            local onedark = require('onedark')
+            onedark.setup {
+                transparent = false,
+            }
+            onedark.load()
+        end
+    },
+    "nvim-treesitter/nvim-treesitter",
+    "ibhagwan/fzf-lua",
+    {
+        'alexghergh/nvim-tmux-navigation', 
+        config = function()
+            local ntn = require('nvim-tmux-navigation')
+            vim.keymap.set('n', "<C-k>", ntn.NvimTmuxNavigateUp)
+            vim.keymap.set('n', "<C-j>", ntn.NvimTmuxNavigateDown)
+            vim.keymap.set('n', "<C-h>", ntn.NvimTmuxNavigateLeft)
+            vim.keymap.set('n', "<C-l>", ntn.NvimTmuxNavigateRight)
+        end
+    }
+ });
 
