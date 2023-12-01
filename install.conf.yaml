@@ -31,6 +31,8 @@
 
     ~/.config/karabiner.edn: karabiner/karabiner.edn
 
+    ~/.wezterm.lua: wezterm/wezterm.lua
+
     ~/Library/Application Support/iTerm2/DynamicProfiles/profile.json: iterm/profile.json
 
     ~/Library/KeyBindings/DefaultKeyBinding.dict: keybindings/DefaultKeyBinding.dict
