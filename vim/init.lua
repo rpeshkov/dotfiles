@@ -85,7 +85,23 @@ require("lazy").setup({
             onedark.load()
         end
     },
-    "nvim-treesitter/nvim-treesitter",
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        config = function()
+            local configs = require("nvim-treesitter.configs")
+
+            configs.setup {
+                ensure_installed = { "html", "typescript", "javascript", "tsx", "markdown", "markdown_inline", "lua" },
+                sync_install = false,
+                highlight = {
+                    enable = true,
+                    additional_vim_regex_highlighting = false,
+                },
+                indent = { enable = true },
+            }
+        end
+    },
     "ibhagwan/fzf-lua",
     {
         'alexghergh/nvim-tmux-navigation', 
