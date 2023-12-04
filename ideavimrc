@@ -1,0 +1,77 @@
+let mapleader=' '
+
+set number
+set incsearch hlsearch
+set ignorecase smartcase
+set gdefault
+
+set showmode
+
+set clipboard=unnamed
+set scrolloff=5
+set scroll=16
+set visualbell
+
+set surround
+set commentary
+set multiple-cursors
+map <C-N>  <A-N>
+map <C-P>  <A-P>
+map <C-X>  <A-X>
+map g<C-N> g<A-N>
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <C-w><C-c> :action VimWindowClose<cr>
+
+nnoremap <C-w>L :action MoveTabRight<cr>
+
+nnoremap <tab> :action NextTab<cr>
+nnoremap <S-tab> :action PreviousTab<cr>
+nnoremap <leader><tab> <C-w>w
+
+nnoremap <S-down> <C-d>
+nnoremap <S-up> <C-u>
+nnoremap vv ^vg_
+
+nnoremap H ^
+nnoremap L $
+vnoremap L g_
+vnoremap $ g_
+
+" Keep the cursor in place while joining lines
+nnoremap J mzJ`z
+vmap <silent> > >gv
+vmap <silent> < <gv
+vmap = :action ReformatCode<cr>
+nnoremap == :action ReformatCode<cr>
+
+" Format selection (visual) or current paragraph (normal)
+vmap Q gq
+nmap Q gqap
+
+nnoremap ' `
+nnoremap ` '
+
+nnoremap <leader>sv :source ~/.ideavimrc<cr>
+nnoremap <esc><esc> :nohl<cr>
+
+" nnoremap <leader><space> :action GotoFile<cr>
+noremap <leader>fr :action RecentFiles<cr>
+
+nnoremap ]q :action GotoNextError<cr>
+nnoremap [q :action GotoPreviousError<cr>
+
+nnoremap <leader>ga :action Annotate<cr>
+
+nnoremap <leader>nm :action FileStructurePopup<cr>
+
+nnoremap <leader>si :action EditorToggleShowGutterIcons<cr>
+nnoremap <leader>sl :action EditorToggleShowIndentLines<cr>
+
+set clipboard+=ideaput
+set ideajoin
+
+map <leader>ev :e ~/.ideavimrc<cr>
