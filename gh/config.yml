@@ -2,3 +2,4 @@ aliases:
     prs: pr list
     co: '!id="$(gh pr list -L100 | fzf | cut -f1)"; [ -n "$id" ] && gh pr checkout "$id"'
     pv: '!id="$(gh pr list -L100 | fzf | cut -f1)"; [ -n "$id" ] && gh pr view "$id"'
+version: "1"

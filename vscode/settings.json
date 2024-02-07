@@ -13,7 +13,7 @@
   "editor.smoothScrolling": true,
   "editor.tabCompletion": "onlySnippets",
   "editor.parameterHints.cycle": true,
-  "editor.wordBasedSuggestions": false,
+  "editor.wordBasedSuggestions": "off",
   "editor.renderLineHighlight": "all",
   "editor.glyphMargin": true,
   "editor.semanticHighlighting.enabled": true,
@@ -93,7 +93,7 @@
       "strings": "off",
       "other": "off"
     },
-    "editor.wordBasedSuggestions": true,
+    "editor.wordBasedSuggestions": "matchingDocuments",
     "editor.wordWrapColumn": 120,
     "editor.tabSize": 2
   },
@@ -154,5 +154,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.minimap.enabled": false,
-  "workbench.activityBar.location": "hidden"
+  "workbench.activityBar.location": "hidden",
+  "workbench.editor.tabActionCloseVisibility": false
 }
