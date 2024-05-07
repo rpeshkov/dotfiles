@@ -14,9 +14,9 @@
     ~/.tmux.conf: tmux/tmux.conf
     ~/.tmux-status.conf: tmux/tmux-status.conf
 
-    ~/.config/nvim/init.lua:
+    ~/.config/nvim:
       create: true
-      path: vim/init.lua
+      path: nvim
     ~/.config/emacs/init.el:
       create: true
       path: emacs/init.el
