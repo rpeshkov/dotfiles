@@ -18,6 +18,8 @@
   "editor.glyphMargin": true,
   "editor.semanticHighlighting.enabled": true,
   "editor.matchBrackets": "near",
+  "editor.stickyScroll.enabled": false,
+  "editor.minimap.enabled": false,
 
   // Breadcrumbs
   "breadcrumbs.enabled": false,
@@ -25,27 +27,33 @@
   // Workbench
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.editor.tabSizing": "shrink",
+  "workbench.editor.tabActionCloseVisibility": false,
+  "workbench.editor.empty.hint": "hidden",
+
   "workbench.tips.enabled": false,
   "workbench.commandPalette.history": 5,
   "workbench.startupEditor": "newUntitledFile",
   "workbench.settings.editor": "json",
-  "workbench.editor.tabCloseButton": "off",
   "workbench.tree.renderIndentGuides": "always",
   "workbench.tree.indent": 16,
   "workbench.editor.showTabs": "none",
   "workbench.panel.opensMaximized": "preserve",
   "workbench.layoutControl.enabled": false,
+  "workbench.activityBar.location": "hidden",
+  "workbench.colorTheme": "GitHub Light",
+  "workbench.iconTheme": "ayu",
+  "security.workspace.trust.untrustedFiles": "open",
 
   // Window
   "window.newWindowDimensions": "maximized",
   "window.commandCenter": false,
-  "window.nativeTabs": true,
 
   // Files
   "files.defaultLanguage": "markdown",
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
+  "files.simpleDialog.enable": true,
   "files.watcherExclude": {
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
@@ -53,7 +61,6 @@
     "**/bower_components/**": true,
     "**/out": true
   },
-  "files.simpleDialog.enable": true,
 
   // File explorer
   "explorer.autoReveal": false,
@@ -125,35 +132,8 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
-  // Text tables
-  "text-tables.mode": "markdown",
-
-  // REST client
-  "rest-client.fontSize": 12,
-
-  // Spellright
-  "spellright.ignoreRegExps": [
-    "/BEGIN PGP[^]*?END PGP/gm"
-  ],
-  "spellright.language": [
-    "en",
-    "ru"
-  ],
-  "spellright.documentTypes": [
-    "markdown",
-    "latex"
-  ],
-
-  // Insert Date String
-  "insertDateString.format": "YYYYMMDDhhmmss",
-  "security.workspace.trust.untrustedFiles": "open",
-  "workbench.colorTheme": "Xcode14-Default-Light",
-  "workbench.iconTheme": "ayu",
-  "workbench.editor.empty.hint": "hidden",
+  // CSS
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "editor.minimap.enabled": false,
-  "workbench.activityBar.location": "hidden",
-  "workbench.editor.tabActionCloseVisibility": false
 }
