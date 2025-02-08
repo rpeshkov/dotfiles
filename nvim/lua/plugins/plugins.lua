@@ -1,5 +1,44 @@
 return {
   {
+    "saghen/blink.cmp",
+    version = "*",
+    opts = {
+      keymap = { preset = "default" },
+    },
+    sources = {
+      default = { "lsp" },
+    },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = { "saghen/blink.cmp" },
+    opts = {
+      servers = {
+        lua_ls = {},
+      },
+    },
+    config = function()
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
+      local lspconfig = require("lspconfig")
+
+      lspconfig["lua_ls"].setup({
+        capabilities = capabilities,
+        settings = {
+          Lua = {
+            runtime = {
+              version = "LuaJIT",
+            },
+            workspace = {
+              library = {
+                vim.env.VIMRUNTIME,
+              },
+            },
+          },
+        },
+      })
+    end,
+  },
+  {
     "navarasu/onedark.nvim",
     lazy = false,
     priority = 1000,
@@ -45,13 +84,14 @@ return {
     lazy = true,
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
-  {
-    "m4xshen/autoclose.nvim",
-    config = function()
-      local autoclose = require("autoclose")
-      autoclose.setup()
-    end,
-  },
+  { "echasnovski/mini.pairs", version = false },
+  -- {
+  --   "m4xshen/autoclose.nvim",
+  --   config = function()
+  --     local autoclose = require("autoclose")
+  --     autoclose.setup()
+  --   end,
+  -- },
   {
     "alexghergh/nvim-tmux-navigation",
     config = function()
@@ -76,13 +116,26 @@ return {
     },
   },
   {
-    "sbdchd/neoformat",
-    config = function()
-      vim.g.neoformat_try_node_exe = 1
-    end,
+    "stevearc/conform.nvim",
+    opts = {},
     keys = {
-      { "<Leader>fm", ":Neoformat<CR>" },
+      {
+        "<Leader>fm",
+        function()
+          require("conform").format()
+        end,
+      },
     },
+    config = function()
+      require("conform").setup({
+        formatters_by_ft = {
+          lua = { "stylua" },
+          python = { "isort", "black" },
+          javascript = { "prettier" },
+        },
+      })
+      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    end,
   },
   {
     "stevearc/oil.nvim",

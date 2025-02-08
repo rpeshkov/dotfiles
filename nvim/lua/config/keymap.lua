@@ -27,9 +27,6 @@ vim.keymap.set("n", "N", "Nzzzv", { noremap = true })
 
 vim.keymap.set("c", "%%", 'expand("%:h")."/"', { noremap = true, expr = true })
 
-vim.keymap.set(
-  "n",
-  "<leader><space>",
-  "<cmd>lua require('fzf-lua').files()<CR>",
-  { silent = true }
-)
+vim.keymap.set("n", "<leader><space>", function()
+  require("fzf-lua").files()
+end, { silent = true })
