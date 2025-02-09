@@ -3,7 +3,7 @@
 [user]
     name = Roman Peshkov
     email = peshkovroman@gmail.com
-    signingkey = 63DCF7430BB94CA4 
+    signingkey = 15058F719E1CF731 
 
 [include]
     path = .gitconfig_local
