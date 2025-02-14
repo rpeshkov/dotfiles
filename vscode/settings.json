@@ -41,7 +41,7 @@
   "workbench.layoutControl.enabled": false,
   "workbench.activityBar.location": "hidden",
   "workbench.colorTheme": "GitHub Light",
-  "workbench.iconTheme": "ayu",
+  "workbench.iconTheme": "catppuccin-latte",
   "security.workspace.trust.untrustedFiles": "open",
 
   // Window
