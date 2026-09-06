@@ -5,10 +5,6 @@
 - clean: ['~', '~/.config']
 
 - link:
-    ~/.zshrc: zsh/zshrc
-    ~/.zprofile: zsh/zprofile
-    ~/.zshenv: zsh/zshenv
-
     ~/Library/Application Support/com.mitchellh.ghostty: ghostty/
 
     ~/.ledgerrc: ledgerrc
