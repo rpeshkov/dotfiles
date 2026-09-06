@@ -9,6 +9,8 @@
     ~/.zprofile: zsh/zprofile
     ~/.zshenv: zsh/zshenv
 
+    ~/Library/Application Support/com.mitchellh.ghostty: ghostty/
+
     ~/.ledgerrc: ledgerrc
 
     ~/.tmux.conf: tmux/tmux.conf
