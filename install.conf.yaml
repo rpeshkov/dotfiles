@@ -35,8 +35,6 @@
 
     ~/.wezterm.lua: wezterm/wezterm.lua
 
-    ~/.config/mc/ini: mc/ini
-
     ~/Library/Application Support/iTerm2/DynamicProfiles/profile.json: iterm/profile.json
 
     ~/Library/KeyBindings/DefaultKeyBinding.dict: keybindings/DefaultKeyBinding.dict
