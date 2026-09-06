@@ -3,7 +3,7 @@
   :init (setq exec-path-from-shell-check-startup-files t)
   :config (when (memq window-system '(mac ns x))
             (exec-path-from-shell-initialize)))
-(load-theme 'modus-operandi t)
+; (load-theme 'modus-operandi t)
 
 (use-package expand-region
   :ensure t
@@ -12,7 +12,13 @@
 
 (use-package ledger-mode
   :ensure t
-  :mode "\\.ledger\\'")
+  :config
+  (setq ledger-binary-path "hledger")
+  (setq ledger-mode-should-check-version nil)
+  (setq ledger-report-auto-width nil)
+  (setq ledger-report-links-in-register nil)
+  (setq ledger-report-native-highlighting-arguments '("--color=always"))
+  :mode "\\.ledger\\'" "\\.journal\\'")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -29,7 +35,7 @@
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(ledger-default-date-format "%Y-%m-%d")
- '(line-spacing 0.2)
+; '(line-spacing 0.2)
  '(make-backup-files nil)
  '(markdown-wiki-link-search-type '(sub-directories parent-directories))
  '(org-agenda-files

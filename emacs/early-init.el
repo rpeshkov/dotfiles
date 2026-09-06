@@ -14,5 +14,4 @@
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                           ("melpa" . "https://melpa.org/packages/")))
 (setq package-quickstart t)
-
 (provide 'early-init)
